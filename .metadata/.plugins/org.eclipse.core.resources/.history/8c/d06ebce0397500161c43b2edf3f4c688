@@ -1,0 +1,46 @@
+package BattleCity;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+public class Juego extends JPanel{
+	
+	
+	
+	Image ladri = new  ImageIcon(getClass().getResource("ladrillos.gif")).getImage();
+	
+public Juego()
+{
+	
+     
+}
+
+
+	
+	
+	
+
+public void paint(Graphics g)
+{  
+	
+	g.drawImage(ladri, 0, 0, 50, 50, null);
+	g.drawImage(ladri, 50, 0, 50, 50, null);
+	g.drawImage(ladri, 100, 0, 50, 50, null);
+	g.drawImage(ladri, 150, 0, 50, 50, null);
+	g.drawImage(ladri, 200, 0,50, 50, null);
+	g.drawImage(ladri, 250, 0, 50, 50, null);
+	g.drawImage(ladri, 300, 0, 50, 50, null);
+	g.drawImage(ladri, 350, 0, 50, 50, null);
+	g.drawImage(ladri, 400, 0, 50, 50, null);
+	g.drawImage(ladri, 450, 0, 50, 50, null);
+	
+}
+	
+}

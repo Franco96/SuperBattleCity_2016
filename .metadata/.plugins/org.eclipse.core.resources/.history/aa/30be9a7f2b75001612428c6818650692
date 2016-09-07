@@ -1,0 +1,15 @@
+package BattleCity;
+
+import java.awt.Color;
+
+import javax.swing.*;
+
+public class Juego extends JPanel{
+
+	
+public Juego()
+{
+	this.setBackground(Color.black);
+}
+
+}
