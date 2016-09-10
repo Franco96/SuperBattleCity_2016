@@ -1,46 +1,48 @@
 package BattleCity;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import java.io.File;
-import java.io.InputStream;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-public class Juego extends JPanel{
+public class Juego extends JPanel implements ActionListener{
+	private Jugador tanque;
+	private Timer timer;
 	
+	public Juego(){
+		setBackground(Color.BLACK);
+		setOpaque(false);
+		setFocusable(true);
+		addKeyListener(new teclado());
+		
+		tanque= new Jugador();
+		timer = new Timer(5,(ActionListener) this);
+		timer.start();		
+	}
 	
+	public void paint(Graphics grafica){
+		super.paint(grafica);
+		Graphics2D g2 = (Graphics2D)grafica;
+		g2.drawImage(tanque.tenerImagen(),tanque.tenerX(),tanque.tenerY(),null);
+	}
 	
-	Image ladri = new  ImageIcon(getClass().getResource("ladrillos.jpg")).getImage();
+	public void actionPerformed(ActionEvent e){
+		tanque.mover();
+		repaint();
+	}
 	
-public Juego()
-{
-	
-     
-}
-
-
-	
-	
-	
-
-public void paint(Graphics g)
-{  
-	
-	g.drawImage(ladri, 0, 0, 50, 50, null);
-	g.drawImage(ladri, 50, 0, 50, 50, null);
-	g.drawImage(ladri, 100, 50, 50, 50, null);
-	g.drawImage(ladri, 200,50 , 50, 50, null);
-	g.drawImage(ladri, 200, 0,50, 50, null);
-	g.drawImage(ladri, 250, 0, 50, 50, null);
-	g.drawImage(ladri, 300, 0, 50, 50, null);
-	g.drawImage(ladri, 350, 0, 50, 50, null);
-	g.drawImage(ladri, 400, 0, 50, 50, null);
-	g.drawImage(ladri, 450, 0, 110, 50, null);
-	
-}
-	
+	private class teclado extends KeyAdapter{
+		public void keyReleased(KeyEvent e){
+			tanque.keyReleased(e);
+		}
+		
+		public void keyPressed(KeyEvent e){
+			tanque.KeyPressed(e);
+		}
+	}
 }
