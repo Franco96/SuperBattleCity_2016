@@ -9,11 +9,11 @@ public class Jugador extends Tanque{
 	private String tanqueDO="/Imagen/tanqueAbajo.gif";
 	private String tanqueRI="/Imagen/tanqueDerecha.gif";
 	private String tanqueLE="/Imagen/tanqueIzquierda.gif";
-//	private String tanqueUPQuieto="/Imagen/tanqueArribaQuieto.png";
-//	private String tanqueDOQuieto="/Imagen/tanqueAbajoQuieto.png";
-//	private String tanqueRIQuieto="/Imagen/tanqueDerechaQuieto.png";
-//	private String tanqueLEQuieto="/Imagen/tanqueIzquierdaQuieto.png";
-	
+	private String tanqueUPQuieto="/Imagen/tanqueArribaQuieto.png";
+	private String tanqueDOQuieto="/Imagen/tanqueAbajoQuieto.png";
+	private String tanqueRIQuieto="/Imagen/tanqueDerechaQuieto.png";
+	private String tanqueLEQuieto="/Imagen/tanqueIzquierdaQuieto.png";
+	private Boolean pulsado=false;
 	public Jugador(){
 		x=40;y=60;
 		ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueUP));
@@ -38,42 +38,54 @@ public class Jugador extends Tanque{
 	}
 	
 	public void KeyPressed(KeyEvent e){
-		int key=e.getKeyCode();
-		if (key == KeyEvent.VK_LEFT){
-			dx=-1;
-			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueLE));
-			imagen =img.getImage();
+		if (!pulsado){
+			int key=e.getKeyCode();
+			if (key == KeyEvent.VK_LEFT){
+				dx=-1;
+				ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueLE));
+				imagen =img.getImage();
+			}
+			if (key == KeyEvent.VK_RIGHT){
+				dx=1;
+				ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueRI));
+				imagen =img.getImage();
+			}
+			if (key == KeyEvent.VK_UP){
+				dy=-1;
+				ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueUP));
+				imagen =img.getImage();
+			}
+			if (key == KeyEvent.VK_DOWN){
+				dy=1;
+				ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueDO));
+				imagen =img.getImage();
+			}			
 		}
-		if (key == KeyEvent.VK_RIGHT){
-			dx=1;
-			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueRI));
-			imagen =img.getImage();
-		}
-		if (key == KeyEvent.VK_UP){
-			dy=-1;
-			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueUP));
-			imagen =img.getImage();
-		}
-		if (key == KeyEvent.VK_DOWN){
-			dy=1;
-			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueDO));
-			imagen =img.getImage();
-		}
+		pulsado=true;
 	}
 	
 	public void keyReleased(KeyEvent e){
 		int key=e.getKeyCode();
 		if (key == KeyEvent.VK_LEFT){
-			dx=0;		
+			dx=0;
+			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueLEQuieto));
+			imagen =img.getImage();			
 		}
 		if (key == KeyEvent.VK_RIGHT){
 			dx=0;
+			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueRIQuieto));
+			imagen =img.getImage();
 		}
 		if (key == KeyEvent.VK_UP){
 			dy=0;
+			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueUPQuieto));
+			imagen =img.getImage();
 		}
 		if (key == KeyEvent.VK_DOWN){
 			dy=0;
+			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueDOQuieto));
+			imagen =img.getImage();
 		}
+		pulsado=false;
 	}
 }
