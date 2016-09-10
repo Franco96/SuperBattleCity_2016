@@ -64,24 +64,16 @@ public class Jugador extends Tanque{
 	public void keyReleased(KeyEvent e){
 		int key=e.getKeyCode();
 		if (key == KeyEvent.VK_LEFT){
-			dx=0;
-			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueLEQuieto));
-			imagen =img.getImage();			
+			dx=0;		
 		}
 		if (key == KeyEvent.VK_RIGHT){
 			dx=0;
-			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueRIQuieto));
-			imagen =img.getImage();
 		}
 		if (key == KeyEvent.VK_UP){
 			dy=0;
-			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueUPQuieto));
-			imagen =img.getImage();
 		}
 		if (key == KeyEvent.VK_DOWN){
 			dy=0;
-			ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueDOQuieto));
-			imagen =img.getImage();
 		}
 	}
 }
