@@ -9,10 +9,10 @@ public class Jugador extends Tanque{
 	private String tanqueDO="/Imagen/tanqueAbajo.gif";
 	private String tanqueRI="/Imagen/tanqueDerecha.gif";
 	private String tanqueLE="/Imagen/tanqueIzquierda.gif";
-	private String tanqueUPQuieto="/Imagen/tanqueArribaQuieto.png";
-	private String tanqueDOQuieto="/Imagen/tanqueAbajoQuieto.png";
-	private String tanqueRIQuieto="/Imagen/tanqueDerechaQuieto.png";
-	private String tanqueLEQuieto="/Imagen/tanqueIzquierdaQuieto.png";
+//	private String tanqueUPQuieto="/Imagen/tanqueArribaQuieto.png";
+//	private String tanqueDOQuieto="/Imagen/tanqueAbajoQuieto.png";
+//	private String tanqueRIQuieto="/Imagen/tanqueDerechaQuieto.png";
+//	private String tanqueLEQuieto="/Imagen/tanqueIzquierdaQuieto.png";
 	
 	public Jugador(){
 		x=40;y=60;
