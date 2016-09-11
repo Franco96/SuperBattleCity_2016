@@ -1,46 +1,97 @@
 package BattleCity;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import java.io.File;
-import java.io.InputStream;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Random;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.ImageIcon;
 
-public class Juego extends JPanel{
+import GUI.Gui;
+
+
+public class Juego {
+//ATRIBUTOS
+Enemigo enemigos[];	
+Jugador jugador;
+Mapa m;	
+//CONSTRUCTOR
+
+public Juego(Gui gui)
+{   enemigos = new EnemigoBasico[7];
+	jugador = new Jugador(10,400,400);
+	m = new Mapa();
+	gui.add(jugador.getGrafico());
 	
+	for(int i = 0; i < enemigos.length; i++){
+		Random r = new Random();
+		enemigos[i] = new EnemigoBasico(10, r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32));
+		gui.add(enemigos[i].getGrafico());
+	}
 	
-	
-	Image ladri = new  ImageIcon(getClass().getResource("ladrillos.jpg")).getImage();
-	
-public Juego()
-{
+	m.armarMapa(gui);
+		
 	
      
 }
 
+public void mover(){
+	for(int i = 0; i < enemigos.length; i++){
+		
+	// Inteligencia de los enemigos
+		Random r = new Random();
+		
+		int dir = r.nextInt(4);
+		
+		enemigos[i].mover(dir);
+	}
+}
+
+
+
+
+public void mover(int dir){		
+	int direccion = 0;
+	
+	switch (dir){
+		case KeyEvent.VK_UP : //Arriba
+			direccion = 0;
+			break;
+		case KeyEvent.VK_DOWN : //Abajo
+			direccion = 1;
+			break;
+		case KeyEvent.VK_LEFT : //Izquierda
+			direccion = 2;
+			break;
+		case KeyEvent.VK_RIGHT : //Derecha
+			direccion = 3;
+			break;
+	}
+	
+	jugador.mover(direccion);
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	
-	
-	
 
-public void paint(Graphics g)
-{  
-	
-	g.drawImage(ladri, 0, 0, 50, 50, null);
-	g.drawImage(ladri, 50, 0, 50, 50, null);
-	g.drawImage(ladri, 100, 50, 50, 50, null);
-	g.drawImage(ladri, 200,50 , 50, 50, null);
-	g.drawImage(ladri, 200, 0,50, 50, null);
-	g.drawImage(ladri, 250, 0, 50, 50, null);
-	g.drawImage(ladri, 300, 0, 50, 50, null);
-	g.drawImage(ladri, 350, 0, 50, 50, null);
-	g.drawImage(ladri, 400, 0, 50, 50, null);
-	g.drawImage(ladri, 450, 0, 110, 50, null);
-	
-}
-	
-}
