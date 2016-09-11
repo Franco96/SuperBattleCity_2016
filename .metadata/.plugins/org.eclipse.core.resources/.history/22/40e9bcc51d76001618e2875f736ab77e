@@ -1,0 +1,41 @@
+package BattleCity;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+public class Juego extends JPanel{
+	
+	
+	
+	 Juego()
+{
+
+			JLabel eti = new JLabel(); 
+			eti.setBounds(12, 12, 50, 50);
+			//Image ladri = new ImageIcon(getClass().getResource("ladrillos.jpg")).getImage();
+			
+			//Icon icon = new ImageIcon(ladri.getScaledInstance(eti.getWidth(), eti.getHeight(), Image.SCALE_DEFAULT));
+			
+		//	eti.setIcon(icon);
+			
+			eti.setText("hola");
+			add(eti);
+	
+     
+}
+
+
+	
+	
+	
+
+
+	
+}

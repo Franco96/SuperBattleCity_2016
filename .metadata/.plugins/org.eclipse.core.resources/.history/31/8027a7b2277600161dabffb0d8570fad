@@ -1,0 +1,37 @@
+package BattleCity;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.text.AbstractDocument.Content;
+
+public class Main {
+
+	public static void main(String[] args) {
+		JFrame ventana = new JFrame("Battle_City");
+		 ventana.setBackground(Color.BLACK);
+		 
+		 JPanel contentPane = new JPanel();
+		 
+		 
+	  ventana.setContentPane(contentPane);
+	  
+	  contentPane.setLayout(null);
+	  
+		JLabel eti = new JLabel(); 
+		eti.setBounds(10, 10, 50, 50);
+
+		eti.setText("hola");
+		ventana.add(eti);
+		
+        ventana.setSize(500, 500);
+       
+        ventana.setLocationRelativeTo(null);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setVisible(true);
+      
+	}
+
+}

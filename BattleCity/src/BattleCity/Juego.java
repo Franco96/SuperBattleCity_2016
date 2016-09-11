@@ -1,9 +1,16 @@
 package BattleCity;
 
+<<<<<<< HEAD
+=======
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+>>>>>>> 7bea0e86814d7ba1df5341dcf5b707fd5c3cb534
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+<<<<<<< HEAD
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -75,6 +82,46 @@ public void mover(int dir){
 
 
 
+=======
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class Juego extends JPanel implements ActionListener{
+	private Jugador tanque;
+	private Timer timer;
+	
+	public Juego(){
+		setBackground(Color.BLACK);
+		setOpaque(false);
+		setFocusable(true);
+		addKeyListener(new teclado());
+		
+		tanque= new Jugador();
+		timer = new Timer(5,(ActionListener) this);
+		timer.start();		
+	}
+	
+	public void paint(Graphics grafica){
+		super.paint(grafica);
+		Graphics2D g2 = (Graphics2D)grafica;
+		g2.drawImage(tanque.tenerImagen(),tanque.tenerX(),tanque.tenerY(),null);
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		tanque.mover();
+		repaint();
+	}
+	
+	private class teclado extends KeyAdapter{
+		public void keyReleased(KeyEvent e){
+			tanque.keyReleased(e);
+		}
+		
+		public void keyPressed(KeyEvent e){
+			tanque.KeyPressed(e);
+		}
+	}
+>>>>>>> 7bea0e86814d7ba1df5341dcf5b707fd5c3cb534
 }
 
 

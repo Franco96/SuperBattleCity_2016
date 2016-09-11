@@ -1,0 +1,14 @@
+package BattleCity;
+
+import javax.swing.JLabel;
+
+public abstract  class Tanque extends GameObject {
+
+	protected Tanque(int x, int y) {
+		super(x, y);
+	
+	}
+
+
+
+}

@@ -1,0 +1,23 @@
+package GUI;
+
+import BattleCity.Juego;
+
+public class Time extends Thread {
+
+	private Juego elJuego;
+
+	public Time(Juego j) {
+		this.elJuego = j;
+	}
+
+	public void run() {
+		while(true){
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			elJuego.mover();
+		}
+	}
+}

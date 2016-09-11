@@ -1,0 +1,31 @@
+package BattleCity;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Main {
+
+	public static void main(String[] args) {
+		JFrame ventana = new JFrame("Battle_City");
+		 ventana.setBackground(Color.BLACK);
+		 
+		 Mapa m = new Mapa();
+		 
+	
+		JLabel eti = new JLabel(); 
+		eti.setBounds(1, 1, 50, 50);
+
+		eti.setText("hola");
+		add(eti);
+		
+        ventana.setSize(500, 500);
+       
+        ventana.setLocationRelativeTo(null);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setVisible(true);
+      
+	}
+
+}

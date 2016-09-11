@@ -1,0 +1,26 @@
+package BattleCity;
+
+public class Ladrillo extends Celda {
+
+	
+	
+	
+	protected Ladrillo(int x, int y) {
+		super(x, y);
+		this.imagen = new 
+	}
+
+	
+	
+	
+	@Override
+	protected void setGrafico(int dir) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+
+}

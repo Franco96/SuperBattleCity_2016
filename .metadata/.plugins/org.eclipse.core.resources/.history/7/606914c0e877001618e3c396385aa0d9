@@ -1,0 +1,14 @@
+package BattleCity;
+
+import javax.swing.ImageIcon;
+
+public class EnemigoBasico extends Enemigo {
+
+	protected EnemigoBasico(int velocidad, int x, int y) {
+		super(velocidad, x, y);
+		
+	}
+	
+
+	
+}

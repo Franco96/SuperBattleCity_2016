@@ -1,0 +1,24 @@
+package BattleCity;
+
+import java.awt.*;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class Mapa {
+
+	
+public JLabel getImag()
+{
+	JLabel eti = new JLabel(); 
+	
+	Image ladri = new ImageIcon(getClass().getResource("ladrillos.jpg")).getImage();
+
+	Icon icon = new ImageIcon(ladri.getScaledInstance(eti.getWidth(), eti.getHeight(), Image.SCALE_DEFAULT));
+	eti.setBounds(12, 12, 50, 50);
+	eti.setIcon(icon);
+	
+	return eti;
+}
+}
