@@ -1,6 +1,6 @@
 package BattleCity;
 
-<<<<<<< HEAD
+
 import java.awt.event.KeyEvent;
 
 import javax.swing.Icon;
@@ -18,7 +18,10 @@ public abstract  class Tanque extends GameObject {
 	protected Tanque(int velocidad,int x, int y) {
 		super(x, y);
 	    this.velocidad = velocidad;
-	    this.image = new Icon[8];    
+	    this.image = new Icon[8];  
+	    this.width = 50;
+	    this.height = 50;
+	    
 	}
 	
    //METODOS
@@ -52,39 +55,20 @@ public abstract  class Tanque extends GameObject {
 				if(pos.y>=getVelocidad())pos.setLocation(pos.x, pos.y - velocidad);
 				break;
 			case 1 : //Abajo
-				if(pos.y<=(710-(getVelocidad()+height)))pos.setLocation(pos.x, pos.y + velocidad);
+				if(pos.y<=(579-(getVelocidad()+height)))pos.setLocation(pos.x, pos.y + velocidad);
 				break;
 			case 2 : //Izquierda
 				if(pos.x>=getVelocidad()) pos.setLocation(pos.x - velocidad, pos.y);
 				break;
 			case 3 : //Derecha
-				if(pos.x<=(1365-(getVelocidad()+width)))pos.setLocation(pos.x + velocidad, pos.y);
+				if(pos.x<=(800-(getVelocidad()+width)))pos.setLocation(pos.x + velocidad, pos.y);
 				break;
 		}
 		setGrafico(dir);
 	}
 	
 	
-
-
-
-=======
-import java.awt.Image;
-import java.awt.event.KeyEvent;
-
-public abstract class Tanque {
-	protected int dx;
-	protected int dy;
-	protected int x;
-	protected int y;	
-	protected Image imagen;
-	
-	abstract public void mover();
-	
-	abstract public int tenerX();
-	
-	abstract public int tenerY();	
-	
-	abstract public Image tenerImagen();
->>>>>>> 7bea0e86814d7ba1df5341dcf5b707fd5c3cb534
 }
+
+
+

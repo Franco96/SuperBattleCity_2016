@@ -19,4 +19,7 @@
 <fullyQualifiedTypeName name="BattleCity.GameObject"/>
 <fullyQualifiedTypeName name="BattleCity.Mapa"/>
 <fullyQualifiedTypeName name="BattleCity.EnemigoBasico"/>
+<fullyQualifiedTypeName name="java.io.Reader"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
 </qualifiedTypeNameHistroy>

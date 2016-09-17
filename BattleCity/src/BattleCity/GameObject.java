@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 public abstract class GameObject {
   //ATRIBUTOS
 	protected JLabel grafico;
-	protected final int width = 45;
-	protected final int height = 45;
+	protected  int width = 25;
+	protected  int height = 25;
 	protected Point pos;
 	
 	
