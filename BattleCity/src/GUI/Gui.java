@@ -4,10 +4,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import BattleCity.Juego;
 import BattleCity.Mapa;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -42,8 +45,9 @@ public class Gui extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws InterruptedException 
 	 */
-	public Gui() {
+	public Gui() throws InterruptedException {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			
@@ -66,9 +70,27 @@ public class Gui extends JFrame {
 		contentPane.setLayout(null);
 		
 		   j = new Juego(this);
-		 tiempo = new Time(j);
-		 tiempo.start();
+		
 		   
+
+		   Timer timer;
+		    timer = new Timer();
+
+		    TimerTask task = new TimerTask() {
+		        @Override
+		        public void run()
+		        {
+		            j.mover();
+		        }
+		        };
+		        // Empezamos dentro de 0ms y luego lanzamos la tarea cada 425ms
+		    timer.schedule(task, 0, 425);
+		   
+		   
+		   
+//		 tiempo = new Time(j);
+//		 tiempo.start();
+	    
 	
 	}
 	
@@ -79,6 +101,5 @@ public class Gui extends JFrame {
 	
 	
 	}
-
 
 }

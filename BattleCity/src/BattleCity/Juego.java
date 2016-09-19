@@ -50,13 +50,26 @@ public void mover(){
 	// Inteligencia de los enemigos
 		Random r = new Random();
 		
-		int dir = r.nextInt(4);
+		int dir = r.nextInt(10000);
+		if (isBetween(dir,0, 2500)) {
+			enemigos[i].mover(0);
+			}
+		if (isBetween(dir,2501 , 5000)) {
+			enemigos[i].mover(1);
+			}
+		if (isBetween(dir,5001 , 7250)) {
+			enemigos[i].mover(2);
+			}
+		if (isBetween(dir,7251 , 10000)) {
+			enemigos[i].mover(3);
+			}
 		
-		enemigos[i].mover(dir);
 	}
 }
 
-
+private boolean isBetween(int x, int lower, int upper) {
+	  return lower <= x && x <= upper;
+	}
 
 
 public void mover(int dir){		
