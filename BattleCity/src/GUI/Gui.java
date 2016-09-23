@@ -52,7 +52,9 @@ public class Gui extends JFrame {
 			@Override
 			
 			public void keyPressed(KeyEvent e){
+				//ACCIONES PARA LAS TECLAS
 				mover(e);
+				añadirEnemigo(e);
 			}
 			
 		});
@@ -92,6 +94,12 @@ public class Gui extends JFrame {
 //		 tiempo.start();
 	    
 	
+	}
+	
+	
+	protected void añadirEnemigo(KeyEvent key)
+	{
+		j.añadirEnemigo(key.getKeyCode());
 	}
 	
 	protected void mover(KeyEvent key){

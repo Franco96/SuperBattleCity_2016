@@ -22,10 +22,17 @@ public class Juego {
 Enemigo enemigos[];	
 Jugador jugador;
 Mapa m;	
+Gui gui;
+Enemigo enemigoPrueba;
+boolean hayLadrillo;
 //CONSTRUCTOR
 
 public Juego(Gui gui)
-{   enemigos = new EnemigoBasico[4];
+{  
+	hayLadrillo = true;
+	this.gui = gui;
+	
+	enemigos = new EnemigoBasico[4];
 	jugador = new Jugador(10,400,400);
 	m = new Mapa();
 	gui.add(jugador.getGrafico());
@@ -73,7 +80,7 @@ private boolean isBetween(int x, int lower, int upper) {
 
 
 public void mover(int dir){		
-	int direccion = 0;
+	int direccion = -1;
 	
 	switch (dir){
 		case KeyEvent.VK_UP : //Arriba
@@ -89,9 +96,60 @@ public void mover(int dir){
 			direccion = 3;
 			break;
 	}
-	
+	if(direccion!=-1)
 	jugador.mover(direccion);
 }
+
+
+public void añadirEnemigo(int dir)
+{
+	
+	if(dir == KeyEvent.VK_A)
+	{ 
+		if(enemigoPrueba == null)
+		{enemigoPrueba = new EnemigoBasico(10,50,40);
+	    gui.add(enemigoPrueba.getGrafico());
+		}
+		else
+		{
+		 gui.remove(enemigoPrueba.getGrafico());
+		 enemigoPrueba = null;
+		
+		 jugador.setPuntaje(100);
+		 
+		 System.out.println(jugador.getPuntaje());
+		 
+		}
+			
+	}
+	
+	if(dir ==KeyEvent.VK_Q)
+	{ 
+		Celda ladrillos[] = m.getLadrillos();  
+		
+		if(hayLadrillo)
+		{for(int i = 0 ; i<m.getI();i++)
+		{
+			gui.remove(ladrillos[i].getGrafico());
+			hayLadrillo = false;
+	      
+			
+		}
+	
+		}
+		else
+		{
+		
+			 for(int i = 0 ; i<m.getI();i++)
+			gui.add(ladrillos[i].getGrafico());
+			
+			hayLadrillo = true;
+		}
+		
+		
+	}
+}
+
 }
 
 

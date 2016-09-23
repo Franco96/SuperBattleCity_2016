@@ -1,0 +1,158 @@
+package BattleCity;
+
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import java.util.Random;
+
+import javax.swing.ImageIcon;
+
+import GUI.Gui;
+
+
+public class Juego {
+//ATRIBUTOS
+Enemigo enemigos[];	
+Jugador jugador;
+Mapa m;	
+Gui gui;
+Enemigo enemigoPrueba;
+boolean hayLadrillo;
+//CONSTRUCTOR
+
+public Juego(Gui gui)
+{  
+	hayLadrillo = true;
+	this.gui = gui;
+	
+	enemigos = new EnemigoBasico[4];
+	jugador = new Jugador(10,400,400);
+	m = new Mapa();
+	gui.add(jugador.getGrafico());
+	
+	for(int i = 0; i < enemigos.length; i++){
+		Random r = new Random();
+		enemigos[i] = new EnemigoBasico(10, r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32));
+		gui.add(enemigos[i].getGrafico());
+	}
+
+	
+	
+	m.armarMapa(gui);
+		
+	
+     
+}
+
+public void mover(){
+	for(int i = 0; i < enemigos.length; i++){
+		
+	// Inteligencia de los enemigos
+		Random r = new Random();
+		
+		int dir = r.nextInt(4);
+		
+		enemigos[i].mover(dir);
+	}
+}
+
+
+
+
+public void mover(int dir){		
+	int direccion = -1;
+	
+	switch (dir){
+		case KeyEvent.VK_UP : //Arriba
+			direccion = 0;
+			break;
+		case KeyEvent.VK_DOWN : //Abajo
+			direccion = 1;
+			break;
+		case KeyEvent.VK_LEFT : //Izquierda
+			direccion = 2;
+			break;
+		case KeyEvent.VK_RIGHT : //Derecha
+			direccion = 3;
+			break;
+	}
+	if(direccion!=-1)
+	jugador.mover(direccion);
+}
+
+
+public void añadirEnemigo(int dir)
+{
+	
+	if(dir == KeyEvent.VK_A)
+	{ 
+		if(enemigoPrueba == null)
+		{enemigoPrueba = new EnemigoBasico(10,50,40);
+	    gui.add(enemigoPrueba.getGrafico());
+		}
+		else
+		{
+		 gui.remove(enemigoPrueba.getGrafico());
+		 enemigoPrueba = null;
+		
+		 jugador.setPuntaje(100);
+		 
+		 System.out.println(jugador.getPuntaje());
+		 
+		}
+			
+	}
+	
+	if(dir ==KeyEvent.VK_Q)
+	{ 
+		Celda ladrillos[] = m.getLadrillos();  
+		
+		if(hayLadrillo)
+		{for(int i = 0 ; i<m.getI();i++)
+		{
+			gui.remove(ladrillos[i].getGrafico());
+			hayLadrillo = false;
+	        
+		}
+		}
+		else
+		{
+			m.armarMapa(gui);
+			hayLadrillo = true;
+		}
+		
+		
+	}
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
