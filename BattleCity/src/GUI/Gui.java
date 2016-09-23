@@ -53,12 +53,11 @@ public class Gui extends JFrame {
 			
 			public void keyPressed(KeyEvent e){
 				mover(e);
-				agregar(e);
-				quitar(e);
 			}
 			
 		});
 		getContentPane().setLayout(null);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(800,600);
@@ -96,25 +95,11 @@ public class Gui extends JFrame {
 	}
 	
 	protected void mover(KeyEvent key){
-		if (key.VK_UP==key.getKeyCode() || key.VK_RIGHT==key.getKeyCode() || key.VK_DOWN==key.getKeyCode() || key.VK_LEFT==key.getKeyCode()){
-			j.mover(key.getKeyCode());			
-			this.repaint();
-		}
-	}
-	// "q" agrega enemigos en pantalla
-	protected void agregar(KeyEvent key){
-		if (key.VK_Q==key.getKeyCode()){
-			j.agregarOponente(this);
-			this.repaint();
-		}		
-	}
+		j.mover(key.getKeyCode());
+		
+		this.repaint();
 	
-	// "w" quita enemigos de pantalla
-	protected void quitar(KeyEvent key){
-		if (key.VK_W==key.getKeyCode()){
-			j.quitarOponente(this);;
-			this.repaint();
-		}		
+	
 	}
 
 }

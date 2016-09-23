@@ -67,9 +67,6 @@ public abstract  class Tanque extends GameObject {
 		setGrafico(dir);
 	}
 	
-	public JLabel getLabel(){
-		return grafico;
-	}
 	
 }
 
