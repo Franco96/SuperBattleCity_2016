@@ -15,62 +15,88 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import GUI.Gui;
-
+import TDALista.*;
+import Exception.*;
 
 public class Juego {
-//ATRIBUTOS
-Enemigo enemigos[];	
-Jugador jugador;
-Mapa m;	
-Gui gui;
-Enemigo enemigoPrueba;
-boolean hayLadrillo;
-//CONSTRUCTOR
-
-public Juego(Gui gui)
-{  
-	hayLadrillo = true;
-	this.gui = gui;
+	//ATRIBUTOS
+	PositionList<Enemigo> oponentes;
 	
-	enemigos = new EnemigoBasico[4];
+	Jugador jugador;
+	Mapa m;	
+	//CONSTRUCTOR
+
+public Juego(Gui gui){
+	oponentes= new ListaDoblementeEnlazada<Enemigo>();
+	
 	jugador = new Jugador(10,400,400);
 	m = new Mapa();
 	gui.add(jugador.getGrafico());
 	
-	for(int i = 0; i < enemigos.length; i++){
-		Random r = new Random();
-		enemigos[i] = new EnemigoBasico(10, r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32));
-		gui.add(enemigos[i].getGrafico());
-	}
-
-	
-	
-	m.armarMapa(gui);
-		
-	
+	m.armarMapa(gui);	
      
 }
 
-public void mover(){
-	for(int i = 0; i < enemigos.length; i++){
-		
-	// Inteligencia de los enemigos
+public void agregarOponente(Gui gui){
+	try{
 		Random r = new Random();
-		
-		int dir = r.nextInt(10000);
-		if (isBetween(dir,0, 2500)) {
-			enemigos[i].mover(0);
-			}
-		if (isBetween(dir,2501 , 5000)) {
-			enemigos[i].mover(1);
-			}
-		if (isBetween(dir,5001 , 7250)) {
-			enemigos[i].mover(2);
-			}
-		if (isBetween(dir,7251 , 10000)) {
-			enemigos[i].mover(3);
-			}
-		
+		oponentes.addLast(new EnemigoBasico(10, r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32)));
+		gui.add(oponentes.last().element().getGrafico(),0);
+		gui.revalidate();
+		gui.repaint();
+	}
+	catch (EmptyListException e){
+		System.out.println(e.getMessage());
+	}
+}
+
+public void quitarOponente(Gui gui){
+	try{
+		if (!oponentes.isEmpty()){
+			Position<Enemigo> p=oponentes.last();
+			gui.remove(oponentes.last().element().getGrafico());
+			gui.revalidate();
+			gui.repaint();
+			oponentes.remove(p);
+		}		
+	}
+	catch (InvalidPositionException e){
+		System.out.println(e.getMessage());
+	}
+	catch (EmptyListException e){
+		System.out.println(e.getMessage());
+	}
+}
+
+public void mover(){
+	try {
+		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
+		while(p!=null){
+			Random r = new Random();
+			int dir = r.nextInt(10000);
+			if (isBetween(dir,0, 2500)) {
+				p.element().mover(0);
+				}
+			if (isBetween(dir,2501 , 5000)) {
+				p.element().mover(1);
+				}
+			if (isBetween(dir,5001 , 7250)) {
+				p.element().mover(2);
+				}
+			if (isBetween(dir,7251 , 10000)) {
+				p.element().mover(3);
+				}			
+			if(p!=u)p=oponentes.next(p);else p=null;			
+		}
+	}
+	catch (InvalidPositionException e){
+		System.out.println(e.getMessage());
+	}
+	catch (BoundaryViolationException e){
+		System.out.println(e.getMessage());
+	}
+	catch (EmptyListException e){
+		System.out.println(e.getMessage());
 	}
 }
 
@@ -80,7 +106,7 @@ private boolean isBetween(int x, int lower, int upper) {
 
 
 public void mover(int dir){		
-	int direccion = -1;
+	int direccion = 0;
 	
 	switch (dir){
 		case KeyEvent.VK_UP : //Arriba
@@ -96,60 +122,9 @@ public void mover(int dir){
 			direccion = 3;
 			break;
 	}
-	if(direccion!=-1)
+	
 	jugador.mover(direccion);
 }
-
-
-public void añadirEnemigo(int dir)
-{
-	
-	if(dir == KeyEvent.VK_A)
-	{ 
-		if(enemigoPrueba == null)
-		{enemigoPrueba = new EnemigoBasico(10,50,40);
-	    gui.add(enemigoPrueba.getGrafico());
-		}
-		else
-		{
-		 gui.remove(enemigoPrueba.getGrafico());
-		 enemigoPrueba = null;
-		
-		 jugador.setPuntaje(100);
-		 
-		 System.out.println(jugador.getPuntaje());
-		 
-		}
-			
-	}
-	
-	if(dir ==KeyEvent.VK_Q)
-	{ 
-		Celda ladrillos[] = m.getLadrillos();  
-		
-		if(hayLadrillo)
-		{for(int i = 0 ; i<m.getI();i++)
-		{
-			gui.remove(ladrillos[i].getGrafico());
-			hayLadrillo = false;
-	      
-			
-		}
-	
-		}
-		else
-		{
-		
-			 for(int i = 0 ; i<m.getI();i++)
-			gui.add(ladrillos[i].getGrafico());
-			
-			hayLadrillo = true;
-		}
-		
-		
-	}
-}
-
 }
 
 

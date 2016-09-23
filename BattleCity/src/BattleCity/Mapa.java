@@ -18,16 +18,15 @@ public class Mapa {
 	//ATRIBUTOS
 	private int x;
 	private  int y;
-	private Celda ladrillos[];
+	
 	private Celda celda;
-	private int f ;
+	
 	//CONSTRUCTOR
 	public Mapa()
 	{   
 		x = 0;
 		y = 0;
-		ladrillos = new Ladrillo[500];
-		f=0;
+		
 	}
 
 	
@@ -53,8 +52,7 @@ public void armarMapa(Gui gui){
           		case 'a' : // Si aparece una a
           			{    celda = new Ladrillo(x,y);
           				gui.add(celda.getGrafico());
-          			   ladrillos[f] = celda;
-          			 f++;
+          			
           			}
           			break;
           		case 'b' :
@@ -100,19 +98,4 @@ public void armarMapa(Gui gui){
           }
       }
   }
-
-
-public Celda[] getLadrillos()
-{
-	return ladrillos;
-}
-public int getI()
-{
-	return f;
-}
-public void setI()
-{
-	f =0;
-}
-
 }
