@@ -63,6 +63,7 @@ public abstract  class Tanque extends GameObject {
 			case 3 : //Derecha
 				if(pos.x<=(800-(getVelocidad()+width)))pos.setLocation(pos.x + velocidad, pos.y);
 				break;
+				
 		}
 		setGrafico(dir);
 	}
