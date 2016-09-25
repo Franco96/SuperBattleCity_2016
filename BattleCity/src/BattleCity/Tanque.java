@@ -11,7 +11,6 @@ public abstract  class Tanque extends GameObject {
   //ATRIBUTOS
     protected int velocidad;
     protected Icon image[];
-
 	
 	//CONSTRUCTOR
     
@@ -29,7 +28,6 @@ public abstract  class Tanque extends GameObject {
 	public int getVelocidad() {
 		return velocidad;
 	}
-	
 	
 	
 	protected void setGrafico(int dir){

@@ -22,19 +22,24 @@ public class Juego {
 	//ATRIBUTOS
 	PositionList<Enemigo> oponentes;
 	
-	Jugador jugador;
-	Mapa m;	
+	protected Jugador jugador;
+	protected Mapa m;	
+	protected int puntaje;
 	//CONSTRUCTOR
 
 public Juego(Gui gui){
 	oponentes= new ListaDoblementeEnlazada<Enemigo>();
-	
+	puntaje=0;
 	jugador = new Jugador(10,400,400);
 	m = new Mapa();
 	gui.add(jugador.getGrafico());
 	
 	m.armarMapa(gui);	
      
+}
+
+public int getPuntaje(){
+	return puntaje;
 }
 
 public void agregarOponente(Gui gui){
@@ -54,6 +59,7 @@ public void quitarOponente(Gui gui){
 	try{
 		if (!oponentes.isEmpty()){
 			Position<Enemigo> p=oponentes.last();
+			puntaje+=p.element().getPuntaje_por_Destruccion();
 			gui.remove(oponentes.last().element().getGrafico());
 			gui.revalidate();
 			gui.repaint();
