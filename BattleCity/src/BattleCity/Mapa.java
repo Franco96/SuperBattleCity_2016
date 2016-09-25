@@ -12,7 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import GUI.Gui;
-
 public class Mapa {
 	
 	//ATRIBUTOS
