@@ -21,7 +21,6 @@ import Exception.*;
 public class Juego {
 	//ATRIBUTOS
 	PositionList<Enemigo> oponentes;
-	
 	Jugador jugador;
 	Mapa m;	
 	//CONSTRUCTOR

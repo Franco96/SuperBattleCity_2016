@@ -43,6 +43,7 @@ public abstract  class Tanque extends GameObject {
 		if(this.grafico == null){
 			this.grafico = new JLabel(image[0]);
 			this.grafico.setBounds(this.pos.x, this.pos.y, width, height);
+		
 		}
 		
 		return this.grafico;
