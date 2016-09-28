@@ -115,9 +115,6 @@ private boolean isBetween(int x, int lower, int upper) {
 public void mover(int dir){		
 	int direccion = 0;
 	
-	
-	
-	
 	switch (dir){
 		case KeyEvent.VK_UP : //Arriba
 			direccion = 0;
