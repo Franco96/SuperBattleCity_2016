@@ -7,7 +7,8 @@ public abstract class Celda extends GameObject {
 
   //ATRIBUTOS
 	
-	Icon imagen;	
+	protected Icon imagen;
+	protected boolean sePuede_destruir;
 	
   //CONSTRUCTOR
 	
@@ -23,6 +24,10 @@ public abstract class Celda extends GameObject {
 		}
 		
 		return this.grafico;
-	}	
+	}
+	
+	public boolean esEliminable(){
+		return sePuede_destruir;
+	}
 	
 }

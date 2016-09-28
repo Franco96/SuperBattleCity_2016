@@ -6,38 +6,40 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import GUI.Gui;
+import TDALista.*;
+import Exception.*;
 public class Mapa {
 	
 	//ATRIBUTOS
 	private int x;
 	private  int y;
-	
-	private Celda celda;
+	private PositionList<Celda> celdas;
+	private Gui g;
 	
 	//CONSTRUCTOR
-	public Mapa()
-	{   
+	public Mapa(){   
 		x = 0;
-		y = 0;
-		
+		y = 0;		
 	}
 
 	
 public void armarMapa(Gui gui){
-	  
+	 g=gui; 
 	
 	
 	BufferedReader  br = null;
 	  
       
       try {
-
+    	  celdas=new ListaDoblementeEnlazada<Celda>();
+    	  
           String sCurrentLine;
 
            br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Archivos/mapa1.txt")));
@@ -49,47 +51,49 @@ public void armarMapa(Gui gui){
           		char letra = sCurrentLine.charAt(i);
           		switch (letra) {
           		case 'a' : // Si aparece una a
-          			{    celda = new Ladrillo(x,y);
-          				gui.add(celda.getGrafico());
+          			{   
+          				celdas.addLast(new Ladrillo(x,y));
+          				gui.add(celdas.last().element().getGrafico());
           			
           			}
           			break;
           		case 'b' :
           		{
-          			celda = new Agua(x,y);
-      				gui.add(celda.getGrafico());
+          			celdas.addLast(new Agua(x,y));
+      				gui.add(celdas.last().element().getGrafico());
           		}
           			break;
           		case 'c' :
           		{
-          			celda = new Cesped(x,y);
-      				gui.add(celda.getGrafico());
+          			celdas.addLast(new Cesped(x,y));
+      				gui.add(celdas.last().element().getGrafico());
           		}
           			break;
           		case 'd':
           		{
-          			celda = new Roca(x,y);
-      				gui.add(celda.getGrafico());
+          			celdas.addLast(new Roca(x,y));
+      				gui.add(celdas.last().element().getGrafico());
           		}
           		
           		}
           		
           		if(x<775)
-          		x+=celda.width;
+          		x+=celdas.last().element().width;
           		else
           		{
           		x = 0;
           		if(y<575)
-               	y+=celda.height;
-          		}
-          		
-          		
-          	}
-          
+               	y+=celdas.last().element().height;
+          		}     		
+          	}          
           }
       } catch (IOException e) { // Esto es por si ocurre un error
           e.printStackTrace();
-      } finally { // Esto es para que, haya ocurrido error o no
+      }	catch (EmptyListException e) { // Esto es por si ocurre un error
+    	  System.out.println(e.getMessage());
+      } 
+      
+      finally { // Esto es para que, haya ocurrido error o no
           try {
               if (br != null)br.close(); // Cierre el archivo
           } catch (IOException ex) {
@@ -97,4 +101,36 @@ public void armarMapa(Gui gui){
           }
       }
   }
+
+//busca una pared removible random y la elimina
+public void remover_pared(){
+	try {
+		Position<Celda>p=celdas.first();
+		Random r = new Random();
+		int i,j;
+		while(p!=null){
+			j=r.nextInt(celdas.size());
+			p=celdas.first();
+			for (i=0;i<j;i++){
+				p=celdas.next(p);
+			}
+			if (p.element().esEliminable()){
+				g.remove(p.element().getGrafico());
+				g.revalidate();
+				g.repaint();
+				celdas.remove(p);
+				p=null;
+			}					
+		}
+	}
+	catch (InvalidPositionException e){
+		System.out.println(e.getMessage());
+	}
+	catch (BoundaryViolationException e){
+		System.out.println(e.getMessage());
+	}
+	catch (EmptyListException e){
+		System.out.println(e.getMessage());
+	}
+}
 }

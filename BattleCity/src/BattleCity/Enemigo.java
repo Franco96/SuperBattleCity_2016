@@ -6,8 +6,8 @@ public  abstract class Enemigo extends Tanque {
 	//Atributos
 	protected int porDestruccion;
 	
-	protected Enemigo(int velocidad, int x, int y) {
-		super(velocidad, x, y);
+	protected Enemigo(int x, int y) {
+		super(x, y);
 		
 	}
 	abstract public int getPuntaje_por_Destruccion(); 

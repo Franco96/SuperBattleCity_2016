@@ -31,7 +31,7 @@ public class Juego {
 public Juego(Gui gui){
 	oponentes= new ListaDoblementeEnlazada<Enemigo>();
 	puntaje=0;
-	jugador = new Jugador(10,400,400);
+	jugador = new Jugador(400,400);
 	m = new Mapa();
 	gui.add(jugador.getGrafico());
 	
@@ -46,7 +46,7 @@ public int getPuntaje(){
 public void agregarOponente(Gui gui){
 	try{
 		Random r = new Random();
-		oponentes.addLast(new EnemigoBasico(10, r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32)));
+		oponentes.addLast(new EnemigoBasico(r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32)));
 		gui.add(oponentes.last().element().getGrafico(),0);
 		gui.revalidate();
 		gui.repaint();
@@ -134,6 +134,18 @@ public void mover(int dir){
 	}
 	
 	jugador.mover(direccion);
+}
+
+public void eliminar_pared(){
+	m.remover_pared();
+}
+
+public void cambiar_estado_jugador(){
+	jugador.subirNivel();
+}
+
+public void reset_estado_jugador(){
+	jugador.resetNivel();
 }
 }
 
