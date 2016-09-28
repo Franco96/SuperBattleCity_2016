@@ -6,8 +6,8 @@ import javax.swing.ImageIcon;
 public class Jugador extends Tanque{
 	private Estado estado;
 	private int nivActual;
-	public Jugador(int velocidad, int x, int y) {
-		super(velocidad, x, y);
+	public Jugador(int x, int y) {
+		super(x, y);
 		resetNivel();
 		
 		this.image[0] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueArriba.gif"));
@@ -43,5 +43,8 @@ public class Jugador extends Tanque{
                      break;
 			}
 		}
+	}
+	public int getVelocidad() {
+		return estado.getMovimiento();
 	}
 }

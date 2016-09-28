@@ -6,9 +6,10 @@ public class Agua extends Celda {
 	
 	
 	
-	protected Agua(int x, int y) {
+	public Agua(int x, int y) {
 		super(x, y);
-		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/agua.png"));
+		imagen = new ImageIcon(this.getClass().getResource("/Imagenes/agua.png"));
+		sePuede_destruir=false;
 	}
 
 	
@@ -20,7 +21,9 @@ public class Agua extends Celda {
 		
 	}
 
-	
+	public boolean eliminarL(){
+		return false;
+	}
 
 	
 

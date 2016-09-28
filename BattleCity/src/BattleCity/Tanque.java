@@ -14,9 +14,8 @@ public abstract  class Tanque extends GameObject {
 	
 	//CONSTRUCTOR
     
-	protected Tanque(int velocidad,int x, int y) {
+	protected Tanque(int x, int y) {
 		super(x, y);
-	    this.velocidad = velocidad;
 	    this.image = new Icon[8];  
 	    this.width = 50;
 	    this.height = 50;
@@ -51,16 +50,16 @@ public abstract  class Tanque extends GameObject {
 	public void mover(int dir){	
 		switch (dir) {
 			case 0 : //Arriba
-				if(pos.y>=getVelocidad())pos.setLocation(pos.x, pos.y - velocidad);
+				if(pos.y>=getVelocidad())pos.setLocation(pos.x, pos.y - getVelocidad());
 				break;
 			case 1 : //Abajo
-				if(pos.y<=(579-(getVelocidad()+height)))pos.setLocation(pos.x, pos.y + velocidad);
+				if(pos.y<=(579-(getVelocidad()+height)))pos.setLocation(pos.x, pos.y + getVelocidad());
 				break;
 			case 2 : //Izquierda
-				if(pos.x>=getVelocidad()) pos.setLocation(pos.x - velocidad, pos.y);
+				if(pos.x>=getVelocidad()) pos.setLocation(pos.x - getVelocidad(), pos.y);
 				break;
 			case 3 : //Derecha
-				if(pos.x<=(800-(getVelocidad()+width)))pos.setLocation(pos.x + velocidad, pos.y);
+				if(pos.x<=(800-(getVelocidad()+width)))pos.setLocation(pos.x + getVelocidad(), pos.y);
 				break;
 		}
 		setGrafico(dir);

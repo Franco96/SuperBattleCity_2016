@@ -9,6 +9,7 @@ public class Ladrillo extends Celda {
 	protected Ladrillo(int x, int y) {
 		super(x, y);
 		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/ladrillo.png"));
+		sePuede_destruir=true;
 	}
 
 	
@@ -20,7 +21,9 @@ public class Ladrillo extends Celda {
 		
 	}
 
-	
+	public boolean eliminarL(){
+		return true;
+	}
 
 	
 

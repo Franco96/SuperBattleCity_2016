@@ -33,9 +33,7 @@ public class Gui extends JFrame {
 					
 					Gui frame = new Gui();
 					frame.setTitle("Battle_City");
-					frame.setVisible(true);
-					
-					
+					frame.setVisible(true);				
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,6 +55,8 @@ public class Gui extends JFrame {
 				agregar(e);
 				quitar(e);
 				mostrarPuntaje(e);
+				retirarPared(e);
+				estados_jug(e);
 			}
 			
 		});
@@ -125,4 +125,22 @@ public class Gui extends JFrame {
 				JOptionPane.showMessageDialog(null,"Puntaje: "+j.getPuntaje()); 
 			}		
 		}
+	// "A" quita un ladrillo
+	protected void retirarPared(KeyEvent key){
+		if (key.VK_A==key.getKeyCode()){
+			j.eliminar_pared(); 
+		}		
+	}
+	// "S" cambiar de estado,"D" reset estado
+	protected void estados_jug(KeyEvent key){
+		if (key.VK_S==key.getKeyCode()){
+			j.cambiar_estado_jugador();
+		}
+		else{
+			if (key.VK_D==key.getKeyCode()){
+				j.reset_estado_jugador(); 
+			}
+		}
+	}
+	
 }
