@@ -2,6 +2,7 @@ package GUI;
 import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.util.Timer;
@@ -55,6 +56,7 @@ public class Gui extends JFrame {
 				mover(e);
 				agregar(e);
 				quitar(e);
+				mostrarPuntaje(e);
 			}
 			
 		});
@@ -101,7 +103,7 @@ public class Gui extends JFrame {
 			this.repaint();
 		}
 	}
-	// "q" agrega enemigos en pantalla
+	// "Q" agrega enemigos en pantalla
 	protected void agregar(KeyEvent key){
 		if (key.VK_Q==key.getKeyCode()){
 			j.agregarOponente(this);
@@ -109,12 +111,18 @@ public class Gui extends JFrame {
 		}		
 	}
 	
-	// "w" quita enemigos de pantalla
+	// "W" quita enemigos de pantalla
 	protected void quitar(KeyEvent key){
 		if (key.VK_W==key.getKeyCode()){
 			j.quitarOponente(this);;
 			this.repaint();
 		}		
 	}
-
+	
+	// "E" quita enemigos de pantalla
+		protected void mostrarPuntaje(KeyEvent key){
+			if (key.VK_E==key.getKeyCode()){
+				JOptionPane.showMessageDialog(null,"Puntaje: "+j.getPuntaje()); 
+			}		
+		}
 }

@@ -1,7 +1,6 @@
 package BattleCity;
 
 import javax.swing.ImageIcon;
-
 public class Agua extends Celda {
 
 	

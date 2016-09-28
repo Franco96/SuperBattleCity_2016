@@ -4,95 +4,44 @@ package BattleCity;
 import javax.swing.ImageIcon;
 
 public class Jugador extends Tanque{
-
+	private Estado estado;
+	private int nivActual;
 	public Jugador(int velocidad, int x, int y) {
 		super(velocidad, x, y);
+		resetNivel();
 		
 		this.image[0] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueArriba.gif"));
 		this.image[1] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueAbajo.gif"));
 		this.image[2] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueIzquierda.gif"));
 		this.image[3] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueDerecha.gif"));
 	}
+	
+	public void resetNivel(){
+		estado= new Estado1();
+		nivActual=1;
+	}
+	
+	public void subirNivel(){
+		if (nivActual!=4){
+			asignarNivel(nivActual+1);			
+		}
+	}
+	
+	private void asignarNivel(int n){
+		if (n>=0 && n<=4){
+			switch (n) {
+            case 1:  resetNivel();
+                     break;
+            case 2:  estado=new Estado2();
+            		 nivActual=2;
+                     break;
+            case 3:  estado=new Estado3();
+            		 nivActual=3;
+            		 break;
+            case 4:  estado=new Estado4();
+                     nivActual=4;
+                     break;
+			}
+		}
+	}
 }
-	
-	
-
-//=======
-//import java.awt.Image;
-//import java.awt.event.KeyEvent;
-//import javax.swing.ImageIcon;
-//
-//public class Jugador extends Tanque{
-//	private String tanqueUP="/Imagen/tanqueArriba.gif";
-//	private String tanqueDO="/Imagen/tanqueAbajo.gif";
-//	private String tanqueRI="/Imagen/tanqueDerecha.gif";
-//	private String tanqueLE="/Imagen/tanqueIzquierda.gif";
-////	private String tanqueUPQuieto="/Imagen/tanqueArribaQuieto.png";
-////	private String tanqueDOQuieto="/Imagen/tanqueAbajoQuieto.png";
-////	private String tanqueRIQuieto="/Imagen/tanqueDerechaQuieto.png";
-////	private String tanqueLEQuieto="/Imagen/tanqueIzquierdaQuieto.png";
-//
-//	public Jugador(){
-//		x=40;y=60;
-//		ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueUP));
-//		imagen =img.getImage();
-//	}
-//	
-//	public void mover(){
-//		x+=dx;
-//		y+=dy;
-//	}
-//	
-//	public int tenerX(){
-//		return x;
-//	}
-//	
-//	public int tenerY(){
-//		return y;		
-//	}
-//	
-//	public Image tenerImagen(){
-//		return imagen;
-//	}
-//	
-//	public void KeyPressed(KeyEvent e){
-//			int key=e.getKeyCode();
-//			if (key == KeyEvent.VK_LEFT){
-//				dx=-1;
-//				ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueLE));
-//				imagen =img.getImage();
-//			}
-//			if (key == KeyEvent.VK_RIGHT){
-//				dx=1;
-//				ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueRI));
-//				imagen =img.getImage();
-//			}
-//			if (key == KeyEvent.VK_UP){
-//				dy=-1;
-//				ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueUP));
-//				imagen =img.getImage();
-//			}
-//			if (key == KeyEvent.VK_DOWN){
-//				dy=1;
-//				ImageIcon img=new ImageIcon(this.getClass().getResource(tanqueDO));
-//				imagen =img.getImage();
-//			}			
-//	}
-//	
-//	public void keyReleased(KeyEvent e){
-//		int key=e.getKeyCode();
-//		if (key == KeyEvent.VK_LEFT){
-//			dx=0;		
-//		}
-//		if (key == KeyEvent.VK_RIGHT){
-//			dx=0;
-//		}
-//		if (key == KeyEvent.VK_UP){
-//			dy=0;
-//		}
-//		if (key == KeyEvent.VK_DOWN){
-//			dy=0;
-//		}
-//	}
-//>>>>>>> 7bea0e86814d7ba1df5341dcf5b707fd5c3cb534
-//}

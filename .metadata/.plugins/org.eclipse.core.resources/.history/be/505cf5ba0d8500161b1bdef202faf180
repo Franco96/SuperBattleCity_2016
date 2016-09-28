@@ -21,11 +21,15 @@ import Exception.*;
 public class Juego {
 	//ATRIBUTOS
 	PositionList<Enemigo> oponentes;
+<<<<<<< HEAD
+	Jugador jugador;
+	Mapa m;	
+=======
 	
 	protected Jugador jugador;
 	protected Mapa m;	
 	protected int puntaje;
-
+>>>>>>> d3173de8bf81fb87e198f18c226ec03ef526c0bb
 	//CONSTRUCTOR
 
 public Juego(Gui gui){

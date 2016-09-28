@@ -7,10 +7,7 @@ public abstract class Celda extends GameObject {
 
   //ATRIBUTOS
 	
-	Icon imagen;
-
-	
-	
+	Icon imagen;	
 	
   //CONSTRUCTOR
 	
