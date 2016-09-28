@@ -25,7 +25,10 @@ public class Juego {
 	protected Jugador jugador;
 	protected Mapa m;	
 	protected int puntaje;
+<<<<<<< HEAD
 
+=======
+>>>>>>> d3173de8bf81fb87e198f18c226ec03ef526c0bb
 	//CONSTRUCTOR
 
 public Juego(Gui gui){
