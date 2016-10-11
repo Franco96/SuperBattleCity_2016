@@ -18,13 +18,14 @@ import GUI.Gui;
 import TDALista.*;
 import Exception.*;
 
-public class Juego {
+public class Juego  implements Runnable {
 	//ATRIBUTOS
 	PositionList<Enemigo> oponentes;
 	
 	protected Jugador jugador;
 	protected Mapa m;	
 	protected int puntaje;
+	protected boolean game_over=false;
 
 	//CONSTRUCTOR
 
@@ -147,7 +148,22 @@ public void cambiar_estado_jugador(){
 public void reset_estado_jugador(){
 	jugador.resetNivel();
 }
+
+public void run(){
+	while(!game_over){
+		try{
+			mover();
+			Thread.sleep(500);			
+		}
+		catch (InterruptedException e){
+			//Vacio
+		}
+	}	
 }
+}
+
+
+
 
 
 

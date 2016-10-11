@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Gui extends JFrame {
+public class Gui extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
@@ -26,27 +26,17 @@ public class Gui extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					
-					Gui frame = new Gui();
-					frame.setTitle("Battle_City");
-					frame.setVisible(true);				
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static void main(String[] args) {		
+		Gui frame = new Gui();
+		frame.setTitle("Battle_City");
+		frame.setVisible(true);
+		
 	}
-
 	/**
 	 * Create the frame.
 	 * @throws InterruptedException 
 	 */
-	public Gui() throws InterruptedException {
+	public Gui()  {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			
@@ -72,29 +62,10 @@ public class Gui extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		   j = new Juego(this);
-		
+		   j = new Juego(this);		   
 		   
-
-		   Timer timer;
-		    timer = new Timer();
-
-		    TimerTask task = new TimerTask() {
-		        @Override
-		        public void run()
-		        {
-		            j.mover();
-		        }
-		        };
-		        // Empezamos dentro de 0ms y luego lanzamos la tarea cada 425ms
-		    timer.schedule(task, 0, 425);
-		   
-		   
-		   
-//		 tiempo = new Time(j);
-//		 tiempo.start();
-	    
-	
+		   Thread j1=new Thread(j);
+		   j1.start();		   
 	}
 	
 	protected void mover(KeyEvent key){
@@ -141,6 +112,5 @@ public class Gui extends JFrame {
 				j.reset_estado_jugador(); 
 			}
 		}
-	}
-	
+	}	
 }
