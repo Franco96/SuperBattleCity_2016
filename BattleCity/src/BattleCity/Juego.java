@@ -79,6 +79,7 @@ public void quitarOponente(Gui gui){
 public void mover(){
 	try {
 		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
+		
 		while(p!=null){
 			Random r = new Random();
 			int dir = r.nextInt(10000);
@@ -115,8 +116,6 @@ private boolean isBetween(int x, int lower, int upper) {
 
 public void mover(int dir){		
 	int direccion = 0;
-	
-	
 	
 	
 	switch (dir){
