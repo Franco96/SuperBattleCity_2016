@@ -1,20 +1,14 @@
-package BattleCity;
+package Mapa;
 
-import java.awt.*;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import GUI.Gui;
 import TDALista.*;
 import Exception.*;
+import java.awt.Rectangle;
+
 public class Mapa {
 	
 	//ATRIBUTOS
@@ -28,7 +22,6 @@ public class Mapa {
 		x = 0;
 		y = 0;		
 	}
-
 	
 public void armarMapa(Gui gui){
 	 g=gui; 
@@ -78,12 +71,12 @@ public void armarMapa(Gui gui){
           		}
           		
           		if(x<775)
-          		x+=celdas.last().element().width;
+          		x+=celdas.last().element().getAncho();
           		else
           		{
           		x = 0;
           		if(y<575)
-               	y+=celdas.last().element().height;
+               	y+=celdas.last().element().getAlto();
           		}     		
           	}          
           }
@@ -133,4 +126,56 @@ public void remover_pared(){
 		System.out.println(e.getMessage());
 	}
 }
+
+public boolean si_colisiona(Rectangle se_recibe){
+	boolean choco=false;
+	try {
+		Position<Celda>p=celdas.first(),u=celdas.last();
+		while(p!=null && !choco){
+			if (p.element().si_esta_activo() && !p.element().esAtravesable()){
+				choco=se_recibe.intersects(p.element().obtenerRectangulo());
+			}
+			if(p!=u)p=celdas.next(p);else p=null;
+		}					
+	}
+	catch (InvalidPositionException e){
+		System.out.println(e.getMessage());
+	}
+	catch (BoundaryViolationException e){
+		System.out.println(e.getMessage());
+	}
+	catch (EmptyListException e){
+		System.out.println(e.getMessage());
+	}
+	return choco;
 }
+
+public boolean si_colisiona_con_efecto(Rectangle se_recibe){
+	boolean choco=false;
+	try {
+		Position<Celda>p=celdas.first(),u=celdas.last();
+		while(p!=null && !choco){
+			if (p.element().si_esta_activo()&& !p.element().esAtravesable()){
+				choco=se_recibe.intersects(p.element().obtenerRectangulo());
+			}
+			if (choco){
+				p.element().afectar();;
+			}
+			if(p!=u)p=celdas.next(p);else p=null;
+		}					
+	}
+	catch (InvalidPositionException e){
+		System.out.println(e.getMessage());
+	}
+	catch (BoundaryViolationException e){
+		System.out.println(e.getMessage());
+	}
+	catch (EmptyListException e){
+		System.out.println(e.getMessage());
+	}
+	return choco;
+}
+
+}
+
+

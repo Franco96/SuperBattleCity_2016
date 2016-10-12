@@ -5,6 +5,6 @@ public class Estado1 extends Estado{
 		golpes_que_Resiste=1;
 		movimiento=2;
 		disparo=1;
-		disparos_simultaneos=0;
+		disparos_simultaneos=1;
 	}
 }

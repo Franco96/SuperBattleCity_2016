@@ -25,6 +25,14 @@ public abstract class GameObject {
 		return pos;
 	}
 	
+	public int getAncho(){
+		return width;
+	}
+	
+	public int getAlto(){
+		return height;
+	}
+	
 	abstract public JLabel getGrafico();
 	
 	abstract protected void setGrafico(int dir);
