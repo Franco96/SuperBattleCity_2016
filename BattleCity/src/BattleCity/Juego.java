@@ -5,8 +5,6 @@ import java.util.Random;
 import GUI.Gui;
 import TDALista.*;
 import Exception.*;
-import java.awt.Rectangle;
-import Mapa.*;
 
 public class Juego  implements Runnable {
 	//ATRIBUTOS
@@ -87,29 +85,24 @@ private boolean isBetween(int x, int lower, int upper) {
 
 public void mover(int dir){		
 	int direccion = 0;
-	Rectangle proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y,jugador.getAncho(),jugador.getAlto());	
+	
+	
 	switch (dir){
 		case KeyEvent.VK_UP : //Arriba
-			proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y-jugador.getVelocidad(),jugador.getAncho(),jugador.getAlto());
 			direccion = 0;
 			break;
 		case KeyEvent.VK_DOWN : //Abajo
-			proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y+jugador.getVelocidad(),jugador.getAncho(),jugador.getAlto());
 			direccion = 1;
 			break;
 		case KeyEvent.VK_LEFT : //Izquierda
-			proximo_movimiento=new Rectangle(jugador.getPos().x-jugador.getVelocidad(),jugador.getPos().y,jugador.getAncho(),jugador.getAlto());
 			direccion = 2;
 			break;
 		case KeyEvent.VK_RIGHT : //Derecha
-			proximo_movimiento=new Rectangle(jugador.getPos().x+jugador.getVelocidad(),jugador.getPos().y,jugador.getAncho(),jugador.getAlto());
 			direccion = 3;
 			break;
 	}
-	//Verificar si colisiona con algun bloque del mapa
-	if (!m.si_colisiona(proximo_movimiento)){
-		jugador.mover(direccion);
-	}
+	
+	jugador.mover(direccion);
 }
 
 public void eliminar_pared(){
@@ -125,13 +118,13 @@ public void reset_estado_jugador(){
 }
 
 public void generar_disparo_jugador(Gui g){
-	jugador.disparar_bala(g,m);	
+	jugador.disparar_bala(g);
+	
 }
 public void run(){
 	while(!game_over){
 		try{
 			mover();
-			jugador.update_bala();
 			Thread.sleep(500);			
 		}
 		catch (InterruptedException e){

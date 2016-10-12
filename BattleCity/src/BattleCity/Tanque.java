@@ -3,15 +3,11 @@ package BattleCity;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-import TDALista.ListaDoblementeEnlazada;
-import TDALista.PositionList;
-
 public abstract  class Tanque extends GameObject {
   //ATRIBUTOS
     protected int velocidad;
     protected Icon image[];
     protected int ultima_direccion;
-    protected PositionList<Bala> balas_disparadas;
 	
 	//CONSTRUCTOR
     
@@ -20,7 +16,6 @@ public abstract  class Tanque extends GameObject {
 	    this.image = new Icon[8];  
 	    this.width = 50;
 	    this.height = 50;
-	    balas_disparadas= new ListaDoblementeEnlazada<Bala>();
 	    
 	}
 	
