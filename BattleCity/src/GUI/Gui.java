@@ -1,27 +1,17 @@
 package GUI;
 import java.awt.Color;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import BattleCity.Juego;
-import BattleCity.Mapa;
-
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Gui extends JFrame{
 	private static final long serialVersionUID = 1L;
-
-	private JPanel contentPane;
-	
+	private JPanel contentPane;	
 	private Juego j;
-	private Time tiempo;
 
 	/**
 	 * Launch the application.
@@ -47,6 +37,7 @@ public class Gui extends JFrame{
 				mostrarPuntaje(e);
 				retirarPared(e);
 				estados_jug(e);
+				disparar(e);
 			}
 			
 		});
@@ -112,5 +103,12 @@ public class Gui extends JFrame{
 				j.reset_estado_jugador(); 
 			}
 		}
-	}	
+	}
+	
+	// "X" disparar una bala
+		protected void disparar(KeyEvent key){
+			if (key.VK_X==key.getKeyCode()){
+				j.generar_disparo_jugador(this);
+			}
+		}
 }

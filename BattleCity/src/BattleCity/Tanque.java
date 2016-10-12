@@ -1,16 +1,13 @@
 package BattleCity;
 
-
-import java.awt.event.KeyEvent;
-
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public abstract  class Tanque extends GameObject {
   //ATRIBUTOS
     protected int velocidad;
     protected Icon image[];
+    protected int ultima_direccion;
 	
 	//CONSTRUCTOR
     
@@ -47,7 +44,8 @@ public abstract  class Tanque extends GameObject {
 	}
 	
 	
-	public void mover(int dir){	
+	public void mover(int dir){
+		ultima_direccion=dir;
 		switch (dir) {
 			case 0 : //Arriba
 				if(pos.y>=getVelocidad())pos.setLocation(pos.x, pos.y - getVelocidad());
@@ -63,12 +61,7 @@ public abstract  class Tanque extends GameObject {
 				break;
 		}
 		setGrafico(dir);
-	}
-	
-	public JLabel getLabel(){
-		return grafico;
-	}
-	
+	}	
 }
 
 
