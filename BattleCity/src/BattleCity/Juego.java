@@ -1,7 +1,5 @@
 package BattleCity;
 
-
-
 import java.awt.event.KeyEvent;
 import java.util.Random;
 import GUI.Gui;
@@ -11,23 +9,19 @@ import Exception.*;
 public class Juego  implements Runnable {
 	//ATRIBUTOS
 	PositionList<Enemigo> oponentes;
-	
 	protected Jugador jugador;
 	protected Mapa m;
 	protected int puntaje;
 	protected boolean game_over=false;
 
 	//CONSTRUCTOR
-
 public Juego(Gui gui){
 	oponentes= new ListaDoblementeEnlazada<Enemigo>();
 	puntaje=0;
 	jugador = new Jugador(400,400);
 	m = new Mapa();
-	gui.add(jugador.getGrafico());
-	
-	m.armarMapa(gui);	
-     
+	gui.add(jugador.getGrafico());	
+	m.armarMapa(gui);     
 }
 
 public int getPuntaje(){
@@ -69,22 +63,8 @@ public void quitarOponente(Gui gui){
 public void mover(){
 	try {
 		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
-		
 		while(p!=null){
-			Random r = new Random();
-			int dir = r.nextInt(10000);
-			if (isBetween(dir,0, 2500)) {
-				p.element().mover(0);
-				}
-			if (isBetween(dir,2501 , 5000)) {
-				p.element().mover(1);
-				}
-			if (isBetween(dir,5001 , 7250)) {
-				p.element().mover(2);
-				}
-			if (isBetween(dir,7251 , 10000)) {
-				p.element().mover(3);
-				}			
+			p.element().mover(0);			
 			if(p!=u)p=oponentes.next(p);else p=null;			
 		}
 	}
@@ -102,7 +82,6 @@ public void mover(){
 private boolean isBetween(int x, int lower, int upper) {
 	  return lower <= x && x <= upper;
 	}
-
 
 public void mover(int dir){		
 	int direccion = 0;
