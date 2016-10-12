@@ -1,6 +1,7 @@
 package BattleCity;
 
 import java.awt.*;
+import java.awt.geom.Line2D;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -22,11 +23,13 @@ public class Mapa {
 	private  int y;
 	private PositionList<Celda> celdas;
 	private Gui g;
+	private Celda celdaPrototipo;
 	
 	//CONSTRUCTOR
 	public Mapa(){   
 		x = 0;
-		y = 0;		
+		y = 0;
+	   celdaPrototipo = new Ladrillo(x,y);
 	}
 
 	
@@ -77,14 +80,26 @@ public void armarMapa(Gui gui){
           		
           		}
           		
-          		if(x<775)
-          		x+=celdas.last().element().width;
-          		else
-          		{
-          		x = 0;
-          		if(y<575)
-               	y+=celdas.last().element().height;
-          		}     		
+          		
+          		    if(x<775)
+          		    {
+          		       if(!celdas.isEmpty())	
+          		        x+=celdas.last().element().width;
+          		        else
+          		        x+=celdaPrototipo.width; 	 
+          		     
+          		    }else
+          		         {
+          		           x = 0;
+          		           if(y<575)
+          		             {	 
+          		        	  if(!celdas.isEmpty())	   
+                        	  y+=celdas.last().element().height;
+          		        	  else
+          		        	  y+=celdaPrototipo.height;  	  
+          		             }
+          		           } 
+          		   
           	}          
           }
       } catch (IOException e) { // Esto es por si ocurre un error
@@ -133,4 +148,78 @@ public void remover_pared(){
 		System.out.println(e.getMessage());
 	}
 }
+
+
+//verifica si coliciona con alguna pared
+
+/*
+public boolean colisionConPared(Line2D lineTanque,int direccion)
+{
+	boolean intersecta = false;
+	
+try{	Position<Celda>p=celdas.first();
+        Position<Celda>u = celdas.last();
+        Celda cel;
+	    Line2D lineCelda;
+	while (!intersecta && p!=null )
+	{
+		  cel = p.element();
+		
+		switch (direccion) {
+        case 0:
+        {
+        
+        		
+        	lineCelda = new Line2D.Double(50, 50, 1000, 50);
+          
+             intersecta = lineCelda.intersectsLine(lineTanque);         
+          
+             break;
+        }
+        case 1:
+        		
+                 break;
+        case 2: 
+        		 
+        		 break;
+        case 3: 
+                
+                 break;
+		}
+	
+	
+	
+		   p = p!=u ? celdas.next(p) : null; 	
+	}
+		
+		
+		
+		
+	
+			
+			
+			
+			
+			
+			
+	 
+	
+	
+	
+}catch(EmptyListException e)
+{
+	
+}catch(BoundaryViolationException e)
+{
+	
+}catch(InvalidPositionException e)
+{
+	
+}
+	return intersecta;
+
+
+}
+*/
+
 }

@@ -1,6 +1,20 @@
 package BattleCity;
 
+<<<<<<< HEAD
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Line2D;
+=======
+import java.awt.event.KeyEvent;
+>>>>>>> origin/master
 import java.util.Random;
 import GUI.Gui;
 import TDALista.*;
@@ -13,15 +27,22 @@ public class Juego  implements Runnable {
 	protected Mapa m;
 	protected int puntaje;
 	protected boolean game_over=false;
-
+    int anteriorMovido;
 	//CONSTRUCTOR
 public Juego(Gui gui){
 	oponentes= new ListaDoblementeEnlazada<Enemigo>();
 	puntaje=0;
 	jugador = new Jugador(400,400);
 	m = new Mapa();
+<<<<<<< HEAD
+	gui.add(jugador.getGrafico());
+	anteriorMovido = 0;
+	m.armarMapa(gui);	
+     
+=======
 	gui.add(jugador.getGrafico());	
 	m.armarMapa(gui);     
+>>>>>>> origin/master
 }
 
 public int getPuntaje(){
@@ -60,12 +81,17 @@ public void quitarOponente(Gui gui){
 	}
 }
 
+//MOVER DE ENEMIGO
 public void mover(){
 	try {
+		
+		if(!oponentes.isEmpty())
+		{
 		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
 		while(p!=null){
 			p.element().mover(0);			
 			if(p!=u)p=oponentes.next(p);else p=null;			
+		}
 		}
 	}
 	catch (InvalidPositionException e){
@@ -83,26 +109,51 @@ private boolean isBetween(int x, int lower, int upper) {
 	  return lower <= x && x <= upper;
 	}
 
+<<<<<<< HEAD
+//MOVER DE JUGADOR
+
+=======
+>>>>>>> origin/master
 public void mover(int dir){		
 	int direccion = 0;
+
 	
 	
+
+
 	switch (dir){
 		case KeyEvent.VK_UP : //Arriba
-			direccion = 0;
-			break;
+			{direccion = 0;
+			  
+			   break;
+		    }
 		case KeyEvent.VK_DOWN : //Abajo
-			direccion = 1;
+			{direccion = 1;
+			 
 			break;
+			}
 		case KeyEvent.VK_LEFT : //Izquierda
-			direccion = 2;
-			break;
+			{direccion = 2;
+			
+			break;}
 		case KeyEvent.VK_RIGHT : //Derecha
-			direccion = 3;
+			{direccion = 3;
+			  
 			break;
-	}
 	
-	jugador.mover(direccion);
+			}
+			}
+	
+	 
+	
+	
+	   
+	   jugador.mover(direccion);
+	
+
+	
+	
+	
 }
 
 public void eliminar_pared(){
