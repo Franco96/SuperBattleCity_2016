@@ -28,4 +28,9 @@ public abstract class GameObject {
 	abstract public JLabel getGrafico();
 	
 	abstract protected void setGrafico(int dir);
+	
+	public void setPosicion(int x,int y)
+	{
+		pos = new Point(x,y);
+	}
 }

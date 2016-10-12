@@ -11,7 +11,7 @@ public abstract  class Tanque extends GameObject {
   //ATRIBUTOS
     protected int velocidad;
     protected Icon image[];
-	
+	protected int chocaEn;
 	//CONSTRUCTOR
     
 	protected Tanque(int x, int y) {
@@ -19,7 +19,7 @@ public abstract  class Tanque extends GameObject {
 	    this.image = new Icon[8];  
 	    this.width = 50;
 	    this.height = 50;
-	    
+	    chocaEn = -1;
 	}
 	
    //METODOS
@@ -62,12 +62,17 @@ public abstract  class Tanque extends GameObject {
 				if(pos.x<=(800-(getVelocidad()+width)))pos.setLocation(pos.x + getVelocidad(), pos.y);
 				break;
 		}
+		
+	
 		setGrafico(dir);
 	}
+	
 	
 	public JLabel getLabel(){
 		return grafico;
 	}
+	
+	
 	
 }
 
