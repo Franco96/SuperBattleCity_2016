@@ -1,5 +1,6 @@
 package BattleCity;
 
+<<<<<<< HEAD
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,10 +12,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Line2D;
+=======
+import java.awt.event.KeyEvent;
+>>>>>>> origin/master
 import java.util.Random;
-
-import javax.swing.ImageIcon;
-
 import GUI.Gui;
 import TDALista.*;
 import Exception.*;
@@ -22,23 +23,26 @@ import Exception.*;
 public class Juego  implements Runnable {
 	//ATRIBUTOS
 	PositionList<Enemigo> oponentes;
-	
 	protected Jugador jugador;
-	protected Mapa m;	
+	protected Mapa m;
 	protected int puntaje;
 	protected boolean game_over=false;
     int anteriorMovido;
 	//CONSTRUCTOR
-
 public Juego(Gui gui){
 	oponentes= new ListaDoblementeEnlazada<Enemigo>();
 	puntaje=0;
 	jugador = new Jugador(400,400);
 	m = new Mapa();
+<<<<<<< HEAD
 	gui.add(jugador.getGrafico());
 	anteriorMovido = 0;
 	m.armarMapa(gui);	
      
+=======
+	gui.add(jugador.getGrafico());	
+	m.armarMapa(gui);     
+>>>>>>> origin/master
 }
 
 public int getPuntaje(){
@@ -84,22 +88,8 @@ public void mover(){
 		if(!oponentes.isEmpty())
 		{
 		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
-		
 		while(p!=null){
-			Random r = new Random();
-			int dir = r.nextInt(10000);
-			if (isBetween(dir,0, 2500)) {
-				p.element().mover(0);
-				}
-			if (isBetween(dir,2501 , 5000)) {
-				p.element().mover(1);
-				}
-			if (isBetween(dir,5001 , 7250)) {
-				p.element().mover(2);
-				}
-			if (isBetween(dir,7251 , 10000)) {
-				p.element().mover(3);
-				}			
+			p.element().mover(0);			
 			if(p!=u)p=oponentes.next(p);else p=null;			
 		}
 		}
@@ -119,8 +109,11 @@ private boolean isBetween(int x, int lower, int upper) {
 	  return lower <= x && x <= upper;
 	}
 
+<<<<<<< HEAD
 //MOVER DE JUGADOR
 
+=======
+>>>>>>> origin/master
 public void mover(int dir){		
 	int direccion = 0;
 
@@ -175,6 +168,10 @@ public void reset_estado_jugador(){
 	jugador.resetNivel();
 }
 
+public void generar_disparo_jugador(Gui g){
+	jugador.disparar_bala(g);
+	
+}
 public void run(){
 	while(!game_over){
 		try{
