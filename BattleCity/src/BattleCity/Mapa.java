@@ -1,51 +1,37 @@
 package BattleCity;
 
-import java.awt.*;
-import java.awt.geom.Line2D;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import GUI.Gui;
 import TDALista.*;
 import Exception.*;
+import java.awt.Rectangle;
+
 public class Mapa {
 	
 	//ATRIBUTOS
-	private int x;
-	private  int y;
-	private PositionList<Celda> celdas;
-	private Gui g;
-	private Celda celdaPrototipo;
+	protected int x;
+	protected  int y;
+	protected PositionList<Celda> celdas;
+	protected Gui g;
 	
 	//CONSTRUCTOR
 	public Mapa(){   
 		x = 0;
-		y = 0;
-	   celdaPrototipo = new Ladrillo(x,y);
+		y = 0;		
 	}
-
 	
 public void armarMapa(Gui gui){
-	 g=gui; 
-	
-	
-	BufferedReader  br = null;
-	  
-      
+	 g=gui; 	
+	BufferedReader  br = null;      
       try {
     	  celdas=new ListaDoblementeEnlazada<Celda>();
     	  
           String sCurrentLine;
 
-           br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Archivos/mapa1.txt")));
+           br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Archivos/Mapa_del_Escenario.txt")));
 
           // Para cada linea del archivo
           while ((sCurrentLine = br.readLine()) != null) {
@@ -80,28 +66,18 @@ public void armarMapa(Gui gui){
           		
           		}
           		
-          		
-          		    if(x<775)
-          		    {
-          		       if(!celdas.isEmpty())	
-          		        x+=celdas.last().element().width;
-          		        else
-          		        x+=celdaPrototipo.width; 	 
-          		     
-          		    }else
-          		         {
-          		           x = 0;
-          		           if(y<575)
-          		             {	 
-          		        	  if(!celdas.isEmpty())	   
-                        	  y+=celdas.last().element().height;
-          		        	  else
-          		        	  y+=celdaPrototipo.height;  	  
-          		             }
-          		           } 
-          		   
-          	}          
-          }
+          		if(x<775){
+          			x+=celdas.last().element().getAncho();
+          		}
+          		else{
+          			x=0;
+          			if(y<575){
+          				y+=celdas.last().element().getAlto();
+          			}
+                       	
+          		  }
+          		}     		
+         }          
       } catch (IOException e) { // Esto es por si ocurre un error
           e.printStackTrace();
       }	catch (EmptyListException e) { // Esto es por si ocurre un error
@@ -149,77 +125,53 @@ public void remover_pared(){
 	}
 }
 
-
-//verifica si coliciona con alguna pared
-
-/*
-public boolean colisionConPared(Line2D lineTanque,int direccion)
-{
-	boolean intersecta = false;
-	
-try{	Position<Celda>p=celdas.first();
-        Position<Celda>u = celdas.last();
-        Celda cel;
-	    Line2D lineCelda;
-	while (!intersecta && p!=null )
-	{
-		  cel = p.element();
-		
-		switch (direccion) {
-        case 0:
-        {
-        
-        		
-        	lineCelda = new Line2D.Double(50, 50, 1000, 50);
-          
-             intersecta = lineCelda.intersectsLine(lineTanque);         
-          
-             break;
-        }
-        case 1:
-        		
-                 break;
-        case 2: 
-        		 
-        		 break;
-        case 3: 
-                
-                 break;
-		}
-	
-	
-	
-		   p = p!=u ? celdas.next(p) : null; 	
+public boolean si_colisiona(Rectangle se_recibe){
+	boolean choco=false;
+	try {
+		Position<Celda>p=celdas.first(),u=celdas.last();
+		while(p!=null && !choco){
+			if (p.element().si_esta_activo() && !p.element().esAtravesable()){
+				choco=se_recibe.intersects(p.element().obtenerRectangulo());
+			}
+			if(p!=u)p=celdas.next(p);else p=null;
+		}					
 	}
-		
-		
-		
-		
-	
-			
-			
-			
-			
-			
-			
-	 
-	
-	
-	
-}catch(EmptyListException e)
-{
-	
-}catch(BoundaryViolationException e)
-{
-	
-}catch(InvalidPositionException e)
-{
-	
+	catch (InvalidPositionException e){
+		System.out.println(e.getMessage());
+	}
+	catch (BoundaryViolationException e){
+		System.out.println(e.getMessage());
+	}
+	catch (EmptyListException e){
+		System.out.println(e.getMessage());
+	}
+	return choco;
 }
-	return intersecta;
 
-
+public boolean si_colisiona_con_efecto(Rectangle se_recibe){
+	boolean choco=false;
+	try {
+		Position<Celda>p=celdas.first(),u=celdas.last();
+		while(p!=null && !choco){
+			if (p.element().si_esta_activo()&& !p.element().esAtravesable()){
+				choco=se_recibe.intersects(p.element().obtenerRectangulo());
+			}
+			if (choco){
+				p.element().afectar();;
+			}
+			if(p!=u)p=celdas.next(p);else p=null;
+		}					
+	}
+	catch (InvalidPositionException e){
+		System.out.println(e.getMessage());
+	}
+	catch (BoundaryViolationException e){
+		System.out.println(e.getMessage());
+	}
+	catch (EmptyListException e){
+		System.out.println(e.getMessage());
+	}
+	return choco;
 }
-*/
 
 }

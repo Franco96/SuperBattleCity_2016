@@ -3,22 +3,27 @@ package BattleCity;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Icon;
+import java.awt.Rectangle;
 
 public class Bala extends GameObject implements Runnable{
 	private int direccion;
 	private int velocidad=5;
 	protected Icon imagen;
 	protected volatile boolean esVisible;
+	protected Mapa mapa_que_usa;
+	protected Rectangle rectangulo;
 	
-	public Bala(int X,int Y,int dir){
+	public Bala(int X,int Y,int dir,Mapa m){
 		super(X,Y);
 		direccion=dir;
+		mapa_que_usa=m;
 		width = 15;
 		height=15;
 		esVisible=true;
 		imagen = new ImageIcon(this.getClass().getResource("/Imagenes/bala.png"));
 		grafico = new JLabel(imagen);
 		grafico.setBounds(pos.x, pos.y, width, height);
+		rectangulo=null;
 	}
 	
     public JLabel getGrafico(){
@@ -33,7 +38,8 @@ public class Bala extends GameObject implements Runnable{
 	public void mover(int dir){	
 		switch (dir) {
 			case 0 : //Arriba
-				if(pos.y>=velocidad){
+				rectangulo=new Rectangle(pos.x, pos.y - velocidad, width, height);
+				if(pos.y>=velocidad && !mapa_que_usa.si_colisiona_con_efecto(rectangulo)){
 					pos.setLocation(pos.x, pos.y - velocidad);
 				}
 				else{
@@ -41,7 +47,8 @@ public class Bala extends GameObject implements Runnable{
 				}
 				break;
 			case 1 : //Abajo
-				if(pos.y<=(579-(velocidad+height))){
+				rectangulo=new Rectangle(pos.x, pos.y + velocidad, width, height);
+				if(pos.y<=(579-(velocidad+height)) && !mapa_que_usa.si_colisiona_con_efecto(rectangulo)){
 					pos.setLocation(pos.x, pos.y + velocidad);
 				}
 				else{
@@ -49,7 +56,8 @@ public class Bala extends GameObject implements Runnable{
 				}
 				break;
 			case 2 : //Izquierda
-				if(pos.x>=velocidad){
+				rectangulo=new Rectangle(pos.x - velocidad, pos.y, width, height);
+				if(pos.x>=velocidad && !mapa_que_usa.si_colisiona_con_efecto(rectangulo)){
 					pos.setLocation(pos.x - velocidad, pos.y);
 				}
 				else{
@@ -57,7 +65,8 @@ public class Bala extends GameObject implements Runnable{
 				}
 				break;
 			case 3 : //Derecha
-				if(pos.x<=(800-(velocidad+width))){
+				rectangulo=new Rectangle(pos.x + velocidad, pos.y, width, height);
+				if(pos.x<=(800-(velocidad+width)) && !mapa_que_usa.si_colisiona_con_efecto(rectangulo)){
 					pos.setLocation(pos.x + velocidad, pos.y);
 				}
 				else{
@@ -66,6 +75,10 @@ public class Bala extends GameObject implements Runnable{
 				break;
 		}
 		if (esVisible){setGrafico(dir);}
+	}
+	
+	public boolean si_esVisible(){
+		return esVisible;
 	}
 	
 	public void mover_en_direccion(){

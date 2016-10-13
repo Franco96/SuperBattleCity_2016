@@ -1,48 +1,31 @@
 package BattleCity;
 
-<<<<<<< HEAD
-
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Line2D;
-=======
-import java.awt.event.KeyEvent;
->>>>>>> origin/master
 import java.util.Random;
 import GUI.Gui;
 import TDALista.*;
 import Exception.*;
 
+
 public class Juego  implements Runnable {
 	//ATRIBUTOS
+	
 	PositionList<Enemigo> oponentes;
 	protected Jugador jugador;
 	protected Mapa m;
 	protected int puntaje;
 	protected boolean game_over=false;
-    int anteriorMovido;
-	//CONSTRUCTOR
+	
+    //CONSTRUCTOR
 public Juego(Gui gui){
 	oponentes= new ListaDoblementeEnlazada<Enemigo>();
 	puntaje=0;
 	jugador = new Jugador(400,400);
 	m = new Mapa();
-<<<<<<< HEAD
-	gui.add(jugador.getGrafico());
-	anteriorMovido = 0;
 	m.armarMapa(gui);	
-     
-=======
 	gui.add(jugador.getGrafico());	
 	m.armarMapa(gui);     
->>>>>>> origin/master
 }
 
 public int getPuntaje(){
@@ -84,7 +67,6 @@ public void quitarOponente(Gui gui){
 //MOVER DE ENEMIGO
 public void mover(){
 	try {
-		
 		if(!oponentes.isEmpty())
 		{
 		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
@@ -105,55 +87,33 @@ public void mover(){
 	}
 }
 
-private boolean isBetween(int x, int lower, int upper) {
-	  return lower <= x && x <= upper;
-	}
-
-<<<<<<< HEAD
 //MOVER DE JUGADOR
 
-=======
->>>>>>> origin/master
 public void mover(int dir){		
 	int direccion = 0;
-
-	
-	
-
-
+	Rectangle proximo_movimiento=null; 
 	switch (dir){
 		case KeyEvent.VK_UP : //Arriba
-			{direccion = 0;
-			  
-			   break;
-		    }
-		case KeyEvent.VK_DOWN : //Abajo
-			{direccion = 1;
-			 
+			proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y-jugador.getVelocidad(),jugador.getAncho(),jugador.getAlto());
+			direccion = 0;			  
 			break;
-			}
+		case KeyEvent.VK_DOWN ://Abajo
+			proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y+jugador.getVelocidad(),jugador.getAncho(),jugador.getAlto());
+			direccion = 1;			 
+			break;
 		case KeyEvent.VK_LEFT : //Izquierda
-			{direccion = 2;
-			
-			break;}
-		case KeyEvent.VK_RIGHT : //Derecha
-			{direccion = 3;
-			  
+			proximo_movimiento=new Rectangle(jugador.getPos().x-jugador.getVelocidad(),jugador.getPos().y,jugador.getAncho(),jugador.getAlto());
+			direccion = 2;			
 			break;
-	
-			}
-			}
-	
-	 
-	
-	
-	   
-	   jugador.mover(direccion);
-	
-
-	
-	
-	
+		case KeyEvent.VK_RIGHT : //Derecha
+			proximo_movimiento=new Rectangle(jugador.getPos().x+jugador.getVelocidad(),jugador.getPos().y,jugador.getAncho(),jugador.getAlto());
+			direccion = 3;			  
+			break;
+	}
+	//Verificar si colisiona con algun bloque del mapa
+		if (!m.si_colisiona(proximo_movimiento)){
+			jugador.mover(direccion);
+		}	
 }
 
 public void eliminar_pared(){
@@ -169,13 +129,14 @@ public void reset_estado_jugador(){
 }
 
 public void generar_disparo_jugador(Gui g){
-	jugador.disparar_bala(g);
+	jugador.disparar_bala(g,m);
 	
 }
 public void run(){
 	while(!game_over){
 		try{
 			mover();
+			jugador.update_bala();
 			Thread.sleep(500);			
 		}
 		catch (InterruptedException e){
@@ -184,29 +145,3 @@ public void run(){
 	}	
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-

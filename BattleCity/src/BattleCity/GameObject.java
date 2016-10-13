@@ -33,4 +33,12 @@ public abstract class GameObject {
 	{
 		pos = new Point(x,y);
 	}
+	
+	public int getAncho(){
+		return width;
+	}
+	
+	public int getAlto(){
+		return height;
+	}
 }

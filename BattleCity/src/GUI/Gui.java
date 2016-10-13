@@ -20,7 +20,6 @@ public class Gui extends JFrame{
 		Gui frame = new Gui();
 		frame.setTitle("Battle_City");
 		frame.setVisible(true);
-		
 	}
 	/**
 	 * Create the frame.

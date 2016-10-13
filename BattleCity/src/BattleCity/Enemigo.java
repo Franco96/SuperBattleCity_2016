@@ -67,5 +67,4 @@ public  abstract class Enemigo extends Tanque {
 		}
 		direccion_de_movimiento=r;
 	}
-
 }
