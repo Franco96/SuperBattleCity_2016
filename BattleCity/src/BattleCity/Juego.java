@@ -1,15 +1,12 @@
 package BattleCity;
 
-import java.util.Random;
 import GUI.Gui;
-import TDALista.*;
-import Exception.*;
 import Mapa.*;
 
 public class Juego  implements Runnable {
 	//ATRIBUTOS
 	
-	PositionList<Enemigo> oponentes;
+	protected Batallon batallon_de_enemigos;
 	protected Jugador jugador;
 	protected Mapa m;
 	protected int puntaje;
@@ -17,7 +14,7 @@ public class Juego  implements Runnable {
 	
     //CONSTRUCTOR
 public Juego(Gui gui){
-	oponentes= new ListaDoblementeEnlazada<Enemigo>();
+	batallon_de_enemigos=new Batallon();
 	puntaje=0;
 	jugador = new Jugador(400,400);
 	m = new Mapa();
@@ -31,60 +28,12 @@ public int getPuntaje(){
 }
 
 public void agregarOponente(Gui gui){
-	try{
-		Random r = new Random();
-		oponentes.addLast(new EnemigoBasico(r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32)));
-		gui.add(oponentes.last().element().getGrafico(),0);
-		gui.revalidate();
-		gui.repaint();
-	}
-	catch (EmptyListException e){
-		System.out.println(e.getMessage());
-	}
+	batallon_de_enemigos.agregarOponente(gui);
 }
 
 public void quitarOponente(Gui gui){
-	try{
-		if (!oponentes.isEmpty()){
-			Position<Enemigo> p=oponentes.last();
-			puntaje+=p.element().getPuntaje_por_Destruccion();
-			gui.remove(oponentes.last().element().getGrafico());
-			gui.revalidate();
-			gui.repaint();
-			oponentes.remove(p);
-		}		
-	}
-	catch (InvalidPositionException e){
-		System.out.println(e.getMessage());
-	}
-	catch (EmptyListException e){
-		System.out.println(e.getMessage());
-	}
+	batallon_de_enemigos.quitarOponente(gui);
 }
-
-//MOVER DE ENEMIGO
-public void mover(){
-	try {
-		if(!oponentes.isEmpty())
-		{
-		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
-		while(p!=null){
-			p.element().mover(0);			
-			if(p!=u)p=oponentes.next(p);else p=null;			
-		}
-		}
-	}
-	catch (InvalidPositionException e){
-		System.out.println(e.getMessage());
-	}
-	catch (BoundaryViolationException e){
-		System.out.println(e.getMessage());
-	}
-	catch (EmptyListException e){
-		System.out.println(e.getMessage());
-	}
-}
-
 
 //Movimiento del jugador en direccion pasada por parametro
 public void mover(int dir){		
@@ -110,7 +59,7 @@ public void generar_disparo_jugador(Gui g){
 public void run(){
 	while(!game_over){
 		try{
-			mover();
+			batallon_de_enemigos.mover();
 			jugador.update_bala();
 			Thread.sleep(500);			
 		}
