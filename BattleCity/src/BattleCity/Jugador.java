@@ -4,7 +4,7 @@ import GUI.*;
 import TDALista.*;
 import javax.swing.ImageIcon;
 import Exception.*;
-
+import Mapa.*;
 public class Jugador extends Tanque{
 	private Estado estado;
 	private int nivActual;

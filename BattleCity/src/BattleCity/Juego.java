@@ -1,12 +1,10 @@
 package BattleCity;
 
-import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 import java.util.Random;
 import GUI.Gui;
 import TDALista.*;
 import Exception.*;
-
+import Mapa.*;
 
 public class Juego  implements Runnable {
 	//ATRIBUTOS
@@ -87,33 +85,10 @@ public void mover(){
 	}
 }
 
-//MOVER DE JUGADOR
 
+//Movimiento del jugador en direccion pasada por parametro
 public void mover(int dir){		
-	int direccion = 0;
-	Rectangle proximo_movimiento=null; 
-	switch (dir){
-		case KeyEvent.VK_UP : //Arriba
-			proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y-jugador.getVelocidad(),jugador.getAncho(),jugador.getAlto());
-			direccion = 0;			  
-			break;
-		case KeyEvent.VK_DOWN ://Abajo
-			proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y+jugador.getVelocidad(),jugador.getAncho(),jugador.getAlto());
-			direccion = 1;			 
-			break;
-		case KeyEvent.VK_LEFT : //Izquierda
-			proximo_movimiento=new Rectangle(jugador.getPos().x-jugador.getVelocidad(),jugador.getPos().y,jugador.getAncho(),jugador.getAlto());
-			direccion = 2;			
-			break;
-		case KeyEvent.VK_RIGHT : //Derecha
-			proximo_movimiento=new Rectangle(jugador.getPos().x+jugador.getVelocidad(),jugador.getPos().y,jugador.getAncho(),jugador.getAlto());
-			direccion = 3;			  
-			break;
-	}
-	//Verificar si colisiona con algun bloque del mapa
-		if (!m.si_colisiona(proximo_movimiento)){
-			jugador.mover(direccion);
-		}	
+	jugador.movimiento(jugador.convertir_keyEvent_a_direccionLocal(dir), m);	
 }
 
 public void eliminar_pared(){

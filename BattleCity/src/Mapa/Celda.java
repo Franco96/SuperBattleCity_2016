@@ -1,9 +1,9 @@
-package BattleCity;
+package Mapa;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
-
+import BattleCity.*;
 
 public abstract class Celda extends GameObject {
 

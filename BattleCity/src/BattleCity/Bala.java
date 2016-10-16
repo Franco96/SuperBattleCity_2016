@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Icon;
 import java.awt.Rectangle;
+import Mapa.*;
 
 public class Bala extends GameObject implements Runnable{
 	private int direccion;
