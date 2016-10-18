@@ -19,16 +19,12 @@
 	</section>
 	<section name="GitCommitMessageComponent">
 		<list key="C:\Users\Lautaro\Documents\GitHub\SuperBattleCity_2016\.git">
-			<item value="false"/>
-			<item value="Franco96 &lt;laautarocarranza@hotmail.com&gt;"/>
-			<item value="Correccion del mapa"/>
-			<item value="Franco96 &lt;laautarocarranza@hotmail.com&gt;"/>
-			<item value="de48ec4f6894d36ebad05de89f648c763761d4a0"/>
+			<item value="empty"/>
 		</list>
 	</section>
 	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
 		<item value="500,500" key="STAGING_SASH_FORM_WEIGHT"/>
-		<item value="false" key="sortItemState"/>
+		<item value="true" key="sortItemState"/>
 		<item value="500,500" key="HORIZONTAL_SASH_FORM_WEIGHT"/>
 	</section>
 </section>

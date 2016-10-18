@@ -1,0 +1,62 @@
+package THREADING;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		
+	
+	ClaseVolatil p1 = new ClaseVolatil();
+	ClaseVolatil p2 = new ClaseVolatil();
+	
+	p1.setI(2);
+	p2.setI(6);
+	
+	System.out.println(p2.getI());
+	System.out.println(p2.getI());
+		
+//		
+//		Hilos hilo_1 = new Hilos(3);
+//		hilo_1.start();	
+//		Hilos hilo_4 = new Hilos(4);
+//		hilo_4.start();		
+//			
+//			
+//			
+//			
+//		while(hilo_1.getTermino())	
+//		{	
+//			
+//          if(hilo_1.getConter() == 3)
+//			{		
+//				System.out.println("El hilo 1 termino");
+//			hilo_1.terminar();
+//			
+//			}
+//				
+//		}
+//		
+////		System.out.println("Variable terminadora de hilo 1 esta en "+hilo_1.getTermino());
+////		System.out.println("Variable terminadora de hila 2 esta en "+hilo_2.getTermino());
+////		System.out.println("CONTADOR DEL HILO 1 VA EEEN "+hilo_1.getConter());
+////		System.out.println("CONTADOR DEL HILO 2 VA EEN "+hilo_2.getConter());
+////		
+////		
+////		while(hilo_2.getTermino())	
+////		{	
+////			
+////			if(hilo_2.getConter() == 7)
+////			{		
+////				System.out.println("El hilo 2 termino");
+////			hilo_2.terminar();
+//		
+//			}
+//				
+////		}
+//		
+//		
+		
+		
+	}
+}
+
+

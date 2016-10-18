@@ -1,0 +1,54 @@
+package Celdas;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+import BattleCity.Bala;
+import BattleCity.Tanque;
+
+import java.awt.Rectangle;
+
+public class Roca extends Celda {
+
+	protected Roca(int x, int y) {
+		super(x, y);
+		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/Roca.png"));
+		sePuede_destruir=true;
+		sePuede_atravesar=false;
+		grafico = new JLabel(imagen);
+		grafico.setBounds(pos.x, this.pos.y, width, height);
+		rectangulo_propio=new Rectangle(pos.x,pos.y,width,height);
+		vida = 4;
+	}	
+	
+	@Override
+	protected void setGrafico(int dir) {
+		// TODO Auto-generated method stub		
+	}
+	
+	public boolean eliminarL(){
+		return false;
+	}
+	
+	
+	
+	public boolean visitarConTanque(Tanque t) {
+	  
+		return true;
+		
+	}
+
+	
+	public boolean visitarConBala(Bala b) {
+	
+		if(b.estaEnNivel4())
+		{
+			vida--;
+			if(vida == 0)
+				desactivar();
+		}
+		
+		return true;
+	}
+	
+}

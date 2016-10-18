@@ -1,0 +1,97 @@
+package BattleCity;
+
+import Exception.BoundaryViolationException;
+import Exception.EmptyListException;
+import Exception.InvalidPositionException;
+import GUI.Gui;
+import TDALista.*;
+import Tanques.Enemigo;
+import Tanques.EnemigoBasico;
+
+public class Batallon {
+	
+	private  PositionList<Enemigo> oponentes;
+	private int puntaje;
+	private Mapa m;
+	
+  public Batallon(Mapa m)
+  {
+	  this.m = m;
+	  puntaje = 0;
+	oponentes = new ListaDoblementeEnlazada<Enemigo>();
+  }
+  
+  
+  
+  public void agregarOponente(Gui gui){
+		try{
+			//Random r = new Random();
+			oponentes.addLast(new EnemigoBasico(0, 0));
+			
+			//oponentes.addLast(new EnemigoBasico(r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32)));
+			gui.add(oponentes.last().element().getGrafico());
+			gui.revalidate();
+			gui.repaint();
+		}
+		catch (EmptyListException e){
+			System.out.println(e.getMessage());
+		}
+	}
+  
+  
+  
+  public void quitarOponente(Gui gui){
+		try{
+			if (!oponentes.isEmpty()){
+				Position<Enemigo> p=oponentes.last();
+				puntaje+=p.element().getPuntaje_por_Destruccion();
+				gui.remove(oponentes.last().element().getGrafico());
+				gui.revalidate();
+				gui.repaint();
+				oponentes.remove(p);
+			}		
+		}
+		catch (InvalidPositionException e){
+			System.out.println(e.getMessage());
+		}
+		catch (EmptyListException e){
+			System.out.println(e.getMessage());
+		}
+	}
+  
+  
+  
+  
+  public void mover(){
+		try {
+			if(!oponentes.isEmpty())
+			{
+			Position<Enemigo>p=oponentes.first(),u=oponentes.last();
+			while(p!=null){
+				
+				p.element().mover(0,m);	
+				
+				if(p!=u)p=oponentes.next(p);else p=null;			
+			}
+			}
+		}
+		catch (InvalidPositionException e){
+			System.out.println(e.getMessage());
+		}
+		catch (BoundaryViolationException e){
+			System.out.println(e.getMessage());
+		}
+		catch (EmptyListException e){
+			System.out.println(e.getMessage());
+		}
+	} 
+  
+  
+
+  public int getPuntaje(){
+		return puntaje;
+	}
+  
+	
+	
+}

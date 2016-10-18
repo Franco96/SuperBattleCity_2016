@@ -1,0 +1,11 @@
+package BattleCity;
+
+import Tanques.Tanque;
+
+public interface Visitor {
+
+	 public boolean visitarConTanque(Tanque j);
+
+	 public boolean visitarConBala(Bala b);	
+	
+}

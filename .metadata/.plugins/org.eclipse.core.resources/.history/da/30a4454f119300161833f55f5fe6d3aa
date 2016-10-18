@@ -1,0 +1,50 @@
+package THREADING;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		
+		Hilos hilo_1 = new Hilos(1);
+		hilo_1.start();
+		Hilos hilo_2 = new Hilos(2);
+		hilo_2.start();
+			
+			
+			
+			
+			
+			
+		while(hilo_1.getTermino())	
+		{	
+			
+			if(hilo_1.getConter() == 3)
+			{		
+				System.out.println("El hilo 1 termino");
+			hilo_1.terminar();
+			
+			}
+				
+		}
+		
+		System.out.println("Variable terminadora de hilo 1 esta en "+hilo_1.getTermino());
+		System.out.println("Variable terminadora de hila 2 esta en "+hilo_2.getTermino());
+		
+		
+		while(hilo_2.getTermino())	
+		{	
+			
+			if(hilo_2.getConter() == 4)
+			{		
+				System.out.println("El hilo 2 termino");
+			hilo_2.terminar();
+			
+			}
+				
+		}
+		
+		
+		
+		
+	}
+
+}

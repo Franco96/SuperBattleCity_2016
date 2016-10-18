@@ -1,0 +1,17 @@
+package BattleCity;
+
+import TDALista.PositionList;
+import Tanques.Enemigo;
+
+public class Batallon {
+	
+	PositionList<Enemigo> oponentes;
+	
+	
+  public Batallon()
+  {
+	
+  }
+	
+	
+}

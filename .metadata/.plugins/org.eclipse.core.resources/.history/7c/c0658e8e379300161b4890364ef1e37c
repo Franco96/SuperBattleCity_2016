@@ -1,0 +1,23 @@
+package THREADING;
+
+public class ClaseVolatil {
+
+	volatile int i;
+
+
+
+public void setI(int e)
+{
+	i = e;
+}
+
+public int getI()
+{
+	return i;
+}
+
+
+
+	
+	
+}

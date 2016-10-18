@@ -1,0 +1,56 @@
+package THREADING;
+
+public class Hilos extends Thread {
+
+private volatile int cont;
+private volatile boolean termine;
+private int hilo;
+
+public Hilos(int e)
+{
+	cont = 0;
+	hilo = e;
+	termine = true;
+}
+
+public void terminar()
+{
+	this.termine = false;
+}
+
+public  int getConter()
+{
+	return cont;
+}
+
+public  void setConter(int i)
+{
+	cont = i;
+	
+}
+
+public boolean getTermino()
+{
+	return termine;
+}
+
+public void run()
+{
+	
+
+	try{ while(termine)
+	{
+		System.out.println("el contador del hilo "+hilo+" va en "+cont);
+		cont++;
+		
+		Thread.sleep(1000);
+		
+	}
+	}catch(InterruptedException e)
+	{
+		
+	}
+	
+}
+
+}

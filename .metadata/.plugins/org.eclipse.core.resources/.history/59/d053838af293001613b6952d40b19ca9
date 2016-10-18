@@ -1,0 +1,9 @@
+package BattleCity;
+
+public interface Visitor {
+
+	 public boolean visitarConTanque(Tanque t);
+
+	 public boolean visitarConBala(Bala b);	
+	
+}

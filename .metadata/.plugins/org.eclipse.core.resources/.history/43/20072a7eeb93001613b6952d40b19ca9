@@ -1,0 +1,28 @@
+package GUI;
+
+import BattleCity.Juego;
+
+public class Time extends Thread {
+
+	private Juego elJuego;
+
+	public Time(Juego j) {
+		this.elJuego = j;
+	}
+
+	public void run() {
+		while(true){
+			try {
+				
+				elJuego.generar_disparo_enemigo();
+				elJuego.mover();
+				elJuego.getJugador().update_bala();
+				
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+}

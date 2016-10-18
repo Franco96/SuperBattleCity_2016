@@ -1,0 +1,28 @@
+package THREADING;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		
+		Hilos hilo_1 = new Hilos(1);
+		
+		
+			
+			
+			
+			
+			hilo_1.start();
+			
+		while(hilo_1.getTermino())	
+		{	System.out.println("Hola");
+			
+			if(hilo_1.getConter() == 2)
+			{		
+				System.out.println("El hilo a terminado");
+			hilo_1.terminar();
+			
+			}
+		}
+	}
+
+}

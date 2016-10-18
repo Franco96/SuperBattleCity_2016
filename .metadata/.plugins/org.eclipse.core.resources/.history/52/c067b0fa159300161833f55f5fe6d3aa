@@ -1,0 +1,74 @@
+package THREADING;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		
+		Hilos hilo_1 = new Hilos(1);
+	//	hilo_1.start();
+		Hilos hilo_2 = new Hilos(2);
+	//	hilo_2.start();
+		
+		
+	for(int i = 0;i<5 ;i++)
+	{
+		hilo_1.incrementarContador();
+	}
+	
+	
+	System.out.println("Contador de hilo 1 es  = "+ hilo_1.getContador());
+	
+	for(int i = 0;i<3 ;i++)
+	{
+		hilo_2.incrementarContador();
+	}
+	
+	System.out.println("Contador de hilo 2 es  = "+ hilo_2.getContador());
+	
+		
+		
+		
+//		Hilos hilo_3 = new Hilos(3);
+//		hilo_3.start();	
+//		Hilos hilo_4 = new Hilos(4);
+//		hilo_4.start();		
+//			
+			
+			
+			
+//		while(hilo_1.getTermino())	
+//		{	
+//			
+//			if(hilo_1.getConter() == 3)
+//			{		
+//				System.out.println("El hilo 1 termino");
+//			hilo_1.terminar();
+//			
+//			}
+//				
+//		}
+//		
+//		System.out.println("Variable terminadora de hilo 1 esta en "+hilo_1.getTermino());
+//		System.out.println("Variable terminadora de hila 2 esta en "+hilo_2.getTermino());
+//		System.out.println("CONTADOR DEL HILO 1 VA EEEN "+hilo_1.getConter());
+//		System.out.println("CONTADOR DEL HILO 2 VA EEN "+hilo_2.getConter());
+//		
+//		
+//		while(hilo_2.getTermino())	
+//		{	
+//			
+//			if(hilo_2.getConter() == 7)
+//			{		
+//				System.out.println("El hilo 2 termino");
+//			hilo_2.terminar();
+//		
+//			}
+//				
+//		}
+//		
+//		
+//		
+//		
+	}
+
+}

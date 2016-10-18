@@ -1,0 +1,51 @@
+package BattleCity;
+
+import javax.swing.ImageIcon;
+
+import Exception.BoundaryViolationException;
+import Exception.EmptyListException;
+import Exception.InvalidPositionException;
+import TDALista.Position;
+import Tanques.Bala;
+import Tanques.Tanque;
+
+public class EnemigoBasico extends Enemigo {
+	
+	
+	
+	protected EnemigoBasico(int x, int y) {
+		super(x, y);
+		this.image[0] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueArriba.gif"));
+		this.image[1] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueAbajo.gif"));
+		this.image[2] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueIzquierda.gif"));
+		this.image[3] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueDerecha.gif"));
+		porDestruccion=25;
+		velocidad=10;
+	}
+	
+	public int getPuntaje_por_Destruccion(){
+		return porDestruccion;		
+	}
+
+	@Override
+	public boolean visitarConTanque(Tanque t) {
+		
+		return true;
+	}
+
+	@Override
+	public boolean visitarConBala(Bala b) {
+		
+	
+		if(b.esBaladeEnemigo())
+		 return false;
+		 else	
+			{
+			 
+			 
+			 this.grafico.setVisible(false);
+			
+			return true;
+	        } 
+	}
+}
