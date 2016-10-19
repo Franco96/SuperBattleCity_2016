@@ -1,9 +1,14 @@
 package BattleCity;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.awt.Rectangle;
 
 import Celdas.Celda;
+=======
+import java.util.Random;
+
+>>>>>>> origin/master
 =======
 import java.util.Random;
 
@@ -12,6 +17,7 @@ import Exception.BoundaryViolationException;
 import Exception.EmptyListException;
 import Exception.InvalidPositionException;
 import GUI.Gui;
+<<<<<<< HEAD
 <<<<<<< HEAD
 import TDALista.*;
 import Tanques.Enemigo;
@@ -39,6 +45,8 @@ public class Batallon {
 			gui.repaint();
 		   }
 =======
+=======
+>>>>>>> origin/master
 import TDALista.ListaDoblementeEnlazada;
 import TDALista.Position;
 import TDALista.PositionList;
@@ -61,11 +69,15 @@ public class Batallon {
 			gui.revalidate();
 			gui.repaint();
 		}
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 		catch (EmptyListException e){
 			System.out.println(e.getMessage());
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
   
   
@@ -76,6 +88,8 @@ public class Batallon {
 				Position<Enemigo> p=oponentes.last();
 				puntaje+=p.element().getPuntaje_por_Destruccion();
 =======
+=======
+>>>>>>> origin/master
 	
 	//Elimina enemigo de la lista de enemigos
 	public void quitarOponente(Gui gui){
@@ -83,6 +97,9 @@ public class Batallon {
 			if (!oponentes.isEmpty()){
 				Position<Enemigo> p=oponentes.last();
 				puntos_por_muertes_de_enemigos+=p.element().getPuntaje_por_Destruccion();
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 				gui.remove(oponentes.last().element().getGrafico());
 				gui.revalidate();
@@ -98,12 +115,15 @@ public class Batallon {
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
   
   
   
   
   public void mover(Juego h){
 =======
+=======
+>>>>>>> origin/master
 	
 	//Retorna puntos acumulados por muertes de enemigos
 	public int puntos_acumulados(){
@@ -111,6 +131,9 @@ public class Batallon {
 	}
 	
 	public void mover(){
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 		try {
 			if(!oponentes.isEmpty())
@@ -118,9 +141,13 @@ public class Batallon {
 			Position<Enemigo>p=oponentes.first(),u=oponentes.last();
 			while(p!=null){
 <<<<<<< HEAD
+<<<<<<< HEAD
 				
 				p.element().mover(0,h);	
 				
+=======
+				p.element().mover(0);			
+>>>>>>> origin/master
 =======
 				p.element().mover(0);			
 >>>>>>> origin/master
@@ -137,6 +164,7 @@ public class Batallon {
 		catch (EmptyListException e){
 			System.out.println(e.getMessage());
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	} 
   
@@ -282,6 +310,9 @@ public class Batallon {
   
   
 }
+=======
+	}
+>>>>>>> origin/master
 =======
 	}
 >>>>>>> origin/master

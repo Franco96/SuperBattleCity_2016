@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 nnnnnnnnnaaaaaannnnnnnnnnnnnnnna
 cccccccccccccccccccccccccccccccc
@@ -9,6 +10,9 @@ ddddddddddddd
 
 aaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
+=======
+aaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaa
+>>>>>>> origin/master
 =======
 aaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaa
 >>>>>>> origin/master

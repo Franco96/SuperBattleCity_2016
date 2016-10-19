@@ -1,6 +1,7 @@
 package BattleCity;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -24,17 +25,26 @@ import Mapa.*;
 
 
 
+=======
+import GUI.Gui;
+import Mapa.*;
+>>>>>>> origin/master
 
 
 
 public class Juego  {
 	//ATRIBUTOS
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	private Batallon enemigos;
 
 	protected Batallon batallon_de_enemigos;
 
+=======
+	
+	protected Batallon batallon_de_enemigos;
+>>>>>>> origin/master
 =======
 	
 	protected Batallon batallon_de_enemigos;
@@ -86,7 +96,6 @@ public Juego(Gui gui){
 	m.armarMapa(gui);	
 	gui.add(jugador.getGrafico());	
 	m.armarMapa(gui);     
->>>>>>> origin/master
 }
 
 
@@ -110,6 +119,7 @@ public void GameOver()
  
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -185,6 +195,19 @@ public void quitarOponente(Gui gui){
 public void mover(int dir){		
 	jugador.movimiento(jugador.convertir_keyEvent_a_direccionLocal(dir), m);	
 >>>>>>> origin/master
+=======
+public void agregarOponente(Gui gui){
+	batallon_de_enemigos.agregarOponente(gui);
+}
+
+public void quitarOponente(Gui gui){
+	batallon_de_enemigos.quitarOponente(gui);
+}
+
+//Movimiento del jugador en direccion pasada por parametro
+public void mover(int dir){		
+	jugador.movimiento(jugador.convertir_keyEvent_a_direccionLocal(dir), m);	
+>>>>>>> origin/master
 }
 
 ////Movimiento del jugador en direccion pasada por parametro
@@ -227,10 +250,14 @@ public void generar_disparo_enemigo()
 =======
 public void generar_disparo_jugador(Gui g){
 	jugador.disparar_bala(g,m);
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 	
 	enemigos.generar_disparo_enemigo(copia, this);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -298,6 +325,21 @@ public boolean COLLIDER(Rectangle recElemento,Element elemento)
 
 
 
+=======
+public void run(){
+	while(!game_over){
+		try{
+			batallon_de_enemigos.mover();
+			jugador.update_bala();
+			Thread.sleep(500);			
+		}
+		catch (InterruptedException e){
+			//Vacio
+		}
+	}	
+}
+}
+>>>>>>> origin/master
 =======
 public void run(){
 	while(!game_over){

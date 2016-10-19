@@ -4,6 +4,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Icon;
 import java.awt.Rectangle;
+<<<<<<< HEAD:.metadata/.plugins/org.eclipse.core.resources/.history/49/10fe41f9ee93001613b6952d40b19ca9
+=======
+import Mapa.*;
+>>>>>>> origin/master:BattleCity/src/BattleCity/Bala.java
 
 public class Bala extends GameObject implements Runnable,Element{
 	private int direccion;
@@ -13,8 +17,11 @@ public class Bala extends GameObject implements Runnable,Element{
 	protected Mapa mapa_que_usa;
 	protected Rectangle rectangulo;
 	
+<<<<<<< HEAD:.metadata/.plugins/org.eclipse.core.resources/.history/49/10fe41f9ee93001613b6952d40b19ca9
 	private boolean balaNivel4;
 	
+=======
+>>>>>>> origin/master:BattleCity/src/BattleCity/Bala.java
 	public Bala(int X,int Y,int dir,Mapa m){
 		super(X,Y);
 		direccion=dir;
@@ -26,9 +33,12 @@ public class Bala extends GameObject implements Runnable,Element{
 		grafico = new JLabel(imagen);
 		grafico.setBounds(pos.x, pos.y, width, height);
 		rectangulo=null;
+<<<<<<< HEAD:.metadata/.plugins/org.eclipse.core.resources/.history/49/10fe41f9ee93001613b6952d40b19ca9
 		
 		
 		balaNivel4 = false;
+=======
+>>>>>>> origin/master:BattleCity/src/BattleCity/Bala.java
 	}
 	
     public JLabel getGrafico(){
@@ -44,7 +54,11 @@ public class Bala extends GameObject implements Runnable,Element{
 		switch (dir) {
 			case 0 : //Arriba
 				rectangulo=new Rectangle(pos.x, pos.y - velocidad, width, height);
+<<<<<<< HEAD:.metadata/.plugins/org.eclipse.core.resources/.history/49/10fe41f9ee93001613b6952d40b19ca9
 				if(pos.y>=velocidad && !mapa_que_usa.si_colisiona(rectangulo,this)){
+=======
+				if(pos.y>=velocidad && !mapa_que_usa.si_colisiona_con_efecto(rectangulo)){
+>>>>>>> origin/master:BattleCity/src/BattleCity/Bala.java
 					pos.setLocation(pos.x, pos.y - velocidad);
 				}
 				else{
@@ -53,7 +67,11 @@ public class Bala extends GameObject implements Runnable,Element{
 				break;
 			case 1 : //Abajo
 				rectangulo=new Rectangle(pos.x, pos.y + velocidad, width, height);
+<<<<<<< HEAD:.metadata/.plugins/org.eclipse.core.resources/.history/49/10fe41f9ee93001613b6952d40b19ca9
 				if(pos.y<=(579-(velocidad+height)) && !mapa_que_usa.si_colisiona(rectangulo,this)){
+=======
+				if(pos.y<=(579-(velocidad+height)) && !mapa_que_usa.si_colisiona_con_efecto(rectangulo)){
+>>>>>>> origin/master:BattleCity/src/BattleCity/Bala.java
 					pos.setLocation(pos.x, pos.y + velocidad);
 				}
 				else{
@@ -62,7 +80,11 @@ public class Bala extends GameObject implements Runnable,Element{
 				break;
 			case 2 : //Izquierda
 				rectangulo=new Rectangle(pos.x - velocidad, pos.y, width, height);
+<<<<<<< HEAD:.metadata/.plugins/org.eclipse.core.resources/.history/49/10fe41f9ee93001613b6952d40b19ca9
 				if(pos.x>=velocidad && !mapa_que_usa.si_colisiona(rectangulo,this)){
+=======
+				if(pos.x>=velocidad && !mapa_que_usa.si_colisiona_con_efecto(rectangulo)){
+>>>>>>> origin/master:BattleCity/src/BattleCity/Bala.java
 					pos.setLocation(pos.x - velocidad, pos.y);
 				}
 				else{
@@ -71,7 +93,11 @@ public class Bala extends GameObject implements Runnable,Element{
 				break;
 			case 3 : //Derecha
 				rectangulo=new Rectangle(pos.x + velocidad, pos.y, width, height);
+<<<<<<< HEAD:.metadata/.plugins/org.eclipse.core.resources/.history/49/10fe41f9ee93001613b6952d40b19ca9
 				if(pos.x<=(800-(velocidad+width)) && !mapa_que_usa.si_colisiona(rectangulo,this)){
+=======
+				if(pos.x<=(800-(velocidad+width)) && !mapa_que_usa.si_colisiona_con_efecto(rectangulo)){
+>>>>>>> origin/master:BattleCity/src/BattleCity/Bala.java
 					pos.setLocation(pos.x + velocidad, pos.y);
 				}
 				else{

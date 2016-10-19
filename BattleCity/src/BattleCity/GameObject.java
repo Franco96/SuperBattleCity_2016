@@ -42,7 +42,11 @@ public abstract class GameObject {
 		return height;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> origin/master
 =======
 	
 >>>>>>> origin/master
@@ -76,7 +80,10 @@ public abstract class GameObject {
 		return resultado;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 }
