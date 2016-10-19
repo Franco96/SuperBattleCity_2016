@@ -33,4 +33,50 @@ public abstract class GameObject {
 	{
 		pos = new Point(x,y);
 	}
+	
+	public int getAncho(){
+		return width;
+	}
+	
+	public int getAlto(){
+		return height;
+	}
+<<<<<<< HEAD
+
+=======
+	
+>>>>>>> origin/master
+	public int convertir_keyEvent_a_direccionLocal(int direccion_recibida){
+		int resultado=0;
+		switch (direccion_recibida) {
+        case 38:  resultado=0;
+                 break;
+        case 40:  resultado=1;
+                 break;
+        case 37:  resultado=2;
+        		 break;
+        case 39:  resultado=3;
+                 break;
+		}
+		return resultado;
+	}
+	
+	public int convertir_direccionLocal_a_keyEvent(int direccion_recibida){
+		int resultado=0;
+		switch (direccion_recibida) {
+        case 0:  resultado=38;
+                 break;
+        case 1:  resultado=40;
+                 break;
+        case 2:  resultado=37;
+        		 break;
+        case 3:  resultado=39;
+                 break;
+		}
+		return resultado;
+	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
 }

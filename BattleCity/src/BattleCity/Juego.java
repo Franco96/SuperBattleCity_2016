@@ -3,158 +3,195 @@ package BattleCity;
 <<<<<<< HEAD
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Line2D;
-=======
-import java.awt.event.KeyEvent;
->>>>>>> origin/master
 import java.util.Random;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import GUI.Gui;
 import TDALista.*;
+import Tanques.Enemigo;
+import Tanques.EnemigoBasico;
+import Tanques.Jugador;
 import Exception.*;
+=======
+import GUI.Gui;
+import Mapa.*;
+>>>>>>> origin/master
 
-public class Juego  implements Runnable {
+
+
+
+
+
+public class Juego  {
 	//ATRIBUTOS
-	PositionList<Enemigo> oponentes;
+<<<<<<< HEAD
+
+	private Batallon enemigos;
+
+	protected Batallon batallon_de_enemigos;
+
+=======
+	
+	protected Batallon batallon_de_enemigos;
+>>>>>>> origin/master
 	protected Jugador jugador;
+	
 	protected Mapa m;
+
+    
+
+    
+	int anteriorMovido;
+    
+	Gui copia;
+	
 	protected int puntaje;
-	protected boolean game_over=false;
-    int anteriorMovido;
-	//CONSTRUCTOR
+<<<<<<< HEAD
+	protected boolean game_over;
+	
+	
+    //CONSTRUCTOR
 public Juego(Gui gui){
-	oponentes= new ListaDoblementeEnlazada<Enemigo>();
+	copia = gui;
+	
+     
+	jugador = new Jugador(400,400);
+	m = new Mapa();
+
+	anteriorMovido = 0;
+ 	m.armarMapa(gui); 
+ 	
+ 	enemigos = new Batallon();
+ 	
+	gui.add(jugador.getGrafico());
+	
+	game_over = false;
+
+	
+	
+=======
+	protected boolean game_over=false;
+	
+    //CONSTRUCTOR
+public Juego(Gui gui){
+	batallon_de_enemigos=new Batallon();
 	puntaje=0;
 	jugador = new Jugador(400,400);
 	m = new Mapa();
-<<<<<<< HEAD
-	gui.add(jugador.getGrafico());
-	anteriorMovido = 0;
 	m.armarMapa(gui);	
-     
-=======
 	gui.add(jugador.getGrafico());	
 	m.armarMapa(gui);     
 >>>>>>> origin/master
 }
 
-public int getPuntaje(){
-	return puntaje;
+
+
+public void GameOver()
+{
+	
+	
+	copia.OBTENERTIME().terminar();
+
+	m.eliminarMapa();
+	
+	enemigos.eliminarEnemigos(copia);
+	
+	copia.remove(jugador.getGrafico());
+	
+  copia.getContentPane().setBackground(Color.WHITE);
+  
+  
+  JOptionPane.showMessageDialog(null, "GAME OVER");
+ 
+}
+
+<<<<<<< HEAD
+
+
+public void agregarOponente()
+{
+	enemigos.agregarOponente(copia);
+}
+
+
+public void quitarOponente()
+{
+	enemigos.quitarOponente(copia);
+}
+
+
+public Batallon OBTENERBATALLON()
+{
+	return enemigos;
+}
+
+
+
+//MOVER DE JUGADOR
+
+public void mover(int dir){		
+	int direccion = 0;
+	Rectangle proximo_movimiento=null; 
+	switch (dir){
+		case KeyEvent.VK_UP : //Arriba
+			{proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y-jugador.getVelocidad(),jugador.getAncho(),jugador.getAlto());
+				direccion = 0;			  
+			}
+				break;
+		case KeyEvent.VK_DOWN ://Abajo
+			{proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y+jugador.getVelocidad(),jugador.getAncho(),jugador.getAlto());
+				direccion = 1;			 
+			}
+				break;
+		case KeyEvent.VK_LEFT : //Izquierda
+			{proximo_movimiento=new Rectangle(jugador.getPos().x-jugador.getVelocidad(),jugador.getPos().y,jugador.getAncho(),jugador.getAlto());
+				direccion = 2;			
+			}
+				break;
+		case KeyEvent.VK_RIGHT : //Derecha
+			{proximo_movimiento=new Rectangle(jugador.getPos().x+jugador.getVelocidad(),jugador.getPos().y,jugador.getAncho(),jugador.getAlto());
+				direccion = 3;			  
+			}
+				break;
+	}
+	//Verificar si colisiona con algun bloque del mapa
+		if (!COLLIDER(proximo_movimiento,jugador)){
+			jugador.mover(direccion);
+		}
+		
 }
 
 public void agregarOponente(Gui gui){
-	try{
-		Random r = new Random();
-		oponentes.addLast(new EnemigoBasico(r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32)));
-		gui.add(oponentes.last().element().getGrafico(),0);
-		gui.revalidate();
-		gui.repaint();
-	}
-	catch (EmptyListException e){
-		System.out.println(e.getMessage());
-	}
+	batallon_de_enemigos.agregarOponente(gui);
 }
 
 public void quitarOponente(Gui gui){
-	try{
-		if (!oponentes.isEmpty()){
-			Position<Enemigo> p=oponentes.last();
-			puntaje+=p.element().getPuntaje_por_Destruccion();
-			gui.remove(oponentes.last().element().getGrafico());
-			gui.revalidate();
-			gui.repaint();
-			oponentes.remove(p);
-		}		
-	}
-	catch (InvalidPositionException e){
-		System.out.println(e.getMessage());
-	}
-	catch (EmptyListException e){
-		System.out.println(e.getMessage());
-	}
-}
-
-//MOVER DE ENEMIGO
-public void mover(){
-	try {
-		
-		if(!oponentes.isEmpty())
-		{
-		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
-		while(p!=null){
-			p.element().mover(0);			
-			if(p!=u)p=oponentes.next(p);else p=null;			
-		}
-		}
-	}
-	catch (InvalidPositionException e){
-		System.out.println(e.getMessage());
-	}
-	catch (BoundaryViolationException e){
-		System.out.println(e.getMessage());
-	}
-	catch (EmptyListException e){
-		System.out.println(e.getMessage());
-	}
-}
-
-private boolean isBetween(int x, int lower, int upper) {
-	  return lower <= x && x <= upper;
-	}
-
-<<<<<<< HEAD
-//MOVER DE JUGADOR
-
+	batallon_de_enemigos.quitarOponente(gui);
 =======
->>>>>>> origin/master
-public void mover(int dir){		
-	int direccion = 0;
-
-	
-	
-
-
-	switch (dir){
-		case KeyEvent.VK_UP : //Arriba
-			{direccion = 0;
-			  
-			   break;
-		    }
-		case KeyEvent.VK_DOWN : //Abajo
-			{direccion = 1;
-			 
-			break;
-			}
-		case KeyEvent.VK_LEFT : //Izquierda
-			{direccion = 2;
-			
-			break;}
-		case KeyEvent.VK_RIGHT : //Derecha
-			{direccion = 3;
-			  
-			break;
-	
-			}
-			}
-	
-	 
-	
-	
-	   
-	   jugador.mover(direccion);
-	
-
-	
-	
-	
+public void agregarOponente(Gui gui){
+	batallon_de_enemigos.agregarOponente(gui);
 }
+
+public void quitarOponente(Gui gui){
+	batallon_de_enemigos.quitarOponente(gui);
+}
+
+//Movimiento del jugador en direccion pasada por parametro
+public void mover(int dir){		
+	jugador.movimiento(jugador.convertir_keyEvent_a_direccionLocal(dir), m);	
+>>>>>>> origin/master
+}
+
+////Movimiento del jugador en direccion pasada por parametro
+//public void mover(int dir){		
+//	jugador.movimiento(jugador.convertir_keyEvent_a_direccionLocal(dir), m);	
+//
+//}
 
 public void eliminar_pared(){
 	m.remover_pared();
@@ -168,14 +205,105 @@ public void reset_estado_jugador(){
 	jugador.resetNivel();
 }
 
-public void generar_disparo_jugador(Gui g){
-	jugador.disparar_bala(g);
+<<<<<<< HEAD
+
+
+
+
+
+public void generar_disparo_jugador(){
+	jugador.disparar_bala(copia,this,false);
 	
 }
+
+
+
+
+
+
+
+public void generar_disparo_enemigo()
+{
+=======
+public void generar_disparo_jugador(Gui g){
+	jugador.disparar_bala(g,m);
+>>>>>>> origin/master
+	
+	enemigos.generar_disparo_enemigo(copia, this);
+}
+<<<<<<< HEAD
+
+
+public void mover()
+{
+	enemigos.mover(this);
+}
+
+
+public Jugador getJugador()
+{
+	return jugador;
+}
+
+
+public int getPuntaje()
+{
+	return enemigos.getPuntaje();
+}
+	
+
+//COLISIONADOR TODOS CON TODOS BALAS Y TAMQUES CON CELDAS Y TANQUES
+
+public boolean COLLIDER(Rectangle recElemento,Element elemento)
+{ 
+	boolean colisiono = false;
+	
+	colisiono = enemigos.ColisionaConOponente(recElemento, elemento);
+
+	if(colisiono == false)
+	   colisiono = m.si_colisiona(recElemento, elemento);
+	
+	if(colisiono == false)
+		
+      {    colisiono = jugador.getGrafico().getBounds().intersects(recElemento);
+		   
+           if(colisiono == true)
+		       colisiono = elemento.aceptar(jugador);
+	  }
+	
+	
+	return colisiono;	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+=======
 public void run(){
 	while(!game_over){
 		try{
-			mover();
+			batallon_de_enemigos.mover();
+			jugador.update_bala();
 			Thread.sleep(500);			
 		}
 		catch (InterruptedException e){
@@ -184,29 +312,4 @@ public void run(){
 	}	
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
+>>>>>>> origin/master
