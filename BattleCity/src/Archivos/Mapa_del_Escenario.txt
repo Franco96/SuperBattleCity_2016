@@ -1,18 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 nnnnnnnnnaaaaaannnnnnnnnnnnnnnna
 cccccccccccccccccccccccccccccccc
 cccccccccccccccccccccccccccccccc
 bbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaa
 ddddddddddddd
 
-
-aaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-=======
-aaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaa
->>>>>>> origin/master
-=======
-aaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaa
->>>>>>> origin/master

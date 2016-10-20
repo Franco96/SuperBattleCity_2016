@@ -1,24 +1,12 @@
 package BattleCity;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.awt.Rectangle;
 
 import Celdas.Celda;
-=======
-import java.util.Random;
-
->>>>>>> origin/master
-=======
-import java.util.Random;
-
->>>>>>> origin/master
 import Exception.BoundaryViolationException;
 import Exception.EmptyListException;
 import Exception.InvalidPositionException;
 import GUI.Gui;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import TDALista.*;
 import Tanques.Enemigo;
 import Tanques.EnemigoBasico;
@@ -44,41 +32,10 @@ public class Batallon {
 			gui.revalidate();
 			gui.repaint();
 		   }
-=======
-=======
->>>>>>> origin/master
-import TDALista.ListaDoblementeEnlazada;
-import TDALista.Position;
-import TDALista.PositionList;
-
-public class Batallon {
-	protected PositionList<Enemigo> oponentes;
-	protected int puntos_por_muertes_de_enemigos;
-	
-	public Batallon(){
-		oponentes= new ListaDoblementeEnlazada<Enemigo>();
-		puntos_por_muertes_de_enemigos=0;
-	}
-	
-	//Agrega enemigos a la lista de enemigos
-	public void agregarOponente(Gui gui){
-		try{
-			Random r = new Random();
-			oponentes.addLast(new EnemigoBasico(r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32)));
-			gui.add(oponentes.last().element().getGrafico(),0);
-			gui.revalidate();
-			gui.repaint();
-		}
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 		catch (EmptyListException e){
 			System.out.println(e.getMessage());
 		}
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
   
   
   
@@ -87,20 +44,6 @@ public class Batallon {
 			if (!oponentes.isEmpty()){
 				Position<Enemigo> p=oponentes.last();
 				puntaje+=p.element().getPuntaje_por_Destruccion();
-=======
-=======
->>>>>>> origin/master
-	
-	//Elimina enemigo de la lista de enemigos
-	public void quitarOponente(Gui gui){
-		try{
-			if (!oponentes.isEmpty()){
-				Position<Enemigo> p=oponentes.last();
-				puntos_por_muertes_de_enemigos+=p.element().getPuntaje_por_Destruccion();
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 				gui.remove(oponentes.last().element().getGrafico());
 				gui.revalidate();
 				gui.repaint();
@@ -114,43 +57,19 @@ public class Batallon {
 			System.out.println(e.getMessage());
 		}
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
   
   
   
   
   public void mover(Juego h){
-=======
-=======
->>>>>>> origin/master
-	
-	//Retorna puntos acumulados por muertes de enemigos
-	public int puntos_acumulados(){
-		return puntos_por_muertes_de_enemigos;
-	}
-	
-	public void mover(){
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 		try {
 			if(!oponentes.isEmpty())
 			{
 			Position<Enemigo>p=oponentes.first(),u=oponentes.last();
 			while(p!=null){
-<<<<<<< HEAD
-<<<<<<< HEAD
 				
 				p.element().mover(0,h);	
 				
-=======
-				p.element().mover(0);			
->>>>>>> origin/master
-=======
-				p.element().mover(0);			
->>>>>>> origin/master
 				if(p!=u)p=oponentes.next(p);else p=null;			
 			}
 			}
@@ -164,8 +83,6 @@ public class Batallon {
 		catch (EmptyListException e){
 			System.out.println(e.getMessage());
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 	} 
   
   
@@ -310,10 +227,4 @@ public class Batallon {
   
   
 }
-=======
-	}
->>>>>>> origin/master
-=======
-	}
->>>>>>> origin/master
 }

@@ -1,8 +1,5 @@
 package BattleCity;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -18,41 +15,15 @@ import Tanques.Enemigo;
 import Tanques.EnemigoBasico;
 import Tanques.Jugador;
 import Exception.*;
-=======
-import GUI.Gui;
-import Mapa.*;
->>>>>>> origin/master
-
-
-
-=======
-import GUI.Gui;
-import Mapa.*;
->>>>>>> origin/master
-
 
 
 public class Juego  {
 	//ATRIBUTOS
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 	private Batallon enemigos;
-
-	protected Batallon batallon_de_enemigos;
-
-=======
-	
-	protected Batallon batallon_de_enemigos;
->>>>>>> origin/master
-=======
-	
-	protected Batallon batallon_de_enemigos;
->>>>>>> origin/master
+    
 	protected Jugador jugador;
 	
 	protected Mapa m;
-
     
 
     
@@ -60,9 +31,7 @@ public class Juego  {
     
 	Gui copia;
 	
-	protected int puntaje;
-<<<<<<< HEAD
-	protected boolean game_over;
+	
 	
 	
     //CONSTRUCTOR
@@ -80,22 +49,6 @@ public Juego(Gui gui){
  	
 	gui.add(jugador.getGrafico());
 	
-	game_over = false;
-
-	
-	
-=======
-	protected boolean game_over=false;
-	
-    //CONSTRUCTOR
-public Juego(Gui gui){
-	batallon_de_enemigos=new Batallon();
-	puntaje=0;
-	jugador = new Jugador(400,400);
-	m = new Mapa();
-	m.armarMapa(gui);	
-	gui.add(jugador.getGrafico());	
-	m.armarMapa(gui);     
 }
 
 
@@ -118,9 +71,6 @@ public void GameOver()
   JOptionPane.showMessageDialog(null, "GAME OVER");
  
 }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 public void agregarOponente()
@@ -172,49 +122,8 @@ public void mover(int dir){
 	//Verificar si colisiona con algun bloque del mapa
 		if (!COLLIDER(proximo_movimiento,jugador)){
 			jugador.mover(direccion);
-		}
-		
+		}	
 }
-
-public void agregarOponente(Gui gui){
-	batallon_de_enemigos.agregarOponente(gui);
-}
-
-public void quitarOponente(Gui gui){
-	batallon_de_enemigos.quitarOponente(gui);
-=======
-public void agregarOponente(Gui gui){
-	batallon_de_enemigos.agregarOponente(gui);
-}
-
-public void quitarOponente(Gui gui){
-	batallon_de_enemigos.quitarOponente(gui);
-}
-
-//Movimiento del jugador en direccion pasada por parametro
-public void mover(int dir){		
-	jugador.movimiento(jugador.convertir_keyEvent_a_direccionLocal(dir), m);	
->>>>>>> origin/master
-=======
-public void agregarOponente(Gui gui){
-	batallon_de_enemigos.agregarOponente(gui);
-}
-
-public void quitarOponente(Gui gui){
-	batallon_de_enemigos.quitarOponente(gui);
-}
-
-//Movimiento del jugador en direccion pasada por parametro
-public void mover(int dir){		
-	jugador.movimiento(jugador.convertir_keyEvent_a_direccionLocal(dir), m);	
->>>>>>> origin/master
-}
-
-////Movimiento del jugador en direccion pasada por parametro
-//public void mover(int dir){		
-//	jugador.movimiento(jugador.convertir_keyEvent_a_direccionLocal(dir), m);	
-//
-//}
 
 public void eliminar_pared(){
 	m.remover_pared();
@@ -227,8 +136,6 @@ public void cambiar_estado_jugador(){
 public void reset_estado_jugador(){
 	jugador.resetNivel();
 }
-
-<<<<<<< HEAD
 
 
 
@@ -247,18 +154,9 @@ public void generar_disparo_jugador(){
 
 public void generar_disparo_enemigo()
 {
-=======
-public void generar_disparo_jugador(Gui g){
-	jugador.disparar_bala(g,m);
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 	
 	enemigos.generar_disparo_enemigo(copia, this);
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 public void mover()
@@ -322,36 +220,3 @@ public boolean COLLIDER(Rectangle recElemento,Element elemento)
 
 
 
-
-
-
-=======
-public void run(){
-	while(!game_over){
-		try{
-			batallon_de_enemigos.mover();
-			jugador.update_bala();
-			Thread.sleep(500);			
-		}
-		catch (InterruptedException e){
-			//Vacio
-		}
-	}	
-}
-}
->>>>>>> origin/master
-=======
-public void run(){
-	while(!game_over){
-		try{
-			batallon_de_enemigos.mover();
-			jugador.update_bala();
-			Thread.sleep(500);			
-		}
-		catch (InterruptedException e){
-			//Vacio
-		}
-	}	
-}
-}
->>>>>>> origin/master
