@@ -1,14 +1,12 @@
 package Celdas;
-import BattleCity.*;
+
 import Tanques.Bala;
 import Tanques.Enemigo;
 import Tanques.Jugador;
-import Tanques.Tanque;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import java.awt.Rectangle;
+
 public class Agua extends Celda {
 
 	public Agua(int x, int y) {
@@ -27,20 +25,15 @@ public class Agua extends Celda {
 
 	public boolean eliminarL(){
 		return false;
-	}
-	
-	
+	}	
 
 	@Override
-	public boolean visitarConTanqueEnemigo(Enemigo t) {
-		
-		
+	public boolean visitarConTanqueEnemigo(Enemigo t) {		
 		return true;
 	}
 
 	@Override
-	public boolean visitarConBala(Bala b) {
-		
+	public boolean visitarConBala(Bala b) {		
 		return false;
 	}
 

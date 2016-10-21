@@ -1,17 +1,12 @@
 package GUI;
-import java.awt.Color;
 
-import javax.swing.JButton;
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import BattleCity.Batallon;
 import BattleCity.Juego;
-import BattleCity.Mapa;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -19,15 +14,7 @@ public class Gui extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;	
 	private Juego j;
-	private Mapa map;
-	private Batallon enemigos;
-	 private Time tiempo;
-
-		protected JLabel game_over;
-		
-		
-		
-	 
+		protected JLabel game_over;	 
 	/**
 	 * Launch the application.
 	 */
@@ -42,8 +29,7 @@ public class Gui extends JFrame{
 	 */
 	public Gui()  {
 		addKeyListener(new KeyAdapter() {
-			@Override
-			
+			@Override			
 			public void keyPressed(KeyEvent e){
 				mover(e);
 				agregar(e);
@@ -52,8 +38,7 @@ public class Gui extends JFrame{
 				retirarPared(e);
 				estados_jug(e);
 				disparar(e);
-			}
-			
+			}			
 		});
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,20 +50,9 @@ public class Gui extends JFrame{
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		   
-		   
-		 
-		   j = new Juego(this);
-		   
-		   
-		   
-		    tiempo = new Time(j);
-		   
-		   tiempo.start();
-		   
-		   game_over = new JLabel("GAMEOVER");
-		  	   
+		contentPane.setLayout(null);	 
+	    j = new Juego(this);		   
+		game_over = new JLabel("GAMEOVER");		  	   
 	}
 	
 	protected void mover(KeyEvent key){
@@ -86,13 +60,6 @@ public class Gui extends JFrame{
 			j.mover(key.getKeyCode());			
 			this.repaint();
 		}
-	}
-	
-	
-
-	public Time OBTENERTIME()
-	{
-		return tiempo;
 	}
 	
 	// "Q" agrega enemigos en pantalla

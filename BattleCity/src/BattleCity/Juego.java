@@ -3,97 +3,57 @@ package BattleCity;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.util.Random;
-
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import GUI.Gui;
-import TDALista.*;
-import Tanques.Enemigo;
-import Tanques.EnemigoBasico;
 import Tanques.Jugador;
-import Exception.*;
-
 
 public class Juego  {
+	
 	//ATRIBUTOS
-	private Batallon enemigos;
-    
-	protected Jugador jugador;
-	
-	protected Mapa m;
-    
-
-    
-	int anteriorMovido;
-    
+	private Batallon enemigos;    
+	protected Jugador jugador;	
+	protected Mapa m;    
+	protected Actualizador actualizador;
+	int anteriorMovido;    
 	Gui copia;
-	
-	
-	
 	
     //CONSTRUCTOR
 public Juego(Gui gui){
-	copia = gui;
-	
-     
+	actualizador=new Actualizador(this);
+	copia = gui;     
 	jugador = new Jugador(400,400);
 	m = new Mapa();
-
 	anteriorMovido = 0;
- 	m.armarMapa(gui); 
- 	
- 	enemigos = new Batallon();
- 	
+ 	m.armarMapa(gui);  	
+ 	enemigos = new Batallon(); 	
 	gui.add(jugador.getGrafico());
-	
+	Thread j1=new Thread(actualizador);
+	j1.start();
 }
 
-
-
-public void GameOver()
-{
-	
-	
-	copia.OBTENERTIME().terminar();
-
-	m.eliminarMapa();
-	
-	enemigos.eliminarEnemigos(copia);
-	
-	copia.remove(jugador.getGrafico());
-	
-  copia.getContentPane().setBackground(Color.WHITE);
-  
-  
-  JOptionPane.showMessageDialog(null, "GAME OVER");
- 
+public void GameOver(){	
+//	copia.OBTENERTIME().terminar();
+	actualizador.terminar_juego();
+	m.eliminarMapa();	
+	enemigos.eliminarEnemigos(copia);	
+	copia.remove(jugador.getGrafico());	
+    copia.getContentPane().setBackground(Color.WHITE);  
+    JOptionPane.showMessageDialog(null, "GAME OVER"); 
 }
 
-
-public void agregarOponente()
-{
+public void agregarOponente(){
 	enemigos.agregarOponente(copia);
 }
 
-
-public void quitarOponente()
-{
+public void quitarOponente(){
 	enemigos.quitarOponente(copia);
 }
 
-
-public Batallon OBTENERBATALLON()
-{
+public Batallon OBTENERBATALLON(){
 	return enemigos;
 }
 
-
-
 //MOVER DE JUGADOR
-
 public void mover(int dir){		
 	int direccion = 0;
 	Rectangle proximo_movimiento=null; 
@@ -137,54 +97,27 @@ public void reset_estado_jugador(){
 	jugador.resetNivel();
 }
 
-
-
-
-
 public void generar_disparo_jugador(){
 	jugador.disparar_bala(copia,this,false);
 	
 }
 
-
-
-
-
-
-
-public void generar_disparo_enemigo()
-{
-	
+public void generar_disparo_enemigo(){	
 	enemigos.generar_disparo_enemigo(copia, this);
 }
 
-
-public void mover()
-{
+public void mover(){
 	enemigos.mover(this);
 }
 
-
-public Jugador getJugador()
-{
-	return jugador;
-}
-
-
-public int getPuntaje()
-{
+public int getPuntaje(){
 	return enemigos.getPuntaje();
-}
-	
+}	
 
 //COLISIONADOR TODOS CON TODOS BALAS Y TAMQUES CON CELDAS Y TANQUES
-
-public boolean COLLIDER(Rectangle recElemento,Element elemento)
-{ 
-	boolean colisiono = false;
-	
+public boolean COLLIDER(Rectangle recElemento,Element elemento){ 
+	boolean colisiono = false;	
 	colisiono = enemigos.ColisionaConOponente(recElemento, elemento);
-
 	if(colisiono == false)
 	   colisiono = m.si_colisiona(recElemento, elemento);
 	
@@ -194,24 +127,16 @@ public boolean COLLIDER(Rectangle recElemento,Element elemento)
 		   
            if(colisiono == true)
 		       colisiono = elemento.aceptar(jugador);
-	  }
-	
-	
+	  }	
 	return colisiono;	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+//Aca se colocan los elementos a actualizar del juego
+public void update(){
+	generar_disparo_enemigo();
+	mover();
+	jugador.update_bala();
+}
 }
 
 

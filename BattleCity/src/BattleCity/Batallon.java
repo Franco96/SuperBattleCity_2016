@@ -1,8 +1,6 @@
 package BattleCity;
 
 import java.awt.Rectangle;
-
-import Celdas.Celda;
 import Exception.BoundaryViolationException;
 import Exception.EmptyListException;
 import Exception.InvalidPositionException;
@@ -12,18 +10,13 @@ import Tanques.Enemigo;
 import Tanques.EnemigoBasico;
 
 public class Batallon {
-	
 	private  PositionList<Enemigo> oponentes;
 	private int puntaje;
-
 	
-  public Batallon()
-  {
+  public Batallon(){
 	  puntaje = 0;
-	oponentes = new ListaDoblementeEnlazada<Enemigo>();
-  }
-  
-  
+	  oponentes = new ListaDoblementeEnlazada<Enemigo>();
+  } 
   
   public void agregarOponente(Gui gui){
 		try{
@@ -35,9 +28,7 @@ public class Batallon {
 		catch (EmptyListException e){
 			System.out.println(e.getMessage());
 		}
-	}
-  
-  
+	} 
   
   public void quitarOponente(Gui gui){
 		try{
@@ -56,10 +47,7 @@ public class Batallon {
 		catch (EmptyListException e){
 			System.out.println(e.getMessage());
 		}
-	}
-  
-  
-  
+	} 
   
   public void mover(Juego h){
 		try {
@@ -83,12 +71,9 @@ public class Batallon {
 		catch (EmptyListException e){
 			System.out.println(e.getMessage());
 		}
-	} 
-  
-  
+	}   
 
-  public void generar_disparo_enemigo(Gui g,Juego j)
-  {
+  public void generar_disparo_enemigo(Gui g,Juego j){
   	try {
   		if(!oponentes.isEmpty())
   		{
@@ -98,9 +83,7 @@ public class Batallon {
   			p.element().disparar_bala(g,j,true);	
   			 p.element().update_bala();
   			
-  			 if(p!=u)p=oponentes.next(p);else p=null;			
-  		
-  		  
+  			 if(p!=u)p=oponentes.next(p);else p=null;  		  
   		}
   		}
   	}
@@ -114,12 +97,9 @@ public class Batallon {
   		System.out.println(e.getMessage());
   	}
   	
-  }
-
+  }  
   
-  
-  public boolean ColisionaConOponente(Rectangle recBala,Element elemento)
-  {
+  public boolean ColisionaConOponente(Rectangle recBala,Element elemento){
   	boolean choca = false;
   	try {
   		if(!oponentes.isEmpty())
@@ -135,9 +115,7 @@ public class Batallon {
   				choca = elemento.aceptar(p.element());
   			}
   			
-  			 if(p!=u)p=oponentes.next(p);else p=null;			
-  		
-  		  
+  			 if(p!=u)p=oponentes.next(p);else p=null; 		  
   		}
   		}
   	}
@@ -149,41 +127,26 @@ public class Batallon {
   	}
   	catch (EmptyListException e){
   		System.out.println(e.getMessage());
-  	}
-  	
-  	
-  	return choca;
-  	
-  }
-  
-  
-  
+  	}  	
+  	return choca;  	
+  }  
   
   public int getPuntaje(){
 		return puntaje;
 	}
-  
-	
 	
   public void quitarOponente(Enemigo ene){
 		try{
 			if (!oponentes.isEmpty()){
 				Position<Enemigo>p=oponentes.first(),u=oponentes.last();
 				while(p!=null){
-					if(p.element()==ene)
-					{
-						puntaje+=p.element().getPuntaje_por_Destruccion();
-						
+					if(p.element()==ene){
+						puntaje+=p.element().getPuntaje_por_Destruccion();						
 						ene.getGrafico().setVisible(false);
-						oponentes.remove(p);
-						
-					}
-					
-					if(p!=u)p=oponentes.next(p);else p=null;			
-				
-				
-				}
-				
+						oponentes.remove(p);						
+					}					
+					if(p!=u)p=oponentes.next(p);else p=null;				
+				}			
 			}		
 		}
 		catch (InvalidPositionException e){
@@ -197,19 +160,12 @@ public class Batallon {
 		}
 	}
   
-  public void eliminarEnemigos(Gui g)
-  {
-  	
+  public void eliminarEnemigos(Gui g){  	
   	try {
   		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
-  		while(p!=null){
-  			
-  			
-  				g.remove(p.element().getGrafico());
-  				
-  				
-  				if(p!=u)p=oponentes.next(p);else p=null;
-  			
+  		while(p!=null){  			
+  				g.remove(p.element().getGrafico());  				
+  				if(p!=u)p=oponentes.next(p);else p=null;  			
   			}
   			
   		}catch(EmptyListException e)
@@ -221,10 +177,6 @@ public class Batallon {
   	}catch(InvalidPositionException e)
   	{
   		
-  	}
-  
-  
-  
-  
+  	}  
 }
 }

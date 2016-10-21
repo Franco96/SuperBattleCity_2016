@@ -143,7 +143,6 @@ public void remover_pared(){
 
 
 //COLISIONADOR DE BALAS Y TAMQUES CON CELDAS
-
 public boolean si_colisiona(Rectangle se_recibe,Element elemento){
 	boolean choco=false;
 	try {
@@ -176,24 +175,15 @@ public boolean si_colisiona(Rectangle se_recibe,Element elemento){
 	return choco;
 }
 
-public void eliminarMapa()
-{
-	
+public void eliminarMapa(){
 	try {
 		Position<Celda>p=celdas.first(),u=celdas.last();
 		while(p!=null){
-			if (p.element().si_esta_activo()){
-			
-				g.remove(p.element().getGrafico());
-				
-				
-			
+			if (p.element().si_esta_activo()){			
+				g.remove(p.element().getGrafico());			
 			}
 			if(p!=u)p=celdas.next(p);else p=null;
-		}
-		
-		
-		
+		}	
 	
 	}catch (InvalidPositionException e){
 		System.out.println(e.getMessage());
@@ -203,10 +193,6 @@ public void eliminarMapa()
 	}
 	catch (EmptyListException e){
 		System.out.println(e.getMessage());
-	}
-	
+	}	
 }
-
-
-
 }

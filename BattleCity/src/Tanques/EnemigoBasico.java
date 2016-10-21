@@ -2,14 +2,7 @@ package Tanques;
 
 import javax.swing.ImageIcon;
 
-import Exception.BoundaryViolationException;
-import Exception.EmptyListException;
-import Exception.InvalidPositionException;
-import TDALista.Position;
-
-public class EnemigoBasico extends Enemigo {
-	
-	
+public class EnemigoBasico extends Enemigo {	
 	
 	public EnemigoBasico(int x, int y) {
 		super(x, y);
@@ -25,21 +18,13 @@ public class EnemigoBasico extends Enemigo {
 		return porDestruccion;		
 	}
 
-
-
 	@Override
-	public boolean visitarConBala(Bala b) {
-		
-	
+	public boolean visitarConBala(Bala b) {	
 		if(b.esBaladeEnemigo())
 		 return false;
-		 else	
-			{
-			 
-			b.OBTENERJUEGO().OBTENERBATALLON().quitarOponente(this);
-			
-			return true;
-	        
+		 else{			 
+			b.OBTENERJUEGO().OBTENERBATALLON().quitarOponente(this);			
+			return true;	        
 			} 
 	}
 

@@ -2,48 +2,32 @@ package Tanques;
 
 import java.awt.Rectangle;
 import java.util.Random;
-
 import BattleCity.Juego;
-import BattleCity.Mapa;
 import BattleCity.Visitor;
-import TDALista.ListaDoblementeEnlazada;
-import TDALista.PositionList;
 
 public  abstract class Enemigo extends Tanque implements Visitor {
 	//Atributos
 	protected int porDestruccion;
 	protected int direccion_de_movimiento;
-	protected Random generador_de_direcciones;
-	
-
-	
-	
+	protected Random generador_de_direcciones;	
 	
 	protected Enemigo(int x, int y) {
 		super(x, y);
 		generador_de_direcciones = new Random();
-		direccion_de_movimiento = generador_de_direcciones.nextInt(4);	
-		
-		
-		
-		
+		direccion_de_movimiento = generador_de_direcciones.nextInt(4);		
 	}
 	
 	abstract public int getPuntaje_por_Destruccion(); 
 	
-	//Modificacion del mover de tanque para modelar la inteligencia de los enemigos
-	
+	//Modificacion del mover de tanque para modelar la inteligencia de los enemigos	
 	public void mover(int dir,Juego h){
-		//ultima_direccion=dir;
-		Rectangle proximo_movimiento=null; 
-		
+		Rectangle proximo_movimiento=null;		
 		switch (direccion_de_movimiento) {
 			case 0 : //Arriba
 				proximo_movimiento=new Rectangle(this.getPos().x,this.getPos().y-this.getVelocidad(),this.getAncho(),this.getAlto());
 				
 				if(pos.y>=getVelocidad()&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x, pos.y - getVelocidad());
-					
+					pos.setLocation(pos.x, pos.y - getVelocidad());					
 				}
 				else{
 					generar_direccion_nueva();
@@ -53,8 +37,7 @@ public  abstract class Enemigo extends Tanque implements Visitor {
 				proximo_movimiento=new Rectangle(this.getPos().x,this.getPos().y+this.getVelocidad(),this.getAncho(),this.getAlto());
 				
 				if(pos.y<=(579-(getVelocidad()+height))&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x, pos.y + getVelocidad());
-					
+					pos.setLocation(pos.x, pos.y + getVelocidad());					
 				}
 				else{
 					generar_direccion_nueva();
@@ -64,29 +47,22 @@ public  abstract class Enemigo extends Tanque implements Visitor {
 				proximo_movimiento=new Rectangle(this.getPos().x-this.getVelocidad(),this.getPos().y,this.getAncho(),this.getAlto());
 				
 				if(pos.x>=getVelocidad()&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x - getVelocidad(), pos.y);
-				
+					pos.setLocation(pos.x - getVelocidad(), pos.y);				
 				}
 				else{
 					generar_direccion_nueva();
 				}
 				break;
-			case 3 : //Derecha
-				
-				
-				proximo_movimiento=new Rectangle(this.getPos().x+this.getVelocidad(),this.getPos().y,this.getAncho(),this.getAlto());
-				
+			case 3 : //Derecha				
+				proximo_movimiento=new Rectangle(this.getPos().x+this.getVelocidad(),this.getPos().y,this.getAncho(),this.getAlto());				
 				if(pos.x<=(800-(getVelocidad()+width))&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x + getVelocidad(), pos.y);
-				
+					pos.setLocation(pos.x + getVelocidad(), pos.y);				
 				}
 				else{
 					generar_direccion_nueva();
 				}
-				break;
-		
-			}
-		
+				break;	
+			}		
 		ultima_direccion = direccion_de_movimiento;
 		setGrafico(direccion_de_movimiento);
 	}
@@ -97,13 +73,9 @@ public  abstract class Enemigo extends Tanque implements Visitor {
 			r=generador_de_direcciones.nextInt(4);
 		}
 		direccion_de_movimiento=r;
-	}
+	}	
 	
-	
-	
-	public boolean aceptar(Visitor v)
-	{
+	public boolean aceptar(Visitor v){
 		return v.visitarConTanqueEnemigo(this);
-	}
-	
+	}	
 }

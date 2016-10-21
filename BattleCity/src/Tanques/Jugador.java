@@ -1,19 +1,12 @@
 package Tanques;
 
-import GUI.*;
-import TDALista.*;
-
 import javax.swing.ImageIcon;
-
 import BattleCity.Visitor;
-import Exception.*;
 
 public class Jugador extends Tanque implements Visitor{
 	
-	
 	public Jugador(int x, int y) {
 		super(x, y);
-
 		resetNivel();
 		this.image[0] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueArriba.gif"));
 		this.image[1] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueAbajo.gif"));
@@ -46,36 +39,26 @@ public class Jugador extends Tanque implements Visitor{
             case 4:  estado=new Estado4();
                      nivActual=4;
                      break;
-			}
-			
-			
+			}			
 		}
 	}
+	
 	public int getVelocidad() {
 		return estado.getMovimiento();
 	}
-
 	
-	public boolean aceptar(Visitor v)
-	{
+	public boolean aceptar(Visitor v){
 		return v.visitarConTanqueJugador(this);
-	}
-	
-	
+	}		
 
 	@Override
-	public boolean visitarConBala(Bala b) {
-		
+	public boolean visitarConBala(Bala b) {		
 	
 		if(!b.esBaladeEnemigo())
 		 return false;
-		 else	
-			{
-			 
-			b.OBTENERJUEGO().GameOver();
-			
-			return true;
-	        
+		 else{			 
+			b.OBTENERJUEGO().GameOver();			
+			return true;	        
 			} 
 	}
 
@@ -89,8 +72,5 @@ public class Jugador extends Tanque implements Visitor{
 	public boolean visitarConTanqueJugador(Jugador j) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	
-	
+	}	
 }

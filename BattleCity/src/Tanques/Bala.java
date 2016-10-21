@@ -2,46 +2,35 @@ package Tanques;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import BattleCity.Element;
 import BattleCity.GameObject;
 import BattleCity.Juego;
-import BattleCity.Mapa;
 import BattleCity.Visitor;
-
 import javax.swing.Icon;
 import java.awt.Rectangle;
 
 public class Bala extends GameObject implements Runnable,Element{
+	
 	private int direccion;
 	private int velocidad=5;
 	protected Icon imagen;
 	protected volatile boolean esVisible;
-	//protected Mapa mapa_que_usa;
-	protected Rectangle rectangulo;
-	
-	protected boolean balaNivel4;
-	
-	
-	private boolean balaDeEnemigo;
-	
-	
+	protected Rectangle rectangulo;	
+	protected boolean balaNivel4;	
+	private boolean balaDeEnemigo;	
 	private Juego j;
 	
 	public Bala(int X,int Y,int dir,Juego gh,boolean balaEnemigo){
 		super(X,Y);
 		direccion=dir;
-	//	mapa_que_usa=m;
 		width = 15;
 		height=15;
 		esVisible=true;
 		imagen = new ImageIcon(this.getClass().getResource("/Imagenes/bala.png"));
 		grafico = new JLabel(imagen);
 		grafico.setBounds(pos.x, pos.y, width, height);
-		rectangulo=null;
-		
-		balaDeEnemigo = balaEnemigo;
-		
+		rectangulo=null;		
+		balaDeEnemigo = balaEnemigo;		
 		j = gh;
 		balaNivel4 = false;
 	}
@@ -122,36 +111,23 @@ public class Bala extends GameObject implements Runnable,Element{
 		}	
 	}
 	
-	public void setBalaEnNivel4(boolean b)
-	{
+	public void setBalaEnNivel4(boolean b){
 		balaNivel4 = b;
-	}
+	}	
 	
-	
-	public boolean estaEnNivel4()
-	{
+	public boolean estaEnNivel4(){
 		return balaNivel4;
 	}
 	
-	public Juego OBTENERJUEGO()
-	{
+	public Juego OBTENERJUEGO(){
 		return j;
 	}
 	
-	public boolean aceptar(Visitor t)
-	{
-		 
-		return t.visitarConBala(this);
-		 
-		 
+	public boolean aceptar(Visitor t){		 
+		return t.visitarConBala(this);		 
 	}
 
-
-   public boolean esBaladeEnemigo()
-   {
+   public boolean esBaladeEnemigo(){
 	   return balaDeEnemigo;
-   }
-	
-	
-	
+   }	
 }

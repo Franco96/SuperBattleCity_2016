@@ -2,12 +2,9 @@ package Celdas;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import Tanques.Bala;
 import Tanques.Enemigo;
 import Tanques.Jugador;
-import Tanques.Tanque;
-
 import java.awt.Rectangle;
 
 public class Roca extends Celda {
@@ -32,20 +29,13 @@ public class Roca extends Celda {
 		return false;
 	}
 	
-	
-	
-
-
-	
-	public boolean visitarConBala(Bala b) {
-	
+	public boolean visitarConBala(Bala b) {	
 		if(b.estaEnNivel4())
 		{
 			vida--;
 			if(vida == 0)
 				desactivar();
-		}
-		
+		}		
 		return true;
 	}
 
@@ -59,6 +49,5 @@ public class Roca extends Celda {
 	public boolean visitarConTanqueJugador(Jugador j) {
 		// TODO Auto-generated method stub
 		return true;
-	}
-	
+	}	
 }

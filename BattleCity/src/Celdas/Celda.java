@@ -2,17 +2,13 @@ package Celdas;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
-
 import BattleCity.GameObject;
 import BattleCity.Visitor;
-
 import java.awt.Rectangle;
 
-
 public abstract class Celda extends GameObject implements Visitor {
-
-	  //ATRIBUTOS
-		
+	  
+	//ATRIBUTOS		
 		protected Icon imagen;
 		protected boolean sePuede_destruir;
 		protected boolean sePuede_atravesar;
@@ -20,8 +16,7 @@ public abstract class Celda extends GameObject implements Visitor {
 		protected Rectangle rectangulo_propio;
 		protected int vida;
 		
-	  //CONSTRUCTOR
-		
+	  //CONSTRUCTOR		
 		protected Celda(int x, int y) {
 			super(x, y);
 			activo=true;
@@ -31,8 +26,7 @@ public abstract class Celda extends GameObject implements Visitor {
 			if(this.grafico == null){
 				this.grafico = new JLabel(imagen);
 				this.grafico.setBounds(this.pos.x, this.pos.y, width, height);
-			}
-			
+			}			
 			return this.grafico;
 		}
 		
@@ -55,10 +49,5 @@ public abstract class Celda extends GameObject implements Visitor {
 		public void desactivar(){
 			activo=false;
 			grafico.setVisible(false);
-		}
-		
-		 
-		
-		
-		
+		}		
 	}

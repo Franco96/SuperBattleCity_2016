@@ -1,13 +1,10 @@
 package Celdas;
-import BattleCity.*;
+
 import Tanques.Bala;
 import Tanques.Enemigo;
 import Tanques.Jugador;
-import Tanques.Tanque;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import java.awt.Rectangle;
 
 public class Cesped extends Celda {
@@ -23,8 +20,7 @@ public class Cesped extends Celda {
 	}
 	
 	@Override
-	protected void setGrafico(int dir) {
-		
+	protected void setGrafico(int dir) {		
 		
 	}
 	
@@ -32,13 +28,8 @@ public class Cesped extends Celda {
 		return false;
 	}
 	
-	
-
-	
-
 	@Override
-	public boolean visitarConBala(Bala b) {
-	
+	public boolean visitarConBala(Bala b) {	
 	  return false;
 		
 	}

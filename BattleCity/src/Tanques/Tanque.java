@@ -2,12 +2,9 @@ package Tanques;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
-
 import BattleCity.Element;
 import BattleCity.GameObject;
 import BattleCity.Juego;
-import BattleCity.Mapa;
-import BattleCity.Visitor;
 import Exception.BoundaryViolationException;
 import Exception.EmptyListException;
 import Exception.InvalidPositionException;
@@ -22,10 +19,7 @@ public abstract  class Tanque extends GameObject implements Element {
     protected Icon image[];
     protected int ultima_direccion;
     protected PositionList<Bala> balas_disparadas;
-    protected Estado estado;
-    
-   
-    
+    protected Estado estado;    
     protected int nivActual;
     
 	//CONSTRUCTOR
@@ -35,11 +29,7 @@ public abstract  class Tanque extends GameObject implements Element {
 	    this.image = new Icon[8];  
 	    this.width = 50;
 	    this.height = 50;
-	    balas_disparadas= new ListaDoblementeEnlazada<Bala>();
-	    
-	    
-	    
-	    
+	    balas_disparadas= new ListaDoblementeEnlazada<Bala>();	    
 	    estado = new Estado1();
 	}
 	
@@ -57,25 +47,18 @@ public abstract  class Tanque extends GameObject implements Element {
         		 break;
         case 3:  bala_jugador=new Bala(pos.x+50,pos.y+17,ultima_direccion,j,balaDequien);
                  break;
-		}
-		
+		}		
 		
 		if(nivActual == 4)
-		bala_jugador.setBalaEnNivel4(true);
+		bala_jugador.setBalaEnNivel4(true);		
 		
-		
-		balas_disparadas.addFirst(bala_jugador);
-		
+		balas_disparadas.addFirst(bala_jugador);		
 		
 		g.add(bala_jugador.getGrafico(),0);
 		Thread movimiento1= new Thread(bala_jugador);
-		movimiento1.start();
-	
-    
-  
+		movimiento1.start();  
     }
-}
-	
+}	
 	
 	public void update_bala(){
 		try {
@@ -104,14 +87,9 @@ public abstract  class Tanque extends GameObject implements Element {
 		}
 }
 	
-	
-	
-	
-	
 	public int getVelocidad() {
 		return velocidad;
-	}
-	
+	}	
 	
 	protected void setGrafico(int dir){
 		if(this.grafico != null){
@@ -123,13 +101,10 @@ public abstract  class Tanque extends GameObject implements Element {
 	public JLabel getGrafico(){
 		if(this.grafico == null){
 			this.grafico = new JLabel(image[0]);
-			this.grafico.setBounds(this.pos.x, this.pos.y, width, height);
-		
-		}
-		
+			this.grafico.setBounds(this.pos.x, this.pos.y, width, height);		
+		}		
 		return this.grafico;
-	}
-	
+	}	
 	
 	public void mover(int dir){
 		ultima_direccion=dir;
@@ -148,17 +123,11 @@ public abstract  class Tanque extends GameObject implements Element {
 				break;
 		}	
 		setGrafico(dir);
-	}
-	
+	}	
 	
 	public JLabel getLabel(){
 		return grafico;
-	}
-	
-	
-	
-	
-	
+	}	
 }
 
 

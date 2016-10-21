@@ -14,8 +14,7 @@ public abstract class GameObject {
 	
   //CONSTRUCTOR	
 	
-	protected GameObject(int x, int y)
-	{
+	protected GameObject(int x, int y){
 		this.pos = new Point(x,y);
 	}	
 	
@@ -29,8 +28,7 @@ public abstract class GameObject {
 	
 	abstract protected void setGrafico(int dir);
 	
-	public void setPosicion(int x,int y)
-	{
+	public void setPosicion(int x,int y){
 		pos = new Point(x,y);
 	}
 	

@@ -3,7 +3,6 @@ package BattleCity;
 import Tanques.Bala;
 import Tanques.Enemigo;
 import Tanques.Jugador;
-import Tanques.Tanque;
 
 public interface Visitor {
 

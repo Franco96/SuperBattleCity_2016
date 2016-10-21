@@ -2,12 +2,9 @@ package Celdas;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import Tanques.Bala;
 import Tanques.Enemigo;
 import Tanques.Jugador;
-import Tanques.Tanque;
-
 import java.awt.Rectangle;
 
 public class Ladrillo extends Celda {
@@ -33,18 +30,11 @@ public class Ladrillo extends Celda {
 		return true;
 	}
 	
-	
-	
-	
-	
-	 public boolean visitarConBala(Bala b){
-		 
+	 public boolean visitarConBala(Bala b){		 
 		 vida=vida-1;
 		  if (vida==0){
 				desactivar();
-			}
-		 
-		 
+			}		 
 		 return true;
 	 }
 
@@ -58,7 +48,5 @@ public class Ladrillo extends Celda {
 	public boolean visitarConTanqueJugador(Jugador j) {
 		// TODO Auto-generated method stub
 		return true;
-	}
-	
-	
+	}	
 }
