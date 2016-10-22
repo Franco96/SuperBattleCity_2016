@@ -54,35 +54,35 @@ public Batallon OBTENERBATALLON(){
 }
 
 //MOVER DE JUGADOR
-public void mover(int dir){		
-	int direccion = 0;
-	Rectangle proximo_movimiento=null; 
-	switch (dir){
-		case KeyEvent.VK_UP : //Arriba
-			{proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y-jugador.getVelocidad(),jugador.getAncho(),jugador.getAlto());
-				direccion = 0;			  
-			}
-				break;
-		case KeyEvent.VK_DOWN ://Abajo
-			{proximo_movimiento=new Rectangle(jugador.getPos().x,jugador.getPos().y+jugador.getVelocidad(),jugador.getAncho(),jugador.getAlto());
-				direccion = 1;			 
-			}
-				break;
-		case KeyEvent.VK_LEFT : //Izquierda
-			{proximo_movimiento=new Rectangle(jugador.getPos().x-jugador.getVelocidad(),jugador.getPos().y,jugador.getAncho(),jugador.getAlto());
-				direccion = 2;			
-			}
-				break;
-		case KeyEvent.VK_RIGHT : //Derecha
-			{proximo_movimiento=new Rectangle(jugador.getPos().x+jugador.getVelocidad(),jugador.getPos().y,jugador.getAncho(),jugador.getAlto());
-				direccion = 3;			  
-			}
-				break;
+public void mover(int dir){			
+	jugador.movimiento(convertir_keyCode_a_direccion(dir),m);
+}
+
+public int convertir_keyCode_a_direccion(int direccion_a_convertir){
+	int direccion_resultante=0;
+	switch (direccion_a_convertir){
+	case KeyEvent.VK_UP : //Arriba
+		{
+			direccion_resultante = 0;			  
+		}
+			break;
+	case KeyEvent.VK_DOWN ://Abajo
+		{
+			direccion_resultante = 1;			 
+		}
+			break;
+	case KeyEvent.VK_LEFT : //Izquierda
+		{
+			direccion_resultante = 2;			
+		}
+			break;
+	case KeyEvent.VK_RIGHT : //Derecha
+		{
+			direccion_resultante = 3;			  
+		}
+			break;
 	}
-	//Verificar si colisiona con algun bloque del mapa
-		if (!COLLIDER(proximo_movimiento,jugador)){
-			jugador.mover(direccion);
-		}	
+	return direccion_resultante;	
 }
 
 public void eliminar_pared(){
@@ -138,10 +138,3 @@ public void update(){
 	jugador.update_bala();
 }
 }
-
-
-
-
-
-
-

@@ -1,4 +1,5 @@
 package BattleCity;
+
 import Celdas.*;
 
 import java.io.BufferedReader;
@@ -22,10 +23,10 @@ public class Mapa {
 	protected Gui g;
 	
 	//CONSTRUCTOR
-	public Mapa(){   
-		x = 0;
-		y = 0;		
-	}
+public Mapa(){   
+	x = 0;
+	y = 0;		
+}
 	
 public void armarMapa(Gui gui){
 	 g=gui; 	

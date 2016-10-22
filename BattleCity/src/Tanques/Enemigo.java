@@ -19,52 +19,59 @@ public  abstract class Enemigo extends Tanque implements Visitor {
 	
 	abstract public int getPuntaje_por_Destruccion(); 
 	
-	//Modificacion del mover de tanque para modelar la inteligencia de los enemigos	
 	public void mover(int dir,Juego h){
-		Rectangle proximo_movimiento=null;		
-		switch (direccion_de_movimiento) {
+		Rectangle proximo_movimiento=null;
+		int indice=0;
+		boolean colisiono=false;
+		while (indice<getVelocidad() && !colisiono){
+			switch (direccion_de_movimiento) {
 			case 0 : //Arriba
-				proximo_movimiento=new Rectangle(this.getPos().x,this.getPos().y-this.getVelocidad(),this.getAncho(),this.getAlto());
-				
-				if(pos.y>=getVelocidad()&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x, pos.y - getVelocidad());					
+				proximo_movimiento=new Rectangle(this.getPos().x,this.getPos().y-1,this.getAncho(),this.getAlto());
+				if(pos.y>=1&&(!h.COLLIDER(proximo_movimiento, this))){
+					pos.setLocation(pos.x, pos.y - 1);					
 				}
 				else{
 					generar_direccion_nueva();
+					colisiono=true;
 				}
 				break;
 			case 1 : //Abajo
-				proximo_movimiento=new Rectangle(this.getPos().x,this.getPos().y+this.getVelocidad(),this.getAncho(),this.getAlto());
+				proximo_movimiento=new Rectangle(this.getPos().x,this.getPos().y+1,this.getAncho(),this.getAlto());
 				
-				if(pos.y<=(579-(getVelocidad()+height))&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x, pos.y + getVelocidad());					
+				if(pos.y<=(579-(1+height))&&(!h.COLLIDER(proximo_movimiento, this))){
+					pos.setLocation(pos.x, pos.y + 1);					
 				}
 				else{
 					generar_direccion_nueva();
+					colisiono=true;
 				}
 				break;
 			case 2 : //Izquierda
-				proximo_movimiento=new Rectangle(this.getPos().x-this.getVelocidad(),this.getPos().y,this.getAncho(),this.getAlto());
+				proximo_movimiento=new Rectangle(this.getPos().x-1,this.getPos().y,this.getAncho(),this.getAlto());
 				
-				if(pos.x>=getVelocidad()&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x - getVelocidad(), pos.y);				
+				if(pos.x>=1&&(!h.COLLIDER(proximo_movimiento, this))){
+					pos.setLocation(pos.x - 1, pos.y);				
 				}
 				else{
 					generar_direccion_nueva();
+					colisiono=true;
 				}
 				break;
 			case 3 : //Derecha				
-				proximo_movimiento=new Rectangle(this.getPos().x+this.getVelocidad(),this.getPos().y,this.getAncho(),this.getAlto());				
-				if(pos.x<=(800-(getVelocidad()+width))&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x + getVelocidad(), pos.y);				
+				proximo_movimiento=new Rectangle(this.getPos().x+1,this.getPos().y,this.getAncho(),this.getAlto());				
+				if(pos.x<=(800-(1+width))&&(!h.COLLIDER(proximo_movimiento, this))){
+					pos.setLocation(pos.x + 1, pos.y);				
 				}
 				else{
 					generar_direccion_nueva();
+					colisiono=true;
 				}
 				break;	
 			}		
-		ultima_direccion = direccion_de_movimiento;
-		setGrafico(direccion_de_movimiento);
+			ultima_direccion = direccion_de_movimiento;
+			setGrafico(direccion_de_movimiento);
+			indice++;
+		}		
 	}
 	
 	private void generar_direccion_nueva(){

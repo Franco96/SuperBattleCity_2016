@@ -14,120 +14,121 @@ import TDALista.Position;
 import TDALista.PositionList;
 
 public abstract  class Tanque extends GameObject implements Element {
-  //ATRIBUTOS
-    protected int velocidad;
+//ATRIBUTOS
+
+	protected int velocidad;
     protected Icon image[];
     protected int ultima_direccion;
     protected PositionList<Bala> balas_disparadas;
     protected Estado estado;    
     protected int nivActual;
     
-	//CONSTRUCTOR
+//CONSTRUCTOR
     
-	protected Tanque(int x, int y) {
-		super(x, y);
-	    this.image = new Icon[8];  
-	    this.width = 50;
-	    this.height = 50;
-	    balas_disparadas= new ListaDoblementeEnlazada<Bala>();	    
-	    estado = new Estado1();
-	}
+protected Tanque(int x, int y) {
+	super(x, y);
+    this.image = new Icon[8];  
+    this.width = 50;
+    this.height = 50;
+    balas_disparadas= new ListaDoblementeEnlazada<Bala>();	    
+    estado = new Estado1();
+}
 	
    //METODOS
 	
-	public void disparar_bala(Gui g,Juego j,boolean balaDequien){		
-    if (balas_disparadas.size()<estado.getDisparos_simultaneos()){
-		Bala bala_jugador=null;
-		switch (ultima_direccion) {
-        case 0:  bala_jugador=new Bala(pos.x+17,pos.y-14,ultima_direccion,j,balaDequien);
-                 break;
-        case 1:  bala_jugador=new Bala(pos.x+17,pos.y+50,ultima_direccion,j,balaDequien);
-                 break;
-        case 2:  bala_jugador=new Bala(pos.x-15,pos.y+17,ultima_direccion,j,balaDequien);
-        		 break;
-        case 3:  bala_jugador=new Bala(pos.x+50,pos.y+17,ultima_direccion,j,balaDequien);
-                 break;
-		}		
-		
-		if(nivActual == 4)
-		bala_jugador.setBalaEnNivel4(true);		
-		
-		balas_disparadas.addFirst(bala_jugador);		
-		
-		g.add(bala_jugador.getGrafico(),0);
-		Thread movimiento1= new Thread(bala_jugador);
-		movimiento1.start();  
-    }
+public void disparar_bala(Gui g,Juego j,boolean balaDequien){		
+   if (balas_disparadas.size()<estado.getDisparos_simultaneos()){
+	Bala bala_jugador=null;
+	switch (ultima_direccion) {
+       case 0:  bala_jugador=new Bala(pos.x+17,pos.y-14,ultima_direccion,j,balaDequien);
+                break;
+       case 1:  bala_jugador=new Bala(pos.x+17,pos.y+50,ultima_direccion,j,balaDequien);
+                break;
+       case 2:  bala_jugador=new Bala(pos.x-15,pos.y+17,ultima_direccion,j,balaDequien);
+       		 break;
+       case 3:  bala_jugador=new Bala(pos.x+50,pos.y+17,ultima_direccion,j,balaDequien);
+                break;
+	}		
+	
+	if(nivActual == 4)
+	bala_jugador.setBalaEnNivel4(true);		
+	
+	balas_disparadas.addFirst(bala_jugador);		
+	
+	g.add(bala_jugador.getGrafico(),0);
+	Thread movimiento1= new Thread(bala_jugador);
+	movimiento1.start();  
+   }
 }	
 	
-	public void update_bala(){
-		try {
-			
-			if(!balas_disparadas.isEmpty())
-			{Position<Bala>p=balas_disparadas.first(),u=balas_disparadas.last();
-			while(p!=null){
-				if (!p.element().si_esVisible()){
-					Position<Bala>aux;	
-					if(p!=u)aux=balas_disparadas.next(p);else aux=null;
-					balas_disparadas.remove(p);
-					p=aux;
-				}
-				if(p!=u && p!=null)p=balas_disparadas.next(p);else p=null;			
+public void update_bala(){
+	try {
+		
+		if(!balas_disparadas.isEmpty())
+		{Position<Bala>p=balas_disparadas.first(),u=balas_disparadas.last();
+		while(p!=null){
+			if (!p.element().si_esVisible()){
+				Position<Bala>aux;	
+				if(p!=u)aux=balas_disparadas.next(p);else aux=null;
+				balas_disparadas.remove(p);
+				p=aux;
 			}
-		}
-			
-		}catch (InvalidPositionException e){
-			System.out.println(e.getMessage());
-		}
-		catch (BoundaryViolationException e){
-			System.out.println(e.getMessage());
-		}
-		catch (EmptyListException e){
-			System.out.println(e.getMessage());
-		}
-}
-	
-	public int getVelocidad() {
-		return velocidad;
-	}	
-	
-	protected void setGrafico(int dir){
-		if(this.grafico != null){
-			this.grafico.setIcon(this.image[dir]);
-			this.grafico.setBounds(this.pos.x, this.pos.y, width, height);
+			if(p!=u && p!=null)p=balas_disparadas.next(p);else p=null;			
 		}
 	}
+		
+	}catch (InvalidPositionException e){
+		System.out.println(e.getMessage());
+	}
+	catch (BoundaryViolationException e){
+		System.out.println(e.getMessage());
+	}
+	catch (EmptyListException e){
+		System.out.println(e.getMessage());
+	}
+}
 	
-	public JLabel getGrafico(){
-		if(this.grafico == null){
-			this.grafico = new JLabel(image[0]);
-			this.grafico.setBounds(this.pos.x, this.pos.y, width, height);		
-		}		
-		return this.grafico;
-	}	
+public int getVelocidad() {
+	return velocidad;
+}	
 	
-	public void mover(int dir){
-		ultima_direccion=dir;
-		switch (dir) {
-			case 0 : //Arriba
-				if(pos.y>=getVelocidad())pos.setLocation(pos.x, pos.y - getVelocidad());
-				break;
-			case 1 : //Abajo
-				if(pos.y<=(579-(getVelocidad()+height)))pos.setLocation(pos.x, pos.y + getVelocidad());
-				break;
-			case 2 : //Izquierda
-				if(pos.x>=getVelocidad()) pos.setLocation(pos.x - getVelocidad(), pos.y);
-				break;
-			case 3 : //Derecha
-				if(pos.x<=(800-(getVelocidad()+width)))pos.setLocation(pos.x + getVelocidad(), pos.y);
-				break;
-		}	
-		setGrafico(dir);
-	}	
+protected void setGrafico(int dir){
+	if(this.grafico != null){
+		this.grafico.setIcon(this.image[dir]);
+		this.grafico.setBounds(this.pos.x, this.pos.y, width, height);
+	}
+}
 	
-	public JLabel getLabel(){
-		return grafico;
+public JLabel getGrafico(){
+	if(this.grafico == null){
+		this.grafico = new JLabel(image[0]);
+		this.grafico.setBounds(this.pos.x, this.pos.y, width, height);		
+	}		
+	return this.grafico;
+}	
+	
+public void mover(int dir){
+	ultima_direccion=dir;
+	switch (dir) {
+		case 0 : //Arriba
+			if(pos.y>=getVelocidad())pos.setLocation(pos.x, pos.y - getVelocidad());
+			break;
+		case 1 : //Abajo
+			if(pos.y<=(579-(getVelocidad()+height)))pos.setLocation(pos.x, pos.y + getVelocidad());
+			break;
+		case 2 : //Izquierda
+			if(pos.x>=getVelocidad()) pos.setLocation(pos.x - getVelocidad(), pos.y);
+			break;
+		case 3 : //Derecha
+			if(pos.x<=(800-(getVelocidad()+width)))pos.setLocation(pos.x + getVelocidad(), pos.y);
+			break;
 	}	
+	setGrafico(dir);
+}	
+	
+public JLabel getLabel(){
+	return grafico;
+}
 }
 
 
