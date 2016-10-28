@@ -118,6 +118,9 @@ public void movimiento(int direccion_de_movimiento,Mapa mapa_que_recibe){
 		colisiono=mapa_que_recibe.si_colisiona(proximo_movimiento,this);	
 		if (!colisiono){
 			mover(direccion_de_movimiento);
+			//Producir Sonido
+			this.sonido("SonidoMover");
+			
 		}
 		indice++;
 	}

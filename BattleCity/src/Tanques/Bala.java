@@ -33,6 +33,11 @@ public class Bala extends GameObject implements Runnable,Element{
 		balaDeEnemigo = balaEnemigo;		
 		j = gh;
 		balaNivel4 = false;
+		
+		
+		//producirSonido
+		this.sonido("SonidoBala");
+		
 	}
 	
     public JLabel getGrafico(){

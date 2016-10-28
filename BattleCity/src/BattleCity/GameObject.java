@@ -2,6 +2,8 @@ package BattleCity;
 
 import java.awt.Point;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JLabel;
 
 public abstract class GameObject {
@@ -10,8 +12,9 @@ public abstract class GameObject {
 	protected JLabel grafico;
 	protected  int width = 25;
 	protected  int height = 25;
-	protected Point pos;	
-	
+	protected Point pos;
+	//Sonido
+	protected Clip sonido;
   //CONSTRUCTOR	
 	
 	protected GameObject(int x, int y){
@@ -39,4 +42,19 @@ public abstract class GameObject {
 	public int getAlto(){
 		return height;
 	}
+	
+	//METODO PARA PRODUCIR SONIDO
+	public void sonido(String archivo)
+	{ 
+		try{
+		sonido = AudioSystem.getClip();
+		sonido.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream("/Sonido/"+ archivo + ".wav")));
+	    sonido.start();
+		}catch(Exception e)
+		{
+			
+		}
+		}
+	
+	
 }

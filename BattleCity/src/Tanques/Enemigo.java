@@ -28,9 +28,11 @@ public  abstract class Enemigo extends Tanque implements Visitor {
 			case 0 : //Arriba
 				proximo_movimiento=new Rectangle(this.getPos().x,this.getPos().y-1,this.getAncho(),this.getAlto());
 				if(pos.y>=1&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x, pos.y - 1);					
+					pos.setLocation(pos.x, pos.y - 1);		
+					this.sonido("SonidoMover");
 				}
 				else{
+				
 					generar_direccion_nueva();
 					colisiono=true;
 				}
@@ -39,9 +41,11 @@ public  abstract class Enemigo extends Tanque implements Visitor {
 				proximo_movimiento=new Rectangle(this.getPos().x,this.getPos().y+1,this.getAncho(),this.getAlto());
 				
 				if(pos.y<=(579-(1+height))&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x, pos.y + 1);					
+					pos.setLocation(pos.x, pos.y + 1);	
+					this.sonido("SonidoMover");
 				}
 				else{
+			
 					generar_direccion_nueva();
 					colisiono=true;
 				}
@@ -50,9 +54,11 @@ public  abstract class Enemigo extends Tanque implements Visitor {
 				proximo_movimiento=new Rectangle(this.getPos().x-1,this.getPos().y,this.getAncho(),this.getAlto());
 				
 				if(pos.x>=1&&(!h.COLLIDER(proximo_movimiento, this))){
-					pos.setLocation(pos.x - 1, pos.y);				
+					pos.setLocation(pos.x - 1, pos.y);	
+					this.sonido("SonidoMover");
 				}
 				else{
+				
 					generar_direccion_nueva();
 					colisiono=true;
 				}
@@ -61,8 +67,10 @@ public  abstract class Enemigo extends Tanque implements Visitor {
 				proximo_movimiento=new Rectangle(this.getPos().x+1,this.getPos().y,this.getAncho(),this.getAlto());				
 				if(pos.x<=(800-(1+width))&&(!h.COLLIDER(proximo_movimiento, this))){
 					pos.setLocation(pos.x + 1, pos.y);				
+					this.sonido("SonidoMover");
 				}
 				else{
+					
 					generar_direccion_nueva();
 					colisiono=true;
 				}

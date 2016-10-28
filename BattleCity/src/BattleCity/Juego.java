@@ -32,7 +32,6 @@ public Juego(Gui gui){
 }
 
 public void GameOver(){	
-//	copia.OBTENERTIME().terminar();
 	actualizador.terminar_juego();
 	m.eliminarMapa();	
 	enemigos.eliminarEnemigos(copia);	
@@ -103,7 +102,7 @@ public void generar_disparo_jugador(){
 }
 
 public void generar_disparo_enemigo(){	
-	enemigos.generar_disparo_enemigo(copia, this);
+ 	enemigos.generar_disparo_enemigo(copia, this);
 }
 
 public void mover(){
