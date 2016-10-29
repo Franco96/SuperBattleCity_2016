@@ -1,13 +1,11 @@
 package Tanques;
 
 import java.awt.Rectangle;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import BattleCity.Element;
 import BattleCity.GameObject;
 import BattleCity.Juego;
-import BattleCity.Mapa;
 import Exception.BoundaryViolationException;
 import Exception.EmptyListException;
 import Exception.InvalidPositionException;

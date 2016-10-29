@@ -32,7 +32,7 @@ public class Gui extends JFrame{
 			@Override			
 			public void keyPressed(KeyEvent e){
 				mover(e);
-				agregar(e);
+//				agregar(e);
 				quitar(e);
 				mostrarPuntaje(e);
 				retirarPared(e);
@@ -63,14 +63,14 @@ public class Gui extends JFrame{
 		}
 	}
 	
-	@SuppressWarnings("static-access")
+//	@SuppressWarnings("static-access")
 	// "Q" agrega enemigos en pantalla
-	protected void agregar(KeyEvent key){
-		if (key.VK_Q==key.getKeyCode()){
-			j.agregarOponente();
-			this.repaint();
-		}		
-	}
+//	protected void agregar(KeyEvent key){
+//		if (key.VK_Q==key.getKeyCode()){
+//			j.agregarOponente();
+//			this.repaint();
+//		}		
+//	}
 	
 	@SuppressWarnings("static-access")
 	// "W" quita enemigos de pantalla

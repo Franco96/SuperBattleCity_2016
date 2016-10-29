@@ -29,6 +29,11 @@ public Juego(Gui gui){
 	gui.add(jugador.getGrafico());
 	Thread j1=new Thread(actualizador);
 	j1.start();
+	
+	//Actualizador para controlar el ingreso de los enemigos al juego
+	ActualizadorDeApariciones actualizador_oponentes= new ActualizadorDeApariciones(this);
+	Thread j2=new Thread(actualizador_oponentes);
+	j2.start();
 }
 
 public void GameOver(){	
@@ -40,8 +45,13 @@ public void GameOver(){
     JOptionPane.showMessageDialog(null, "GAME OVER"); 
 }
 //AGREGA OPONENTES AL BATALLON
+//public void agregarOponente(){
+//	enemigos.agregarOponente(copia);
+//}
+
+//Nuevo agregar oponente 
 public void agregarOponente(){
-	enemigos.agregarOponente(copia);
+	enemigos.agregar_oponente(copia, m);
 }
 
 //QUITA OPONENTES AL BATALLON
@@ -59,8 +69,6 @@ public Batallon OBTENERBATALLON(){
 public void mover(int dir){			
 	jugador.movimiento(convertir_keyCode_a_direccion(dir),this);
 }
-
-
 
 private int convertir_keyCode_a_direccion(int direccion_a_convertir){
 	int direccion_resultante=0;
@@ -89,21 +97,17 @@ private int convertir_keyCode_a_direccion(int direccion_a_convertir){
 	return direccion_resultante;	
 }
 
-
 public void eliminar_pared(){
 	m.remover_pared();
 }
-
 
 public void cambiar_estado_jugador(){
 	jugador.subirNivel();
 }
 
-
 public void reset_estado_jugador(){
 	jugador.resetNivel();
 }
-
 
 //GENERA EL DISPARO DEL JUGADOR
 public void generar_disparo_jugador(){

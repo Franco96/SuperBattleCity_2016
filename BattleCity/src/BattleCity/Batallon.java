@@ -1,5 +1,6 @@
 package BattleCity;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 import Exception.BoundaryViolationException;
 import Exception.EmptyListException;
@@ -10,25 +11,63 @@ import Tanques.Enemigo;
 import Tanques.EnemigoBasico;
 
 public class Batallon {
-	private  PositionList<Enemigo> oponentes;
-	private int puntaje;
+	protected PositionList<Enemigo> oponentes;
+	protected int puntaje;
+	protected int cant_enemigos_simultaneos;
+	protected int lugar_de_colocacion;
+	protected Rectangle [] rectangulos;
+	protected Point [] posiciones;
 	
   public Batallon(){
 	  puntaje = 0;
 	  oponentes = new ListaDoblementeEnlazada<Enemigo>();
+	  cant_enemigos_simultaneos=4;
+	  lugar_de_colocacion=0;
+	  
+	  posiciones=new Point[2];
+	  posiciones[0]=new Point(0,0);
+	  posiciones[1]=new Point(750,0);
+	  
+	  rectangulos = new Rectangle[2];
+	  rectangulos[0]=new Rectangle(posiciones[0].x,posiciones[0].y,50,50);
+	  rectangulos[1]=new Rectangle(posiciones[1].x,posiciones[1].y,50,50);
   } 
   
-  public void agregarOponente(Gui gui){
-		try{
-			oponentes.addLast(new EnemigoBasico(0, 0));
-			gui.add(oponentes.last().element().getGrafico());
-			gui.revalidate();
-			gui.repaint();
-		   }
+//  public void agregarOponente(Gui gui){
+//		try{
+//			oponentes.addLast(new EnemigoBasico(0, 0));
+//			gui.add(oponentes.last().element().getGrafico());
+//			gui.revalidate();
+//			gui.repaint();
+//		   }
+//		catch (EmptyListException e){
+//			System.out.println(e.getMessage());
+//		}
+//	} 
+  
+  //Agrega un oponente en alguna posicion designada valida disponible
+  public void agregar_oponente(Gui gui,Mapa m){
+	  try{
+		  EnemigoBasico nuevo= new EnemigoBasico(posiciones[lugar_de_colocacion].x,posiciones[lugar_de_colocacion].y);
+		  if (oponentes.size()<cant_enemigos_simultaneos && !m.si_colisiona(rectangulos[lugar_de_colocacion], nuevo) && !ColisionaConOponente(rectangulos[lugar_de_colocacion], nuevo)){
+			  oponentes.addLast(nuevo);
+			  gui.add(oponentes.last().element().getGrafico());
+			  gui.revalidate();
+			  gui.repaint();
+		  }
+		  switch (lugar_de_colocacion) {
+			case 0 : 
+				lugar_de_colocacion=1;
+				break;
+			case 1 :
+				lugar_de_colocacion=0;
+				break;
+		  }
+		  }
 		catch (EmptyListException e){
 			System.out.println(e.getMessage());
 		}
-	} 
+  }
   
   public void quitarOponente(Gui gui){
 		try{

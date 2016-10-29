@@ -1,8 +1,6 @@
 package Tanques;
 
-import java.awt.Rectangle;
 import javax.swing.ImageIcon;
-import BattleCity.Mapa;
 import BattleCity.Visitor;
 
 public class Jugador extends Tanque implements Visitor{
