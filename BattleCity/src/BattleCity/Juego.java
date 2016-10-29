@@ -39,25 +39,30 @@ public void GameOver(){
     copia.getContentPane().setBackground(Color.WHITE);  
     JOptionPane.showMessageDialog(null, "GAME OVER"); 
 }
-
+//AGREGA OPONENTES AL BATALLON
 public void agregarOponente(){
 	enemigos.agregarOponente(copia);
 }
 
+//QUITA OPONENTES AL BATALLON
 public void quitarOponente(){
 	enemigos.quitarOponente(copia);
 }
 
+//OBTIENE A TODOS LOS ENEMIGOS DEL BATALLON
 public Batallon OBTENERBATALLON(){
 	return enemigos;
 }
 
-//MOVER DE JUGADOR
+
+//MOVER DEL JUGADOR
 public void mover(int dir){			
-	jugador.movimiento(convertir_keyCode_a_direccion(dir),m);
+	jugador.movimiento(convertir_keyCode_a_direccion(dir),this);
 }
 
-public int convertir_keyCode_a_direccion(int direccion_a_convertir){
+
+
+private int convertir_keyCode_a_direccion(int direccion_a_convertir){
 	int direccion_resultante=0;
 	switch (direccion_a_convertir){
 	case KeyEvent.VK_UP : //Arriba
@@ -84,27 +89,33 @@ public int convertir_keyCode_a_direccion(int direccion_a_convertir){
 	return direccion_resultante;	
 }
 
+
 public void eliminar_pared(){
 	m.remover_pared();
 }
+
 
 public void cambiar_estado_jugador(){
 	jugador.subirNivel();
 }
 
+
 public void reset_estado_jugador(){
 	jugador.resetNivel();
 }
 
+
+//GENERA EL DISPARO DEL JUGADOR
 public void generar_disparo_jugador(){
 	jugador.disparar_bala(copia,this,false);
 	
 }
-
+//GENERA EL DISPARO A TODOS LOS ENEMIGOS DEL BATALLON
 public void generar_disparo_enemigo(){	
  	enemigos.generar_disparo_enemigo(copia, this);
 }
 
+//GENERA EL MOVIENTO PARA TODOS LOS ENEMIGOS DEL BATALLON
 public void mover(){
 	enemigos.mover(this);
 }

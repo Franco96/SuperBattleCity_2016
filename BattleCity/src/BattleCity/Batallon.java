@@ -49,6 +49,7 @@ public class Batallon {
 		}
 	} 
   
+  //MUEVE A TODOS LOS ENEMIGOS
   public void mover(Juego h){
 		try {
 			if(!oponentes.isEmpty())
@@ -56,7 +57,7 @@ public class Batallon {
 			Position<Enemigo>p=oponentes.first(),u=oponentes.last();
 			while(p!=null){
 				
-				p.element().mover(0,h);	
+				p.element().movimiento(h);	
 				
 				if(p!=u)p=oponentes.next(p);else p=null;			
 			}
@@ -98,6 +99,7 @@ public class Batallon {
   	}
   	
   }  
+  
   
   public boolean ColisionaConOponente(Rectangle recBala,Element elemento){
   	boolean choca = false;
@@ -159,6 +161,7 @@ public class Batallon {
 			
 		}
 	}
+  
   
   public void eliminarEnemigos(Gui g){  	
   	try {

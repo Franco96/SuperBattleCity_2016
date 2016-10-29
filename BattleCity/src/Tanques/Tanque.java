@@ -1,10 +1,13 @@
 package Tanques;
 
+import java.awt.Rectangle;
+
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import BattleCity.Element;
 import BattleCity.GameObject;
 import BattleCity.Juego;
+import BattleCity.Mapa;
 import Exception.BoundaryViolationException;
 import Exception.EmptyListException;
 import Exception.InvalidPositionException;
@@ -107,25 +110,78 @@ public JLabel getGrafico(){
 	return this.grafico;
 }	
 	
-public void mover(int dir){
+
+private boolean mover(int dir){
+
+	boolean colisiona = false;
+	
+switch (dir) {
+	case 0 : //Arriba
+		if(pos.y>=1/*getVelocidad()*/)pos.setLocation(pos.x, pos.y - 1);
+		else colisiona = true;
+		break;
+	case 1 : //Abajo
+		if(pos.y<=(579-(getVelocidad()+height)))pos.setLocation(pos.x, pos.y + 1);
+		else colisiona = true;
+		break;
+	case 2 : //Izquierda
+		if(pos.x>=1/*getVelocidad()*/) pos.setLocation(pos.x - 1, pos.y);
+		else colisiona = true;
+		break;	
+    case 3 : //Derecha
+		if(pos.x<=(800-(getVelocidad()+width)))pos.setLocation(pos.x + 1, pos.y);
+		else colisiona = true;
+		break;
+             }
+
+
+return colisiona;
+ 
+}
+
+
+
+//Mover PRUEBA agregando mejora para el sistema de colision
+public boolean movimiento(int dir,Juego h/*Mapa mapa_que_recibe*/){
 	ultima_direccion=dir;
-	switch (dir) {
+	
+	Rectangle proximo_movimiento=null;
+	int indice=0;
+	boolean colisiono=false;
+	while (indice<getVelocidad() && !colisiono){
+		switch (dir){
 		case 0 : //Arriba
-			if(pos.y>=getVelocidad())pos.setLocation(pos.x, pos.y - getVelocidad());
+			proximo_movimiento=new Rectangle(getPos().x,getPos().y-1,getAncho(),getAlto());
 			break;
-		case 1 : //Abajo
-			if(pos.y<=(579-(getVelocidad()+height)))pos.setLocation(pos.x, pos.y + getVelocidad());
+		case 1 ://Abajo
+			proximo_movimiento=new Rectangle(getPos().x,getPos().y+1,getAncho(),getAlto());			 
 			break;
 		case 2 : //Izquierda
-			if(pos.x>=getVelocidad()) pos.setLocation(pos.x - getVelocidad(), pos.y);
+			proximo_movimiento=new Rectangle(getPos().x-1,getPos().y,getAncho(),getAlto());			
 			break;
 		case 3 : //Derecha
-			if(pos.x<=(800-(getVelocidad()+width)))pos.setLocation(pos.x + getVelocidad(), pos.y);
+			proximo_movimiento=new Rectangle(getPos().x+1,getPos().y,getAncho(),getAlto());			  
 			break;
-	}	
-	setGrafico(dir);
-}	
+		}
+		colisiono=h.COLLIDER(proximo_movimiento,this);	
+		if (!colisiono){
+			colisiono = mover(dir);
+			//Producir Sonido
+			//this.sonido("SonidoMover");
+			
+		}
+		indice++;
+	}
+	 setGrafico(dir);
+	 
+	return colisiono;
 	
+}
+
+
+
+
+
 public JLabel getLabel(){
 	return grafico;
 }
