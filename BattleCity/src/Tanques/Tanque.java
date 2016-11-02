@@ -16,13 +16,12 @@ import TDALista.PositionList;
 
 public abstract  class Tanque extends GameObject implements Element {
 //ATRIBUTOS
-
-	protected int velocidad;
     protected Icon image[];
     protected int ultima_direccion;
     protected PositionList<Bala> balas_disparadas;
     protected Estado estado;    
     protected int nivActual;
+    protected int golpes_actuales;
     
 //CONSTRUCTOR
     
@@ -90,7 +89,7 @@ public void update_bala(){
 }
 	
 public int getVelocidad() {
-	return velocidad;
+	return estado.getVelocidadMovimiento();
 }	
 	
 protected void setGrafico(int dir){

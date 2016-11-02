@@ -63,15 +63,6 @@ public class Gui extends JFrame{
 		}
 	}
 	
-//	@SuppressWarnings("static-access")
-	// "Q" agrega enemigos en pantalla
-//	protected void agregar(KeyEvent key){
-//		if (key.VK_Q==key.getKeyCode()){
-//			j.agregarOponente();
-//			this.repaint();
-//		}		
-//	}
-	
 	@SuppressWarnings("static-access")
 	// "W" quita enemigos de pantalla
 	protected void quitar(KeyEvent key){

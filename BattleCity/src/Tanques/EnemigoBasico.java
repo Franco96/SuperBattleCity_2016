@@ -6,16 +6,12 @@ public class EnemigoBasico extends Enemigo {
 	
 	public EnemigoBasico(int x, int y) {
 		super(x, y);
-		this.image[0] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueArriba.gif"));
-		this.image[1] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueAbajo.gif"));
-		this.image[2] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueIzquierda.gif"));
-		this.image[3] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueDerecha.gif"));
-		porDestruccion=25;
-		velocidad=10;
-	}
-	
-	public int getPuntaje_por_Destruccion(){
-		return porDestruccion;		
+		this.image[0] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueEnemigoBasicoArriba.gif"));
+		this.image[1] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueEnemigoBasicoAbajo.gif"));
+		this.image[2] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueEnemigoBasicoIzquierda.gif"));
+		this.image[3] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueEnemigoBasicoDerecha.gif"));
+		estado=new EstadoBasico();
+		puntos=100;
 	}
 
 	@Override

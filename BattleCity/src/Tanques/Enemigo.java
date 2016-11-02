@@ -1,13 +1,12 @@
 package Tanques;
 
-import java.awt.Rectangle;
 import java.util.Random;
 import BattleCity.Juego;
 import BattleCity.Visitor;
 
 public  abstract class Enemigo extends Tanque implements Visitor {
 	//Atributos
-	protected int porDestruccion;
+	protected int puntos;
 	protected int direccion_de_movimiento;
 	protected Random generador_de_direcciones;	
 	
@@ -17,8 +16,9 @@ public  abstract class Enemigo extends Tanque implements Visitor {
 		direccion_de_movimiento = generador_de_direcciones.nextInt(4);		
 	}
 	
-	abstract public int getPuntaje_por_Destruccion(); 
-	
+	public int getPuntaje_por_Destruccion(){
+		return puntos;		
+	}	
 	
 //MOVIMIENTO DE TANQUE PARA HACER LA INTELIGENCIA ENEMIGOS
 	public boolean movimiento(Juego h){

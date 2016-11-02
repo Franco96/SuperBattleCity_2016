@@ -8,10 +8,11 @@ public class Jugador extends Tanque implements Visitor{
 public Jugador(int x, int y) {
 	super(x, y);
 	resetNivel();
-	this.image[0] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueArriba.gif"));
-	this.image[1] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueAbajo.gif"));
-	this.image[2] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueIzquierda.gif"));
-	this.image[3] = new ImageIcon(this.getClass().getResource("/Imagenes/tanqueDerecha.gif"));
+	this.image[0] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueJugadorArriba.gif"));
+	this.image[1] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueJugadorAbajo.gif"));
+	this.image[2] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueJugadorIzquierda.gif"));
+	this.image[3] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueJugadorDerecha.gif"));
+	golpes_actuales=estado.getGolpes_que_resiste();
 }
 	
 public void resetNivel(){
@@ -44,7 +45,7 @@ private void asignarNivel(int n){
 }
 	
 public int getVelocidad() {
-	return estado.getMovimiento();
+	return estado.getVelocidadMovimiento();
 }
 	
 public boolean aceptar(Visitor v){
@@ -52,14 +53,15 @@ public boolean aceptar(Visitor v){
 }		
 
 @Override
-public boolean visitarConBala(Bala b) {		
-
-	if(!b.esBaladeEnemigo())
-	 return false;
-	 else{			 
-		b.OBTENERJUEGO().GameOver();			
-		return true;	        
-		} 
+public boolean visitarConBala(Bala b) {			
+	if(b.esBaladeEnemigo()){
+		golpes_actuales=golpes_actuales-1;
+		if (golpes_actuales==0){
+			b.OBTENERJUEGO().GameOver();			
+			return true;
+		}
+	}
+	return false;
 }
 
 @Override
