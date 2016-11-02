@@ -11,16 +11,21 @@ public class EnemigoBlindado extends Enemigo{
 		this.image[3] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueEnemigoBlindadoDerecha.gif"));
 		estado=new EstadoBlindado();
 		puntos=400;
+		golpes_actuales=estado.getGolpes_que_resiste();
+		golpes_actuales=4;
 	}
 	
 	@Override
 	public boolean visitarConBala(Bala b) {	
 		if(b.esBaladeEnemigo())
 		 return false;
-		 else{			 
-			b.OBTENERJUEGO().OBTENERBATALLON().quitarOponente(this);			
-			return true;	        
-			} 
+		 else{	
+			golpes_actuales--;
+			if (golpes_actuales==0){
+				b.OBTENERJUEGO().OBTENERBATALLON().quitarOponente(this);
+			}
+			return true;
+		 }
 	}
 
 	@Override

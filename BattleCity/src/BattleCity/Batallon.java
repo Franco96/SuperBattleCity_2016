@@ -132,7 +132,7 @@ public class Batallon {
   			p.element().disparar_bala(g,j,true);	
   			if (p!=null)p.element().update_bala();
   			
-  			 if(p!=u)p=oponentes.next(p);else p=null;  		  
+  			if(p!=u)p=oponentes.next(p);else p=null;  		  
   		}
   		}
   	}
@@ -146,8 +146,7 @@ public class Batallon {
   		System.out.println(e.getMessage());
   	}
   	
-  }  
-  
+  }    
   
   public boolean ColisionaConOponente(Rectangle recBala,Element elemento){
   	boolean choca = false;

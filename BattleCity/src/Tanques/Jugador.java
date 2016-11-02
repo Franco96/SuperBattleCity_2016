@@ -22,7 +22,8 @@ public void resetNivel(){
 	
 public void subirNivel(){
 	if (nivActual!=4){
-		asignarNivel(nivActual+1);			
+		asignarNivel(nivActual+1);
+		golpes_actuales=estado.getGolpes_que_resiste();
 	}
 }
 	
@@ -54,14 +55,15 @@ public boolean aceptar(Visitor v){
 
 @Override
 public boolean visitarConBala(Bala b) {			
-	if(b.esBaladeEnemigo()){
-		golpes_actuales=golpes_actuales-1;
-		if (golpes_actuales==0){
-			b.OBTENERJUEGO().GameOver();			
+	if(!b.esBaladeEnemigo())
+		 return false;
+		 else{	
+			golpes_actuales--;
+			if (golpes_actuales==0){
+				b.OBTENERJUEGO().GameOver();
+			}
 			return true;
-		}
-	}
-	return false;
+		 }
 }
 
 @Override
