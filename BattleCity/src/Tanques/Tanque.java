@@ -114,7 +114,7 @@ private boolean mover(int dir){
 	
 switch (dir) {
 	case 0 : //Arriba
-		if(pos.y>=1/*getVelocidad()*/)pos.setLocation(pos.x, pos.y - 1);
+		if(pos.y>=1)pos.setLocation(pos.x, pos.y - 1);
 		else colisiona = true;
 		break;
 	case 1 : //Abajo
@@ -122,7 +122,7 @@ switch (dir) {
 		else colisiona = true;
 		break;
 	case 2 : //Izquierda
-		if(pos.x>=1/*getVelocidad()*/) pos.setLocation(pos.x - 1, pos.y);
+		if(pos.x>=1) pos.setLocation(pos.x - 1, pos.y);
 		else colisiona = true;
 		break;	
     case 3 : //Derecha

@@ -17,8 +17,12 @@ public class Batallon {
 	protected int lugar_de_colocacion;
 	protected Rectangle [] rectangulos;
 	protected Point [] posiciones;
+	//atributo para detener a los enemigos
+	protected boolean estaDetenido;
 	
   public Batallon(){
+	  
+	  estaDetenido = false;
 	  puntaje = 0;
 	  oponentes = new ListaDoblementeEnlazada<Enemigo>();
 	  cant_enemigos_simultaneos=4;
@@ -100,6 +104,9 @@ public class Batallon {
   //MUEVE A TODOS LOS ENEMIGOS
   public void mover(Juego h){
 		try {
+		
+		if(!estaDetenido)	
+		{	
 			if(!oponentes.isEmpty())
 			{
 			Position<Enemigo>p=oponentes.first(),u=oponentes.last();
@@ -110,6 +117,8 @@ public class Batallon {
 				if(p!=u)p=oponentes.next(p);else p=null;			
 			}
 			}
+			
+		}
 		}
 		catch (InvalidPositionException e){
 			System.out.println(e.getMessage());
@@ -124,7 +133,10 @@ public class Batallon {
 
   public void generar_disparo_enemigo(Gui g,Juego j){
   	try {
-  		if(!oponentes.isEmpty())
+  		
+  	 if(!estaDetenido)	
+  		
+  	 { if(!oponentes.isEmpty())
   		{
   		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
   		while(p!=null){
@@ -135,6 +147,7 @@ public class Batallon {
   			if(p!=u)p=oponentes.next(p);else p=null;  		  
   		}
   		}
+  	 }
   	}
   	catch (InvalidPositionException e){
   		System.out.println(e.getMessage());
@@ -186,10 +199,13 @@ public class Batallon {
 	
   public void quitarOponente(Enemigo ene){
 		try{
+			boolean encontre = false;
+			
 			if (!oponentes.isEmpty()){
 				Position<Enemigo>p=oponentes.first(),u=oponentes.last();
-				while(p!=null){
+				while(p!=null&&!encontre){
 					if(p.element()==ene){
+						encontre = true;
 						puntaje+=p.element().getPuntaje_por_Destruccion();						
 						ene.getGrafico().setVisible(false);
 						oponentes.remove(p);						
@@ -213,9 +229,20 @@ public class Batallon {
   public void eliminarEnemigos(Gui g){  	
   	try {
   		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
-  		while(p!=null){  			
-  				g.remove(p.element().getGrafico());  				
-  				if(p!=u)p=oponentes.next(p);else p=null;  			
+  		while(p!=null){ 
+  			   puntaje+=p.element().getPuntaje_por_Destruccion();		
+  				p.element().getGrafico().setVisible(false); 
+  				
+  				
+  			  Position<Enemigo> aux = null;
+             if(p!=u)		
+  			    aux = oponentes.next(p); 
+  				 
+                oponentes.remove(p);
+  				
+                 
+  				
+              p = aux;		
   			}
   			
   		}catch(EmptyListException e)
@@ -229,4 +256,20 @@ public class Batallon {
   		
   	}  
 }
+  
+  
+ //SETEA EL ESTA DETENIDO PARA PARAR A LOS ENEMIGOS CUANDO SE AGARRA EL POWER TIME
+  
+  public void setEstaDetenido(boolean esta)
+  {
+	  this.estaDetenido = esta;
+  }
+  
+  
+  
+  public boolean getEstaDetenido()
+  {
+	  return this.estaDetenido;
+  }
+  
 }

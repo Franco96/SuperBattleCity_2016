@@ -3,10 +3,15 @@ package Tanques;
 import BattleCity.Visitor;
 
 public class Jugador extends Tanque implements Visitor{
-	
+
+boolean estaInmortal;
+int auxGolpes_Actuales;
+
 public Jugador(int x, int y) {
 	super(x, y);
 	resetNivel();
+	estaInmortal = false;
+	auxGolpes_Actuales = 0;
 }
 	
 public void resetNivel(){
@@ -73,6 +78,33 @@ public boolean visitarConTanqueEnemigo(Enemigo j) {
 public boolean visitarConTanqueJugador(Jugador j) {
 	// TODO Auto-generated method stub
 	return false;
+}
+
+public void incVida()
+{
+	this.golpes_actuales ++;
+}
+
+public void volverInmortal()
+{
+	auxGolpes_Actuales = this.golpes_actuales;
+	
+	golpes_actuales +=1000;
+}
+
+public void volverNormal()
+{
+	this.golpes_actuales = auxGolpes_Actuales;
+}
+
+public void setEstaInmortal(boolean esta)
+{   
+	this.estaInmortal = esta;
+}
+
+public boolean getEstaInmortal()
+{
+	return estaInmortal;
 }
 
 

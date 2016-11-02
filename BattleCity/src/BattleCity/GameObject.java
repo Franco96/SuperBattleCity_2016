@@ -27,8 +27,8 @@ public abstract class GameObject {
 		return pos;
 	}
 	
-	abstract public JLabel getGrafico();
-	
+    abstract public JLabel getGrafico();
+
 	abstract protected void setGrafico(int dir);
 	
 	public void setPosicion(int x,int y){

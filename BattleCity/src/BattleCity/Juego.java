@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import GUI.Gui;
+import PowerUps.LosPowerUps;
+import PowerUps.Pala;
 import Tanques.Jugador;
 
 public class Juego  {
@@ -17,8 +19,14 @@ public class Juego  {
 	int anteriorMovido;    
 	Gui copia;
 	
+	private LosPowerUps power;
+	
+	private int enemigosDestruidos;
+	
     //CONSTRUCTOR
 public Juego(Gui gui){
+	enemigosDestruidos = 0;
+	power = new LosPowerUps(this);
 	actualizador=new Actualizador(this);
 	copia = gui;     
 	jugador = new Jugador(400,400);
@@ -34,15 +42,29 @@ public Juego(Gui gui){
 	ActualizadorDeApariciones actualizador_oponentes= new ActualizadorDeApariciones(this);
 	Thread j2=new Thread(actualizador_oponentes);
 	j2.start();
+	
+
+	
+	
+	
 }
 
+
+
 public void GameOver(){	
+
+try{	
 	actualizador.terminar_juego();
+	
 	m.eliminarMapa();	
 	enemigos.eliminarEnemigos(copia);	
 	copia.remove(jugador.getGrafico());	
     copia.getContentPane().setBackground(Color.WHITE);  
     JOptionPane.showMessageDialog(null, "GAME OVER"); 
+}catch(Exception e)
+{
+	
+}
 }
 //AGREGA OPONENTES AL BATALLON
 //public void agregarOponente(){
@@ -142,8 +164,47 @@ public boolean COLLIDER(Rectangle recElemento,Element elemento){
            if(colisiono == true)
 		       colisiono = elemento.aceptar(jugador);
 	  }	
+	
+	if(colisiono == false)
+	{
+		colisiono = power.ColisionaConPower(recElemento, elemento);
+	}
+	
 	return colisiono;	
 }
+
+
+//METODO PARA OBTENER LA GUI
+
+public Gui OBTENERGUI()
+{
+	return copia;
+}
+
+public LosPowerUps ObtenerPower()
+{
+	return power;
+}
+
+
+public void incEnemigosDestruidos()
+{
+	if(this.enemigosDestruidos<3)
+	 this.enemigosDestruidos++;
+	else
+	{
+		enemigosDestruidos = 0;
+		power.agregarAGui(copia);
+		
+	}
+}
+
+
+public void cambiarBaseARoca()
+{
+	m.CambiarBase();
+}
+
 
 //Aca se colocan los elementos a actualizar del juego
 public void update(){
@@ -151,4 +212,12 @@ public void update(){
 	mover();
 	jugador.update_bala();
 }
+
+
+public Jugador getJugador()
+{
+	return jugador;
+}
+
+
 }

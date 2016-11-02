@@ -11,6 +11,7 @@ import Celdas.Ladrillo;
 import Celdas.Roca;
 import GUI.Gui;
 import TDALista.*;
+import Tanques.Enemigo;
 import Exception.*;
 import java.awt.Rectangle;
 
@@ -21,11 +22,14 @@ public class Mapa {
 	protected  int y;
 	protected PositionList<Celda> celdas;
 	protected Gui g;
-	
+	private int xBase;
+	private int yBase;
 	//CONSTRUCTOR
 public Mapa(){   
 	x = 0;
-	y = 0;		
+	y = 0;	
+	xBase = 0;
+	yBase = 0;
 }
 	
 public void armarMapa(Gui gui){
@@ -67,7 +71,15 @@ public void armarMapa(Gui gui){
           		{
           			celdas.addLast(new Roca(x,y));
       				gui.add(celdas.last().element().getGrafico());
-          		}
+          		}  
+          		   break;
+          		case 'e':
+          		{   xBase = x;
+          			yBase = y;
+          			celdas.addLast(new Base(x,y));
+      				gui.add(celdas.last().element().getGrafico());
+          		}  
+          		   break;
           		
           		}
           		
@@ -147,7 +159,9 @@ public void remover_pared(){
 public boolean si_colisiona(Rectangle se_recibe,Element elemento){
 	boolean choco=false;
 	try {
-		Position<Celda>p=celdas.first(),u=celdas.last();
+	
+	if(!celdas.isEmpty())	
+	{	Position<Celda>p=celdas.first(),u=celdas.last();
 		while(p!=null && !choco){
 			if (p.element().si_esta_activo()){
 				choco=se_recibe.intersects(p.element().obtenerRectangulo());
@@ -161,7 +175,7 @@ public boolean si_colisiona(Rectangle se_recibe,Element elemento){
 			if(p!=u)p=celdas.next(p);else p=null;
 		}
 		
-		
+	}	
 		
 	}
 	catch (InvalidPositionException e){
@@ -176,16 +190,113 @@ public boolean si_colisiona(Rectangle se_recibe,Element elemento){
 	return choco;
 }
 
+
+
+public void CambiarBase()
+{
+ //GUARDAMOS LAS VARIABLES POR SI SE TIENE QUE CAMBIAR NUEVAMENTE LA BASE	
+	int auxX = xBase;
+	int auxY = yBase;
+	
+	xBase -=50;
+	yBase -=50;
+	
+ 
+	for(int j = 0 ; j<6;j++)	
+
+   {
+          if(j<2||j>3)
+	          {
+        	       for(int i = 0;i<4;i++)
+	                  {
+		                 this.cambiarCeldaPorRoca(xBase, yBase);
+		                 yBase +=25;
+	                   }
+	              yBase -=4*25;
+	           }
+          else
+              {
+	              for(int i = 0;i<2;i++)
+		              {
+			             this.cambiarCeldaPorRoca(xBase, yBase);
+			             yBase +=25;
+		              }
+		         yBase -=2*25;
+               }
+
+	xBase +=25;
+}	
+	
+	xBase = auxX;
+	yBase = auxY;
+	
+}
+
+
+
+
+
+
+
+
+private void cambiarCeldaPorRoca(int x ,int y)
+{
+	boolean encontre = false;
+try{
+	Position<Celda>p=celdas.first(),u=celdas.last();
+	while(p!=null&&!encontre){
+		
+	  if((p.element().getPos().getX() == x) &&(p.element().getPos().getY() == y) )
+		{   g.remove(p.element().getGrafico());	
+			celdas.remove(p);
+			encontre = true;
+			
+		}
+		
+	  
+	  if(p!=u)p=celdas.next(p);else p=null;
+	}
+	
+	
+	celdas.addLast(new Roca(x,y));
+	g.add(celdas.last().element().getGrafico());
+	
+	
+	
+}catch (InvalidPositionException e){
+	System.out.println(e.getMessage());
+}
+catch (BoundaryViolationException e){
+	System.out.println(e.getMessage());
+}
+catch (EmptyListException e){
+	System.out.println(e.getMessage());
+}	
+
+}
+
+
+
+
 public void eliminarMapa(){
 	try {
 		Position<Celda>p=celdas.first(),u=celdas.last();
-		while(p!=null){
-			if (p.element().si_esta_activo()){			
-				g.remove(p.element().getGrafico());			
+		while(p!=null){ 
+			  	
+				p.element().getGrafico().setVisible(false); 
+				
+				
+			  Position<Celda> aux = null;
+          if(p!=u)		
+			    aux = celdas.next(p); 
+				 
+             celdas.remove(p);
+				
+              
+				
+           p = aux;		
 			}
-			if(p!=u)p=celdas.next(p);else p=null;
-		}	
-	
+			
 	}catch (InvalidPositionException e){
 		System.out.println(e.getMessage());
 	}
@@ -194,6 +305,14 @@ public void eliminarMapa(){
 	}
 	catch (EmptyListException e){
 		System.out.println(e.getMessage());
-	}	
-}
+	}	 
+	
+	
+	
+	
+	
+	
+	
+	
+}	
 }
