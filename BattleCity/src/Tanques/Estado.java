@@ -1,5 +1,7 @@
 package Tanques;
 
+import javax.swing.Icon;
+
 public abstract class Estado {
 	protected int golpes_que_Resiste,velocidad_movimiento,velocidad_disparo,disparos_simultaneos;
 	
@@ -15,4 +17,6 @@ public abstract class Estado {
 	public int getDisparos_simultaneos(){
 		return disparos_simultaneos;
 	}
+	
+	public abstract Icon [] ImagenesNivel();
 }

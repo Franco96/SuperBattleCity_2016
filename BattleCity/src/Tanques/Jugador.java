@@ -1,6 +1,5 @@
 package Tanques;
 
-import javax.swing.ImageIcon;
 import BattleCity.Visitor;
 
 public class Jugador extends Tanque implements Visitor{
@@ -8,22 +7,20 @@ public class Jugador extends Tanque implements Visitor{
 public Jugador(int x, int y) {
 	super(x, y);
 	resetNivel();
-	this.image[0] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueJugadorArriba.gif"));
-	this.image[1] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueJugadorAbajo.gif"));
-	this.image[2] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueJugadorIzquierda.gif"));
-	this.image[3] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueJugadorDerecha.gif"));
-	golpes_actuales=estado.getGolpes_que_resiste();
 }
 	
 public void resetNivel(){
 	estado= new Estado1();
 	nivActual=1;
+	this.image=estado.ImagenesNivel();
+	golpes_actuales=estado.getGolpes_que_resiste();
 }
 	
 public void subirNivel(){
 	if (nivActual!=4){
 		asignarNivel(nivActual+1);
 		golpes_actuales=estado.getGolpes_que_resiste();
+		this.image=estado.ImagenesNivel();
 	}
 }
 	
