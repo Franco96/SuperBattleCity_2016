@@ -22,7 +22,7 @@ public class EnemigoBlindado extends Enemigo{
 		 else{	
 			golpes_actuales--;
 			if (golpes_actuales==0){
-				b.OBTENERJUEGO().OBTENERBATALLON().quitarOponente(this);
+				b.OBTENERJUEGO().OBTENERBATALLON().quitarOponente(this, b.OBTENERJUEGO());
 				b.OBTENERJUEGO().incEnemigosDestruidos();
 			}
 			return true;

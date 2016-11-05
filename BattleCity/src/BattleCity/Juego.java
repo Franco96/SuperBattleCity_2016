@@ -50,20 +50,21 @@ public Juego(Gui gui){
 }
 
 
-
-public void GameOver(){	
-
-try{	
+private void parar(){
 	actualizador.terminar_juego();
 	m.eliminarMapa();	
 	enemigos.eliminarEnemigos(copia);	
 	copia.remove(jugador.getGrafico());	
 	copia.setVisible(false);
-    JOptionPane.showMessageDialog(null, "GAME OVER"); 
-}catch(Exception e)
-{
-	
 }
+public void GameOver(){	
+	parar();
+    JOptionPane.showMessageDialog(null, "GAME OVER"); 
+}
+
+public void win(){
+	parar();
+	JOptionPane.showMessageDialog(null, "Ganaste!!"); 
 }
 //AGREGA OPONENTES AL BATALLON
 //public void agregarOponente(){
@@ -76,9 +77,9 @@ public void agregarOponente(){
 }
 
 //QUITA OPONENTES AL BATALLON
-public void quitarOponente(){
-	enemigos.quitarOponente(copia);
-}
+//public void quitarOponente(){
+//	enemigos.quitarOponente(copia);
+//}
 
 //OBTIENE A TODOS LOS ENEMIGOS DEL BATALLON
 public Batallon OBTENERBATALLON(){

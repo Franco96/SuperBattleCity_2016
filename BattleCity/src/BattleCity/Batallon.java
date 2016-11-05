@@ -19,6 +19,7 @@ public class Batallon {
 	protected Point [] posiciones;
 	//atributo para detener a los enemigos
 	protected boolean estaDetenido;
+	protected int cantEnemigos;
 	
   public Batallon(){
 	  
@@ -27,6 +28,7 @@ public class Batallon {
 	  oponentes = new ListaDoblementeEnlazada<Enemigo>();
 	  cant_enemigos_simultaneos=4;
 	  lugar_de_colocacion=0;
+	  cantEnemigos=2;
 	  
 	  posiciones=new Point[2];
 	  posiciones[0]=new Point(0,0);
@@ -82,7 +84,7 @@ public class Batallon {
 	  return nuevo;
   }
   
-  public void quitarOponente(Gui gui){
+  public void quitarOponente(Gui gui,Juego j){
 		try{
 			if (!oponentes.isEmpty()){
 				Position<Enemigo> p=oponentes.last();
@@ -91,7 +93,11 @@ public class Batallon {
 				gui.revalidate();
 				gui.repaint();
 				oponentes.remove(p);
-			}		
+				cantEnemigos--;
+			}
+			if (cantEnemigos==0){
+				j.win();
+			}
 		}
 		catch (InvalidPositionException e){
 			System.out.println(e.getMessage());
@@ -197,21 +203,24 @@ public class Batallon {
 		return puntaje;
 	}
 	
-  public void quitarOponente(Enemigo ene){
+  public void quitarOponente(Enemigo ene,Juego j){
 		try{
 			boolean encontre = false;
-			
 			if (!oponentes.isEmpty()){
 				Position<Enemigo>p=oponentes.first(),u=oponentes.last();
 				while(p!=null&&!encontre){
 					if(p.element()==ene){
+						cantEnemigos--;
 						encontre = true;
 						puntaje+=p.element().getPuntaje_por_Destruccion();						
 						ene.getGrafico().setVisible(false);
 						oponentes.remove(p);						
 					}					
 					if(p!=u)p=oponentes.next(p);else p=null;				
-				}			
+				}
+				if(cantEnemigos==0){
+					j.win();
+				}
 			}		
 		}
 		catch (InvalidPositionException e){
