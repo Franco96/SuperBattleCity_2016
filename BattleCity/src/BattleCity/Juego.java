@@ -55,11 +55,10 @@ public void GameOver(){
 
 try{	
 	actualizador.terminar_juego();
-	
 	m.eliminarMapa();	
 	enemigos.eliminarEnemigos(copia);	
 	copia.remove(jugador.getGrafico());	
-    copia.getContentPane().setBackground(Color.WHITE);  
+	copia.setVisible(false);
     JOptionPane.showMessageDialog(null, "GAME OVER"); 
 }catch(Exception e)
 {

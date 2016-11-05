@@ -1,19 +1,42 @@
 package Tanques;
 
+import com.sun.javafx.scene.paint.GradientUtils.Point;
+
 import BattleCity.Visitor;
 
 public class Jugador extends Tanque implements Visitor{
 
-boolean estaInmortal;
-int auxGolpes_Actuales;
+protected boolean estaInmortal;
+protected int auxGolpes_Actuales;
+protected int vida;
 
 public Jugador(int x, int y) {
 	super(x, y);
 	resetNivel();
 	estaInmortal = false;
 	auxGolpes_Actuales = 0;
+	vida=3;	
 }
-	
+
+//Metodo que quita 1 vida, retorna si sigue con vida(FALSE-vivo,TRUE-muerto)
+public boolean quitarVida(){
+	System.out.println("Entro");
+	vida--;
+	this.resetNivel();
+	this.resetPosicion();
+	return vida==0;
+}
+
+public void resetPosicion(){
+	grafico.setLocation(400, 400);
+	pos.setLocation(400, 400);
+}
+
+//Metodo suma 1 vida al jugador
+public void agregarVida(){
+	vida++;
+}
+
 public void resetNivel(){
 	estado= new Estado1();
 	nivActual=1;
@@ -62,7 +85,9 @@ public boolean visitarConBala(Bala b) {
 		 else{	
 			golpes_actuales--;
 			if (golpes_actuales==0){
-				b.OBTENERJUEGO().GameOver();
+				if (this.quitarVida()){
+					b.OBTENERJUEGO().GameOver();
+				}
 			}
 			return true;
 		 }
