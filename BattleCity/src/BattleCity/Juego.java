@@ -2,6 +2,10 @@ package BattleCity;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import GUI.Gui;
 import PowerUps.LosPowerUps;
@@ -54,11 +58,14 @@ private void parar(){
 	m.eliminarMapa();	
 	enemigos.eliminarEnemigos(copia);	
 	copia.remove(jugador.getGrafico());	
-	copia.setVisible(false);
 }
 public void GameOver(){	
 	parar();
-    JOptionPane.showMessageDialog(null, "GAME OVER"); 
+	Icon img = new ImageIcon(this.getClass().getResource("/Imagenes/game_over.gif"));
+	JLabel comp=new JLabel();
+	comp.setIcon(img);
+	comp.setSize(800,600);
+	copia.add(comp);
 }
 
 public void win(){

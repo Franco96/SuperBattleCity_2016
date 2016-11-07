@@ -22,7 +22,6 @@ public Jugador(int x, int y) {
 	estaInmortal = false;
 	auxGolpes_Actuales = 0;
 	vida=3;	
-	
 	imagenInmortal = new ImageIcon(this.getClass().getResource("/Imagenes/SuperInmortal.gif"));
 }
 
