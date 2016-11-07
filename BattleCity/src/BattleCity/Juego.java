@@ -43,6 +43,7 @@ public Juego(Gui gui){
 	Thread j2=new Thread(actualizador_oponentes);
 	j2.start();
 	
+<<<<<<< HEAD
 //	Icon imagen = new ImageIcon(this.getClass().getResource("/Imagenes/SuperInmortal.gif"));
 //	
 //   JLabel eti = new JLabel(imagen);
@@ -50,6 +51,12 @@ public Juego(Gui gui){
 //	eti.setBounds(500, 100, imagen.getIconWidth(), imagen.getIconHeight());	
 	
 	gui.add(jugador.getLabelInmortal(),0);	
+=======
+	gui.add(jugador.getLabelInmortal(),0);
+	
+	
+	
+>>>>>>> origin/master
 }
 
 
@@ -178,8 +185,15 @@ public LosPowerUps ObtenerPower(){
 	return power;
 }
 
+<<<<<<< HEAD
 public void incEnemigosDestruidos(){
 	if(this.enemigosDestruidos<1)
+=======
+
+public void incEnemigosDestruidos()
+{
+	if(this.enemigosDestruidos<3)
+>>>>>>> origin/master
 	 this.enemigosDestruidos++;
 	else{
 		enemigosDestruidos = 0;
