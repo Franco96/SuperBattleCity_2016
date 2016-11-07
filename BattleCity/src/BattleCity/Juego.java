@@ -47,12 +47,6 @@ public Juego(Gui gui){
 	Thread j2=new Thread(actualizador_oponentes);
 	j2.start();
 	
-//	Icon imagen = new ImageIcon(this.getClass().getResource("/Imagenes/SuperInmortal.gif"));
-//	
-//   JLabel eti = new JLabel(imagen);
-//   
-//	eti.setBounds(500, 100, imagen.getIconWidth(), imagen.getIconHeight());	
-	
 	gui.add(jugador.getLabelInmortal(),0);
 	
 	
@@ -199,7 +193,7 @@ public LosPowerUps ObtenerPower()
 
 public void incEnemigosDestruidos()
 {
-	if(this.enemigosDestruidos<1)
+	if(this.enemigosDestruidos<3)
 	 this.enemigosDestruidos++;
 	else
 	{
