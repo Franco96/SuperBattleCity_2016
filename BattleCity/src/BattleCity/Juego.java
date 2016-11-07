@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
 import GUI.Gui;
 import PowerUps.LosPowerUps;
 import Tanques.Jugador;
@@ -21,7 +22,7 @@ public class Juego  {
 	private LosPowerUps power;
 	private int enemigosDestruidos;
 	protected boolean si_termino;
-	
+	protected Barra_Inferior barra;
     //CONSTRUCTOR
 public Juego(Gui gui){
 	enemigosDestruidos = 0;
@@ -38,12 +39,13 @@ public Juego(Gui gui){
 	j1.start();
 	si_termino=false;
 	
+	barra=new Barra_Inferior(copia);
+	
 	//Actualizador para controlar el ingreso de los enemigos al juego
 	ActualizadorDeApariciones actualizador_oponentes= new ActualizadorDeApariciones(this);
 	Thread j2=new Thread(actualizador_oponentes);
 	j2.start();
 	
-
 //	Icon imagen = new ImageIcon(this.getClass().getResource("/Imagenes/SuperInmortal.gif"));
 //	
 //   JLabel eti = new JLabel(imagen);
@@ -57,6 +59,10 @@ public Juego(Gui gui){
 	
 	
 
+}
+
+public Barra_Inferior pedido_barra(){
+	return barra;
 }
 
 public boolean si_termino_el_juego(){

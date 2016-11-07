@@ -36,14 +36,14 @@ public class Gui extends JFrame{
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		setSize(800,600);
+		setSize(800,729);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);	 
+		contentPane.setLayout(null);
 	    j = new Juego(this);		   
 		game_over = new JLabel("GAMEOVER");		  	   
 	}
