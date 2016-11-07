@@ -49,4 +49,8 @@ public class Barra_Inferior {
 			
 		}
 	}
+	
+	public boolean si_gano(){
+		return por_derrotar.isEmpty();
+	}
 }

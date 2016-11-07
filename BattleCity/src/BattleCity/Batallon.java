@@ -28,7 +28,7 @@ public class Batallon {
 	  oponentes = new ListaDoblementeEnlazada<Enemigo>();
 	  cant_enemigos_simultaneos=4;
 	  lugar_de_colocacion=0;
-	  cantEnemigos=16;
+	  cantEnemigos=10;
 	  
 	  posiciones=new Point[2];
 	  posiciones[0]=new Point(0,0);

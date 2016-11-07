@@ -38,9 +38,7 @@ public Juego(Gui gui){
 	Thread j1=new Thread(actualizador);
 	j1.start();
 	si_termino=false;
-	
 	barra=new Barra_Inferior(copia);
-	
 	//Actualizador para controlar el ingreso de los enemigos al juego
 	ActualizadorDeApariciones actualizador_oponentes= new ActualizadorDeApariciones(this);
 	Thread j2=new Thread(actualizador_oponentes);
@@ -76,6 +74,7 @@ private void parar(){
 	enemigos.eliminarEnemigos(copia);	
 	copia.remove(jugador.getGrafico());	
 	si_termino=true;
+	copia.setSize(800, 600);
 }
 public void GameOver(){
 	parar();
@@ -200,10 +199,8 @@ public LosPowerUps ObtenerPower(){
 	return power;
 }
 
-public void incEnemigosDestruidos()
-{
+public void incEnemigosDestruidos(){
 	if(this.enemigosDestruidos<3)
-
 	 this.enemigosDestruidos++;
 	else{
 		enemigosDestruidos = 0;
