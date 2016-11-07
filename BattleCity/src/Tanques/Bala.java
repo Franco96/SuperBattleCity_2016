@@ -49,7 +49,8 @@ public class Bala extends GameObject implements Runnable,Element{
 	}
 	
 	public void mover(int dir){	
-		switch (dir) {
+		if (!j.si_termino_el_juego()){
+			switch (dir) {
 			case 0 : //Arriba
 				rectangulo=new Rectangle(pos.x, pos.y - velocidad, width, height);
 				if(pos.y>=velocidad &&!j.COLLIDER(rectangulo, this)){
@@ -88,6 +89,10 @@ public class Bala extends GameObject implements Runnable,Element{
 				break;
 		}
 		if (esVisible){setGrafico(dir);}
+		}
+		else{
+			volver_invisible();
+		}
 	}
 	
 	public boolean si_esVisible(){

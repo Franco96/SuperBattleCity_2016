@@ -2,11 +2,9 @@ package BattleCity;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import GUI.Gui;
 import PowerUps.LosPowerUps;
 import Tanques.Jugador;
@@ -22,6 +20,7 @@ public class Juego  {
 	Gui copia;
 	private LosPowerUps power;
 	private int enemigosDestruidos;
+	protected boolean si_termino;
 	
     //CONSTRUCTOR
 public Juego(Gui gui){
@@ -37,6 +36,7 @@ public Juego(Gui gui){
 	gui.add(jugador.getGrafico());
 	Thread j1=new Thread(actualizador);
 	j1.start();
+	si_termino=false;
 	
 	//Actualizador para controlar el ingreso de los enemigos al juego
 	ActualizadorDeApariciones actualizador_oponentes= new ActualizadorDeApariciones(this);
@@ -59,14 +59,19 @@ public Juego(Gui gui){
 
 }
 
+public boolean si_termino_el_juego(){
+	return si_termino;
+}
+
 
 private void parar(){
 	actualizador.terminar_juego();
 	m.eliminarMapa();	
 	enemigos.eliminarEnemigos(copia);	
 	copia.remove(jugador.getGrafico());	
+	si_termino=true;
 }
-public void GameOver(){	
+public void GameOver(){
 	parar();
 	Icon img = new ImageIcon(this.getClass().getResource("/Imagenes/game_over.gif"));
 	JLabel comp=new JLabel();
@@ -76,8 +81,12 @@ public void GameOver(){
 }
 
 public void win(){
-	parar();
-	JOptionPane.showMessageDialog(null, "Ganaste!!"); 
+	parar();	
+	Icon img = new ImageIcon(this.getClass().getResource("/Imagenes/win.gif"));
+	JLabel comp=new JLabel();
+	comp.setIcon(img);
+	comp.setSize(800,600);
+	copia.add(comp); 
 }
 
 //Nuevo agregar oponente 
