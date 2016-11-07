@@ -2,15 +2,10 @@ package PowerUps;
 
 import java.awt.Rectangle;
 import java.util.Random;
-
 import BattleCity.DetenerTiempo;
 import BattleCity.Element;
 import BattleCity.Juego;
 import GUI.Gui;
-import Tanques.EnemigoBasico;
-import Tanques.EnemigoBlindado;
-import Tanques.EnemigoDePoder;
-import Tanques.EnemigoRapido;
 
 public class LosPowerUps {
 

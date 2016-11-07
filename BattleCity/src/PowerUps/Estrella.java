@@ -1,8 +1,6 @@
 package PowerUps;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import BattleCity.Juego;
 import Tanques.Bala;
 import Tanques.Enemigo;

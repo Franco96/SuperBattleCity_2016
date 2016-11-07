@@ -1,16 +1,10 @@
 package BattleCity;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import GUI.Gui;
 import PowerUps.LosPowerUps;
-import PowerUps.Pala;
 import Tanques.Jugador;
 
 public class Juego  {
@@ -22,9 +16,7 @@ public class Juego  {
 	protected Actualizador actualizador;
 	int anteriorMovido;    
 	Gui copia;
-	
 	private LosPowerUps power;
-	
 	private int enemigosDestruidos;
 	
     //CONSTRUCTOR
@@ -53,10 +45,7 @@ public Juego(Gui gui){
 //   
 //	eti.setBounds(500, 100, imagen.getIconWidth(), imagen.getIconHeight());	
 	
-	gui.add(jugador.getLabelInmortal(),0);
-	
-	
-	
+	gui.add(jugador.getLabelInmortal(),0);	
 }
 
 
@@ -76,26 +65,16 @@ public void win(){
 	parar();
 	JOptionPane.showMessageDialog(null, "Ganaste!!"); 
 }
-//AGREGA OPONENTES AL BATALLON
-//public void agregarOponente(){
-//	enemigos.agregarOponente(copia);
-//}
 
 //Nuevo agregar oponente 
 public void agregarOponente(){
 	enemigos.agregar_oponente(copia, m);
 }
 
-//QUITA OPONENTES AL BATALLON
-//public void quitarOponente(){
-//	enemigos.quitarOponente(copia);
-//}
-
 //OBTIENE A TODOS LOS ENEMIGOS DEL BATALLON
 public Batallon OBTENERBATALLON(){
 	return enemigos;
 }
-
 
 //MOVER DEL JUGADOR
 public void mover(int dir){			
@@ -183,38 +162,27 @@ public boolean COLLIDER(Rectangle recElemento,Element elemento){
 	return colisiono;	
 }
 
-
 //METODO PARA OBTENER LA GUI
-
-public Gui OBTENERGUI()
-{
+public Gui OBTENERGUI(){
 	return copia;
 }
 
-public LosPowerUps ObtenerPower()
-{
+public LosPowerUps ObtenerPower(){
 	return power;
 }
 
-
-public void incEnemigosDestruidos()
-{
+public void incEnemigosDestruidos(){
 	if(this.enemigosDestruidos<1)
 	 this.enemigosDestruidos++;
-	else
-	{
+	else{
 		enemigosDestruidos = 0;
-		power.agregarAGui(copia);
-		
+		power.agregarAGui(copia);		
 	}
 }
 
-
-public void cambiarBaseARoca()
-{
+public void cambiarBaseARoca(){
 	m.CambiarBase();
 }
-
 
 //Aca se colocan los elementos a actualizar del juego
 public void update(){
@@ -223,11 +191,7 @@ public void update(){
 	jugador.update_bala();
 }
 
-
-public Jugador getJugador()
-{
+public Jugador getJugador(){
 	return jugador;
 }
-
-
 }

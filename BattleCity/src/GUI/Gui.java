@@ -11,29 +11,22 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class Gui extends JFrame{
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;	
-	private Juego j;
-		protected JLabel game_over;	 
-	/**
-	 * Launch the application.
-	 */
+	protected static final long serialVersionUID = 1L;
+	protected JPanel contentPane;	
+	protected Juego j;
+	protected JLabel game_over;	 
+	
 	public static void main(String[] args) {		
 		Gui frame = new Gui();
 		frame.setTitle("Battle_City");
 		frame.setVisible(true);
 	}
-	/**
-	 * Create the frame.
-	 * @throws InterruptedException 
-	 */
+	
 	public Gui()  {
 		addKeyListener(new KeyAdapter() {
 			@Override			
 			public void keyPressed(KeyEvent e){
 				mover(e);
-//				agregar(e);
-//				quitar(e);
 				mostrarPuntaje(e);
 				retirarPared(e);
 				estados_jug(e);
@@ -62,15 +55,6 @@ public class Gui extends JFrame{
 			this.repaint();
 		}
 	}
-	
-//	@SuppressWarnings("static-access")
-	// "W" quita enemigos de pantalla
-//	protected void quitar(KeyEvent key){
-//		if (key.VK_W==key.getKeyCode()){
-//			j.quitarOponente();;
-//			this.repaint();
-//		}		
-//	}
 	
 	@SuppressWarnings("static-access")
 	// "E" quita enemigos de pantalla

@@ -1,17 +1,14 @@
 package BattleCity;
 
 import Celdas.*;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
-
 import Celdas.Ladrillo;
 import Celdas.Roca;
 import GUI.Gui;
 import TDALista.*;
-import Tanques.Enemigo;
 import Exception.*;
 import java.awt.Rectangle;
 

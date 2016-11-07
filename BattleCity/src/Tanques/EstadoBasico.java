@@ -1,7 +1,6 @@
 package Tanques;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 public class EstadoBasico extends Estado{
 	public EstadoBasico(){
