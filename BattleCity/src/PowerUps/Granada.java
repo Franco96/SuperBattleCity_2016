@@ -11,7 +11,7 @@ public class Granada extends PowerUp{
 
 	protected Granada(int x, int y, Juego miJuego) {
 		super(x, y, miJuego);
-		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/PowerGranada.png"));
+		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/PowerGranada.gif"));
 	
 	}
 
@@ -29,7 +29,7 @@ public class Granada extends PowerUp{
 
 	@Override
 	public boolean visitarConTanqueJugador(Jugador j) {
-		
+		this.sonido("SonidoPowerAp");
 		miJuego.OBTENERBATALLON().eliminarEnemigos(miJuego.OBTENERGUI());
 		 this.desactivarPower();
 		return false;

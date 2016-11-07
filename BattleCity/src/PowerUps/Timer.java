@@ -15,7 +15,7 @@ public class Timer extends PowerUp {
 	protected Timer(int x, int y, Juego miJuego) {
 		super(x, y, miJuego);
 		
-		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/PowerTime.png"));	
+		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/PowerTime.gif"));	
 		
 		
 		
@@ -36,7 +36,7 @@ public class Timer extends PowerUp {
 	@Override
 	public boolean visitarConTanqueJugador(Jugador j) {
 		
-		
+		this.sonido("SonidoPowerAp");
 		miJuego.OBTENERBATALLON().setEstaDetenido(true);
 		
 		DetenerTiempo det = new DetenerTiempo(miJuego);

@@ -13,7 +13,7 @@ public class VidaExtra extends PowerUp{
 	
 	protected VidaExtra(int x, int y, Juego miJuego) {
 		super(x, y, miJuego);
-		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/PowerVidaExtra.png"));
+		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/PowerVidaExtra.gif"));
 	
 	}
 
@@ -31,8 +31,8 @@ public class VidaExtra extends PowerUp{
 
 	@Override
 	public boolean visitarConTanqueJugador(Jugador j) {
-
-	    j.incVida();
+		this.sonido("SonidoPowerAp");
+	    j.agregarVida();
 		this.desactivarPower();
 		return false;
 	}

@@ -13,7 +13,7 @@ public class Estrella extends PowerUp {
 	protected Estrella(int x, int y,Juego miJuego) {
 		super(x, y,miJuego);
 		
-		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/PowerEstrella.png"));
+		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/PowerEstrella.gif"));
 	
 	}
 
@@ -31,7 +31,7 @@ public class Estrella extends PowerUp {
 
 	@Override
 	public boolean visitarConTanqueJugador(Jugador j) {
-	
+		this.sonido("SonidoPowerAp");
 		j.subirNivel();
         this.desactivarPower();
 		return false;

@@ -41,7 +41,7 @@ public abstract class PowerUp extends GameObject implements Visitor{
  {
 		estaActivo = false;
 		this.getGrafico().setVisible(false);
-		this.sonido("SonidoPowerAp");
+	
  }
  
  public boolean getEstaActivo()

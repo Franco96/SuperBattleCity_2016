@@ -96,7 +96,8 @@ public void agregarAGui(Gui gui)
          	break;
 	  }
 	
-	  
+	
+	   
 	    power.activarPower();
         gui.add(power.getGrafico(),0);
     DetenerTiempo det = new DetenerTiempo(miJuego);

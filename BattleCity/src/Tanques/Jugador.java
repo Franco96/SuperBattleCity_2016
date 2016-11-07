@@ -1,6 +1,10 @@
 package Tanques;
 
-import com.sun.javafx.scene.paint.GradientUtils.Point;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+//import com.sun.javafx.scene.paint.GradientUtils.Point;
 
 import BattleCity.Visitor;
 
@@ -9,6 +13,8 @@ public class Jugador extends Tanque implements Visitor{
 protected boolean estaInmortal;
 protected int auxGolpes_Actuales;
 protected int vida;
+protected Icon imagenInmortal;
+JLabel etiInmortal;
 
 public Jugador(int x, int y) {
 	super(x, y);
@@ -16,6 +22,8 @@ public Jugador(int x, int y) {
 	estaInmortal = false;
 	auxGolpes_Actuales = 0;
 	vida=3;	
+	
+	imagenInmortal = new ImageIcon(this.getClass().getResource("/Imagenes/SuperInmortal.gif"));
 }
 
 //Metodo que quita 1 vida, retorna si sigue con vida(FALSE-vivo,TRUE-muerto)
@@ -105,20 +113,19 @@ public boolean visitarConTanqueJugador(Jugador j) {
 	return false;
 }
 
-public void incVida()
-{
-	this.golpes_actuales ++;
-}
 
 public void volverInmortal()
 {
 	auxGolpes_Actuales = this.golpes_actuales;
 	
 	golpes_actuales +=1000;
+	
+	
 }
 
 public void volverNormal()
 {
+	etiInmortal.setVisible(false);
 	this.golpes_actuales = auxGolpes_Actuales;
 }
 
@@ -131,6 +138,33 @@ public boolean getEstaInmortal()
 {
 	return estaInmortal;
 }
+
+public JLabel getLabelInmortal()
+{
+	if(etiInmortal == null)
+		etiInmortal = new JLabel(this.imagenInmortal);
+
+	etiInmortal.setBounds((int)this.getPos().getX()-16,(int) this.getPos().getY()-20, this.imagenInmortal.getIconWidth(),this.imagenInmortal.getIconHeight());
+	
+	return this.etiInmortal;
+}
+
+
+protected void setGrafico(int dir){
+	if(this.grafico != null){
+		this.grafico.setIcon(this.image[dir]);
+		this.grafico.setBounds(this.pos.x, this.pos.y, width, height);
+		
+	if(this.getEstaInmortal())	
+		{this.getLabelInmortal();
+		etiInmortal.setVisible(true);
+		}
+	else
+		etiInmortal.setVisible(false);
+	
+	}
+}
+
 
 
 }

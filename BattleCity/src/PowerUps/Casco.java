@@ -12,7 +12,7 @@ public class Casco extends PowerUp{
 
 	protected Casco(int x, int y, Juego miJuego) {
 		super(x, y, miJuego);
-		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/PowerCasco.png"));
+		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/PowerCasco.gif"));
 	
 	}
 
@@ -30,7 +30,7 @@ public class Casco extends PowerUp{
 
 	@Override
 	public boolean visitarConTanqueJugador(Jugador j) {
-		
+		this.sonido("SonidoPowerAp");
 		j.volverInmortal();
 	    j.setEstaInmortal(true);
 		DetenerTiempo det = new DetenerTiempo(miJuego);
