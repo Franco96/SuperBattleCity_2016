@@ -20,6 +20,7 @@ public class EnemigoDePoder extends Enemigo{
 		 else{			 
 			b.OBTENERJUEGO().OBTENERBATALLON().quitarOponente(this, b.OBTENERJUEGO());
 			b.OBTENERJUEGO().incEnemigosDestruidos();
+			b.OBTENERJUEGO().pedido_barra().quitarEnemigo();
 			return true;	        
 			} 
 	}
