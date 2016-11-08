@@ -13,8 +13,12 @@ import TDALista.PositionList;
 public class Barra_Inferior {
 	protected Icon imagen;
 	protected PositionList<JLabel> por_derrotar;
+	protected Icon numeros[];
+	protected JLabel digito1;
+	protected JLabel digito2;
 	
 	public Barra_Inferior(Gui gui){
+		inicializar_numeros();
 		por_derrotar = new ListaDoblementeEnlazada<JLabel>();
 		imagen=new ImageIcon(this.getClass().getResource("/Imagenes/nave_menu.jpg"));
 		JLabel barra=new JLabel(new ImageIcon(this.getClass().getResource("/Imagenes/barra.jpg")));
@@ -33,6 +37,13 @@ public class Barra_Inferior {
 		    }
 			i++;
 		}
+		agregarVisorVida(gui);
+		digito1=new JLabel(numeros[0]);
+		digito2=new JLabel(numeros[3]);
+		gui.add(digito1,1);
+		digito1.setBounds(675, 650, 25, 25);
+		gui.add(digito2,1);
+		digito2.setBounds(700, 650, 25, 25);
 	}
 	
 	public void quitarEnemigo(){
@@ -43,14 +54,31 @@ public class Barra_Inferior {
 			}
 		}
 		catch(EmptyListException e){
-			
+			//Nada
 		}
 		catch(InvalidPositionException e){
-			
+			//Nada
 		}
 	}
 	
-	public boolean si_gano(){
-		return por_derrotar.isEmpty();
+	private void inicializar_numeros(){
+		numeros =new ImageIcon[10];
+		for (int i=0;i<10;i++){
+			numeros[i]=new ImageIcon(this.getClass().getResource("/Imagenes/"+i+".jpg"));
+		}
+	}
+	
+	private void agregarVisorVida(Gui g){
+		JLabel aux=new JLabel(new ImageIcon(this.getClass().getResource("/Imagenes/I.jpg")));
+		g.add(aux,1);
+		aux.setBounds(650, 625, 25, 25);
+		
+		aux=new JLabel(new ImageIcon(this.getClass().getResource("/Imagenes/P.jpg")));
+		g.add(aux,1);
+		aux.setBounds(675, 625, 25, 25);
+		
+		aux=new JLabel(new ImageIcon(this.getClass().getResource("/Imagenes/nave_vida.jpg")));
+		g.add(aux,1);
+		aux.setBounds(650, 650, 25, 25);
 	}
 }
