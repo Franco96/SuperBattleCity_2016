@@ -63,7 +63,7 @@ public class Batallon {
 		}
   }
   
-  public Enemigo generarEnemigoRandom(){
+  private Enemigo generarEnemigoRandom(){
 	  Enemigo nuevo=null;
 	  Random r = new Random();
 	  int eleccion = r.nextInt(4);

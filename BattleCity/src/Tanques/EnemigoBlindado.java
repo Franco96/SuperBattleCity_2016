@@ -13,6 +13,7 @@ public class EnemigoBlindado extends Enemigo{
 		puntos=400;
 		golpes_actuales=estado.getGolpes_que_resiste();
 		golpes_actuales=4;
+		this.nivActual = 4;
 	}
 	
 	@Override

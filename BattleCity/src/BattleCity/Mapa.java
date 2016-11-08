@@ -188,7 +188,7 @@ public boolean si_colisiona(Rectangle se_recibe,Element elemento){
 }
 
 
-
+//METODO UTILIZADO POR EL POWER PALA,QUE REFUERZA LA BASE CON ROCAS
 public void CambiarBase()
 {
  //GUARDAMOS LAS VARIABLES POR SI SE TIENE QUE CAMBIAR NUEVAMENTE LA BASE	

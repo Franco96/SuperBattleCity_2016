@@ -118,7 +118,7 @@ switch (dir) {
 		else colisiona = true;
 		break;
 	case 1 : //Abajo
-		if(pos.y<=(579-(getVelocidad()+height)))pos.setLocation(pos.x, pos.y + 1);
+		if(pos.y<=549)pos.setLocation(pos.x, pos.y + 1);
 		else colisiona = true;
 		break;
 	case 2 : //Izquierda
@@ -126,7 +126,7 @@ switch (dir) {
 		else colisiona = true;
 		break;	
     case 3 : //Derecha
-		if(pos.x<=(800-(getVelocidad()+width)))pos.setLocation(pos.x + 1, pos.y);
+		if(pos.x<=749)pos.setLocation(pos.x + 1, pos.y);
 		else colisiona = true;
 		break;
              }
