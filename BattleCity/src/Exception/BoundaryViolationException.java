@@ -3,6 +3,7 @@ package Exception;
  * Excepcion lanzada cuando una extructura se cae del limite.
  * 
  */
+@SuppressWarnings("serial")
 public class BoundaryViolationException extends Exception{
 	
 	/**

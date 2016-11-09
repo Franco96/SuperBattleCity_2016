@@ -1,8 +1,5 @@
 package PowerUps;
 
-import javax.swing.Icon;
-import javax.swing.JLabel;
-
 import BattleCity.GameObject;
 import BattleCity.Juego;
 import BattleCity.Visitor;
@@ -22,28 +19,20 @@ public abstract class PowerUp extends GameObject implements Visitor{
 		 this.height = 50;
 		 estaActivo = false;
 	}
-	
-
-	
-
  
- public boolean getEstaActivo()
- {
+ public boolean getEstaActivo(){
 	 return this.estaActivo;
  }
  
- public void desactivarPower()
- {
+ public void desactivarPower(){
 		estaActivo = false;
 		this.getGrafico().setVisible(false);
- }
+}
  
- public void activarPower()
- {
+ public void activarPower(){
 	 this.estaActivo = true;
 	 this.getGrafico().setVisible(true);
-	 this.sonido("SonidoAparecePower");
- }
+	 this.sonido("SonidoAparecePower"); }
  
  
 	@Override

@@ -1,11 +1,8 @@
 package PowerUps;
 
 import javax.swing.ImageIcon;
-
 import BattleCity.DetenerTiempo;
 import BattleCity.Juego;
-import Tanques.Bala;
-import Tanques.Enemigo;
 import Tanques.Jugador;
 
 public class Casco extends PowerUp{

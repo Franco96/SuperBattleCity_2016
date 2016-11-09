@@ -46,7 +46,7 @@ public Juego(Gui gui){
 	Thread j2=new Thread(actualizador_oponentes);
 	j2.start();
 	
-
+	
 
 }
 
@@ -172,6 +172,15 @@ public void generar_disparo_jugador(){
 
 public Jugador getJugador(){
 	return jugador;
+}
+
+/**
+ * Este metodo actualiza la parte grafica de la vida
+ * @param num_entrada Numero para actualizacion  
+ * @return Nada
+ */
+public void ActualizarVida(int valor){
+   barra.actualizarVidas(valor);
 }
 
 //--------------------------------------------------------------------//

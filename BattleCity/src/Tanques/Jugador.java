@@ -153,6 +153,7 @@ public boolean visitarConBala(Bala b) {
 				if (this.quitarVida()){
 					b.OBTENERJUEGO().GameOver();
 				}
+				b.OBTENERJUEGO().ActualizarVida(this.vida);
 			}
 			return true;
 		 }
@@ -163,14 +164,6 @@ public boolean visitarConTanqueEnemigo(Enemigo j) {	return true;}
 
 @Override
 public boolean visitarConTanqueJugador(Jugador j) {return false;}
-
-
-
-
-
-
-
-
 
 }
 

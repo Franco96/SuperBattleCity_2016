@@ -38,14 +38,20 @@ public class Barra_Inferior {
 			i++;
 		}
 		agregarVisorVida(gui);
-		digito1=new JLabel(numeros[0]);
-		digito2=new JLabel(numeros[3]);
+		digito1=new JLabel();
+		digito2=new JLabel();
 		gui.add(digito1,1);
 		digito1.setBounds(675, 650, 25, 25);
 		gui.add(digito2,1);
 		digito2.setBounds(700, 650, 25, 25);
+		actualizarVidas(3);
 	}
 	
+	/**
+	   * Este metodo elimina un tanque del hub de muestra
+	   * @param Nada
+	   * @return Nada
+	   */
 	public void quitarEnemigo(){
 		try{
 			if (!por_derrotar.isEmpty()){
@@ -61,6 +67,11 @@ public class Barra_Inferior {
 		}
 	}
 	
+	/**
+	   * Este metodo carga las imagenes de los digitos del arreglo numeros[]
+	   * @param Nada  
+	   * @return Nada
+	   */
 	private void inicializar_numeros(){
 		numeros =new ImageIcon[10];
 		for (int i=0;i<10;i++){
@@ -68,6 +79,24 @@ public class Barra_Inferior {
 		}
 	}
 	
+	/**
+	   * Este metodo actualiza las vidas de que se muestran en la barra de estado
+	   * @param num_entrada Numero para actualizacion  
+	   * @return Nada
+	   */
+	public void actualizarVidas(int num_entrada){
+		int dig_aux=0;
+		dig_aux=num_entrada%10;
+		digito2.setIcon(numeros[dig_aux]);
+		dig_aux=num_entrada/10;
+		digito1.setIcon(numeros[dig_aux]);
+	}
+	
+	/**
+	   * Este metodo genera en pantalla el hub que rodea los digitos de la vida
+	   * @param g Es el jframe sobre el cual hay que dibujar el hub  
+	   * @return Nada
+	   */
 	private void agregarVisorVida(Gui g){
 		JLabel aux=new JLabel(new ImageIcon(this.getClass().getResource("/Imagenes/I.jpg")));
 		g.add(aux,1);
