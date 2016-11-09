@@ -45,11 +45,8 @@ public Juego(Gui gui){
 	ActualizadorDeApariciones actualizador_oponentes= new ActualizadorDeApariciones(this);
 	Thread j2=new Thread(actualizador_oponentes);
 	j2.start();
-	
-	
 
 }
-
 
 //-------------METODOS----------------------------//
 

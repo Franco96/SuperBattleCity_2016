@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.Color;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,7 +16,7 @@ public class Gui extends JFrame{
 	protected static final long serialVersionUID = 1L;
 	protected JPanel contentPane;	
 	protected Juego j;
-	protected JLabel game_over;	 
+	protected JLabel game_over;
 	
 	public static void main(String[] args) {		
 		Gui frame = new Gui();
@@ -45,7 +47,22 @@ public class Gui extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	    j = new Juego(this);		   
-		game_over = new JLabel("GAMEOVER");		  	   
+		game_over = new JLabel("GAMEOVER");
+		VentanaControles();
+	}
+	
+	public void VentanaControles(){
+		Icon imagen=new ImageIcon(this.getClass().getResource("/Imagenes/Controles.gif"));
+		JLabel panel=new JLabel(imagen);
+		JFrame ventana_ayuda= new JFrame();
+		ventana_ayuda.add(panel);
+		panel.setBounds(0,0,608,278);
+		ventana_ayuda.setBounds(100, 100, 450, 300);
+		ventana_ayuda.setSize(608,278);
+		ventana_ayuda.setLocationRelativeTo(null);
+		ventana_ayuda.setResizable(false);
+		ventana_ayuda.setTitle("Controles");
+		ventana_ayuda.setVisible(true);
 	}
 	
 	@SuppressWarnings("static-access")
