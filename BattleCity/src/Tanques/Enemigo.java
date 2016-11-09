@@ -14,8 +14,7 @@ public  abstract class Enemigo extends Tanque {
 		super(x, y);
 		generador_de_direcciones = new Random();
 		direccion_de_movimiento = generador_de_direcciones.nextInt(4);		
-	}
-	
+	}	
 	
 	public int getPuntaje_por_Destruccion(){
 		return puntos;		
@@ -26,15 +25,10 @@ public  abstract class Enemigo extends Tanque {
 	  boolean colisiona = super.movimiento(direccion_de_movimiento, h);
 		
 		if(colisiona)
-			generar_direccion_nueva();
-		
+			generar_direccion_nueva();		
 
 		return colisiona;
-	}
-	
-	
-	
-	
+	}	
 
 //Genera una nueva direccion para la inteligencia del mover	
 	private void generar_direccion_nueva(){
@@ -44,9 +38,6 @@ public  abstract class Enemigo extends Tanque {
 		}
 		direccion_de_movimiento=r;
 	}	
-	
-	
-	
 	
 	public boolean aceptar(Visitor v){
 		return v.visitarConTanqueEnemigo(this);
@@ -72,5 +63,4 @@ public  abstract class Enemigo extends Tanque {
 			return true;
 		 }
 	}
-
 }

@@ -30,9 +30,7 @@ protected Tanque(int x, int y) {
     this.image = new Icon[8];  
     this.width = 50;
     this.height = 50;
-    balas_disparadas= new ListaDoblementeEnlazada<Bala>();	 
-  
-
+    balas_disparadas= new ListaDoblementeEnlazada<Bala>();	
 }
 	
    //METODOS
@@ -87,9 +85,7 @@ public void update_bala(){
 	catch (EmptyListException e){
 		System.out.println(e.getMessage());
 	}
-}
-	
-	
+}	
 	
 protected void setGrafico(int dir){
 	if(this.grafico != null){
@@ -97,9 +93,6 @@ protected void setGrafico(int dir){
 		this.grafico.setBounds(this.pos.x, this.pos.y, width, height);
 	}
 }
-	
-
-
 
 private boolean mover(int dir){
 
@@ -124,13 +117,8 @@ switch (dir) {
 		break;
              }
 
-
-return colisiona;
- 
+return colisiona; 
 }
-
-
-
 
 public boolean movimiento(int dir,Juego h){
 	ultima_direccion=dir;
@@ -160,21 +148,7 @@ public boolean movimiento(int dir,Juego h){
 		}
 		indice++;
 	}
-	 setGrafico(dir);
-	 
-	return colisiono;
-	
+	 setGrafico(dir);	 
+	return colisiono;	
 }
-
-
-
-
-
-
-
-
-
 }
-
-
-

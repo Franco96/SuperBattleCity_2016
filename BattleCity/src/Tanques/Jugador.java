@@ -77,44 +77,28 @@ private void asignarNivel(int n){
 	}
 }
 
-	
-
-
-
-
 public void volverInmortal()
 {
 //Guardamos los golpes que resiste el jugador antes de que se vuelva inmortal para luego recuperarlos 
 	auxGolpes_Actuales = this.golpes_actuales;
-	golpes_actuales +=1000;
-	
-	
+	golpes_actuales +=1000;	
 }
 
-
-
-public void volverNormal()
-{
+public void volverNormal(){
 	etiInmortal.setVisible(false);
 	this.golpes_actuales = auxGolpes_Actuales;
 }
 
-
-public void setEstaInmortal(boolean esta)
-{   
+public void setEstaInmortal(boolean esta){   
 	this.estaInmortal = esta;
 }
 
-
-public boolean getEstaInmortal()
-{
+public boolean getEstaInmortal(){
 	return estaInmortal;
 }
 
-
 //Obtiene la etiqueta del aura inmortal y le cambia la posicion dependiendo de donde se movio el jugador
-public JLabel getLabelInmortal()
-{
+public JLabel getLabelInmortal(){
 	if(etiInmortal == null)
 		etiInmortal = new JLabel(this.imagenInmortal);
 
@@ -123,21 +107,16 @@ public JLabel getLabelInmortal()
 	return this.etiInmortal;
 }
 
-
-
 //Redefine el metodo de setGrafico para verificar si el jugador esta en estado inmortal y agregarle el aura inmortal
 protected void setGrafico(int dir){
      super.setGrafico(dir);		
-	
      if(this.getEstaInmortal())	
 		{this.getLabelInmortal();
 		etiInmortal.setVisible(true);
 		}
 	else
-		etiInmortal.setVisible(false);
-	
-	}
-
+		etiInmortal.setVisible(false);	
+}
 
 public boolean aceptar(Visitor v){
 	return v.visitarConTanqueJugador(this);
@@ -166,6 +145,3 @@ public boolean visitarConTanqueEnemigo(Enemigo j) {	return true;}
 public boolean visitarConTanqueJugador(Jugador j) {return false;}
 
 }
-
-
-

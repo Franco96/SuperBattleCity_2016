@@ -51,7 +51,7 @@ public class Gui extends JFrame{
 		VentanaControles();
 	}
 	
-	public void VentanaControles(){
+	private void VentanaControles(){
 		Icon imagen=new ImageIcon(this.getClass().getResource("/Imagenes/Controles.gif"));
 		JLabel panel=new JLabel(imagen);
 		JFrame ventana_ayuda= new JFrame();
