@@ -7,27 +7,33 @@ import BattleCity.Element;
 import BattleCity.Juego;
 import GUI.Gui;
 
+
+/*Clase para manejar los powerUp...osea para que aparescan en pantalla 
+ *de manera aleatoria y ademas manejar su colision con los gameObject
+ */
 public class LosPowerUps {
 
-//ATRIBUTOS 
-	
-	
+//ATRIBUTOS 	
 private PowerUp power;
-
 private Juego miJuego;
+private DetenerTiempo det;
+private Thread hilo;
 
-
+//CONSTRUCTOR
 public LosPowerUps(Juego miJuego){
 	
 this.miJuego = miJuego;
-	
 power = new Casco(60,60,miJuego);
+
+
 
 }
 
 
+//METODOS
 
 
+//-----METODO PARA VERIFICAR COLISION Y AFECTAR AL JUGADOR----------//
 public boolean ColisionaConPower(Rectangle rectangulo ,Element elemento)
 {
 	boolean choca = false;
@@ -39,8 +45,7 @@ public boolean ColisionaConPower(Rectangle rectangulo ,Element elemento)
 	
 	if(choca)
 		choca = elemento.aceptar(power);
-		 
-	
+
 	
 	return choca;
 	
@@ -58,10 +63,10 @@ public void desactivarPower()
 }
 
 
+//-------METODO PARA AGREGAR A LA GUI DE MANERA RANDOM UN POWERUP--------//
+
 public void agregarAGui(Gui gui)
-{   //Desactivo el powerUp que tenia antes
-	  power.desactivarPower();
-	
+{   
 	Random x0 = new Random();
 	   int x = x0.nextInt(750);
 	Random y0 = new Random();
@@ -95,9 +100,14 @@ public void agregarAGui(Gui gui)
 	   
 	    power.activarPower();
         gui.add(power.getGrafico(),0);
-    DetenerTiempo det = new DetenerTiempo(miJuego);
-    	Thread j3=new Thread(det);
-		j3.start();
+   
+       /*Utilizamos la clase "DetenerTiempo" para que nos detenga por unos segundos el poweup para 
+        *que lo agarre el jugador
+        */
+       
+        det = new DetenerTiempo(miJuego);
+        hilo = new Thread(det);
+		hilo.start();
         
 }
 	

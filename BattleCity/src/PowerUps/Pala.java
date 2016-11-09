@@ -17,18 +17,6 @@ public class Pala extends PowerUp{
 	}
 
 	@Override
-	public boolean visitarConTanqueEnemigo(Enemigo j) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean visitarConBala(Bala b) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean visitarConTanqueJugador(Jugador j) {
 		this.sonido("SonidoPowerAp");
 		miJuego.cambiarBaseARoca();

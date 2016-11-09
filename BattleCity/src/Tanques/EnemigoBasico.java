@@ -11,30 +11,11 @@ public class EnemigoBasico extends Enemigo {
 		this.image[2] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueEnemigoBasicoIzquierda.gif"));
 		this.image[3] = new ImageIcon(this.getClass().getResource("/Imagenes/TanqueEnemigoBasicoDerecha.gif"));
 		estado=new EstadoBasico();
+		golpes_actuales=estado.getGolpes_que_resiste();
 		puntos=100;
 	}
 
-	@Override
-	public boolean visitarConBala(Bala b) {	
-		if(b.esBaladeEnemigo())
-		 return false;
-		 else{			 
-			 b.OBTENERJUEGO().OBTENERBATALLON().quitarOponente(this, b.OBTENERJUEGO());
-			b.OBTENERJUEGO().incEnemigosDestruidos();
-			b.OBTENERJUEGO().pedido_barra().quitarEnemigo();
-			return true;	        
-			} 
-	}
 
-	@Override
-	public boolean visitarConTanqueEnemigo(Enemigo j) {
-		// TODO Auto-generated method stub
-		return true;
-	}
 
-	@Override
-	public boolean visitarConTanqueJugador(Jugador j) {
-		// TODO Auto-generated method stub
-		return true;
-	}
+
 }

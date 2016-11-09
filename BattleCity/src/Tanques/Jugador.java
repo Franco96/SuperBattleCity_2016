@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 import BattleCity.Visitor;
 
-public class Jugador extends Tanque implements Visitor{
+public class Jugador extends Tanque{
 
 protected boolean estaInmortal;
 protected int auxGolpes_Actuales;
@@ -19,6 +19,7 @@ JLabel etiInmortal;
 public Jugador(int x, int y) {
 	super(x, y);
 	resetNivel();
+	  this.imagen = this.image[0];
 	estaInmortal = false;
 	auxGolpes_Actuales = 0;
 	vida=3;	
@@ -27,14 +28,13 @@ public Jugador(int x, int y) {
 
 //Metodo que quita 1 vida, retorna si sigue con vida(FALSE-vivo,TRUE-muerto)
 public boolean quitarVida(){
-	System.out.println("Entro");
 	vida--;
 	this.resetNivel();
 	this.resetPosicion();
 	return vida==0;
 }
 
-public void resetPosicion(){
+private void resetPosicion(){
 	grafico.setLocation(400, 400);
 	pos.setLocation(400, 400);
 }
@@ -76,11 +76,69 @@ private void asignarNivel(int n){
 		}			
 	}
 }
+
 	
-public int getVelocidad() {
-	return estado.getVelocidadMovimiento();
+
+
+
+
+public void volverInmortal()
+{
+//Guardamos los golpes que resiste el jugador antes de que se vuelva inmortal para luego recuperarlos 
+	auxGolpes_Actuales = this.golpes_actuales;
+	golpes_actuales +=1000;
+	
+	
 }
+
+
+
+public void volverNormal()
+{
+	etiInmortal.setVisible(false);
+	this.golpes_actuales = auxGolpes_Actuales;
+}
+
+
+public void setEstaInmortal(boolean esta)
+{   
+	this.estaInmortal = esta;
+}
+
+
+public boolean getEstaInmortal()
+{
+	return estaInmortal;
+}
+
+
+//Obtiene la etiqueta del aura inmortal y le cambia la posicion dependiendo de donde se movio el jugador
+public JLabel getLabelInmortal()
+{
+	if(etiInmortal == null)
+		etiInmortal = new JLabel(this.imagenInmortal);
+
+	etiInmortal.setBounds((int)this.getPos().getX()-16,(int) this.getPos().getY()-20, this.imagenInmortal.getIconWidth(),this.imagenInmortal.getIconHeight());
 	
+	return this.etiInmortal;
+}
+
+
+
+//Redefine el metodo de setGrafico para verificar si el jugador esta en estado inmortal y agregarle el aura inmortal
+protected void setGrafico(int dir){
+     super.setGrafico(dir);		
+	
+     if(this.getEstaInmortal())	
+		{this.getLabelInmortal();
+		etiInmortal.setVisible(true);
+		}
+	else
+		etiInmortal.setVisible(false);
+	
+	}
+
+
 public boolean aceptar(Visitor v){
 	return v.visitarConTanqueJugador(this);
 }		
@@ -101,69 +159,20 @@ public boolean visitarConBala(Bala b) {
 }
 
 @Override
-public boolean visitarConTanqueEnemigo(Enemigo j) {
-	// TODO Auto-generated method stub
-	return true;
-}
+public boolean visitarConTanqueEnemigo(Enemigo j) {	return true;}
 
 @Override
-public boolean visitarConTanqueJugador(Jugador j) {
-	// TODO Auto-generated method stub
-	return false;
-}
+public boolean visitarConTanqueJugador(Jugador j) {return false;}
 
 
-public void volverInmortal()
-{
-	auxGolpes_Actuales = this.golpes_actuales;
-	
-	golpes_actuales +=1000;
-	
-	
-}
-
-public void volverNormal()
-{
-	etiInmortal.setVisible(false);
-	this.golpes_actuales = auxGolpes_Actuales;
-}
-
-public void setEstaInmortal(boolean esta)
-{   
-	this.estaInmortal = esta;
-}
-
-public boolean getEstaInmortal()
-{
-	return estaInmortal;
-}
-
-public JLabel getLabelInmortal()
-{
-	if(etiInmortal == null)
-		etiInmortal = new JLabel(this.imagenInmortal);
-
-	etiInmortal.setBounds((int)this.getPos().getX()-16,(int) this.getPos().getY()-20, this.imagenInmortal.getIconWidth(),this.imagenInmortal.getIconHeight());
-	
-	return this.etiInmortal;
-}
 
 
-protected void setGrafico(int dir){
-	if(this.grafico != null){
-		this.grafico.setIcon(this.image[dir]);
-		this.grafico.setBounds(this.pos.x, this.pos.y, width, height);
-		
-	if(this.getEstaInmortal())	
-		{this.getLabelInmortal();
-		etiInmortal.setVisible(true);
-		}
-	else
-		etiInmortal.setVisible(false);
-	
-	}
-}
+
+
 
 
 
 }
+
+
+

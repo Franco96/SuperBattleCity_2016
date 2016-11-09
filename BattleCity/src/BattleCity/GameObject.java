@@ -4,17 +4,19 @@ import java.awt.Point;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.Icon;
 import javax.swing.JLabel;
 
 public abstract class GameObject {
   //ATRIBUTOS
-	
+	protected Icon imagen;
 	protected JLabel grafico;
 	protected  int width = 25;
 	protected  int height = 25;
 	protected Point pos;
 	//Sonido
 	protected Clip sonido;
+	
   //CONSTRUCTOR	
 	
 	protected GameObject(int x, int y){
@@ -27,9 +29,14 @@ public abstract class GameObject {
 		return pos;
 	}
 	
-    abstract public JLabel getGrafico();
+	public JLabel getGrafico(){
+		if(this.grafico == null){
+			this.grafico = new JLabel(imagen);
+			this.grafico.setBounds(this.pos.x, this.pos.y, width, height);
+		}			
+		return this.grafico;
+	}
 
-	abstract protected void setGrafico(int dir);
 	
 	public void setPosicion(int x,int y){
 		pos = new Point(x,y);
@@ -42,6 +49,8 @@ public abstract class GameObject {
 	public int getAlto(){
 		return height;
 	}
+	
+	
 	
 	//METODO PARA PRODUCIR SONIDO
 	public void sonido(String archivo)

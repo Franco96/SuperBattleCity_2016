@@ -16,18 +16,6 @@ public class Granada extends PowerUp{
 	}
 
 	@Override
-	public boolean visitarConTanqueEnemigo(Enemigo j) {
-	
-		return false;
-	}
-
-	@Override
-	public boolean visitarConBala(Bala b) {
-		
-		return false;
-	}
-
-	@Override
 	public boolean visitarConTanqueJugador(Jugador j) {
 		this.sonido("SonidoPowerAp");
 		miJuego.OBTENERBATALLON().eliminarEnemigos(miJuego.OBTENERGUI());

@@ -2,10 +2,10 @@ package Tanques;
 
 import java.awt.Rectangle;
 import javax.swing.Icon;
-import javax.swing.JLabel;
 import BattleCity.Element;
 import BattleCity.GameObject;
 import BattleCity.Juego;
+import BattleCity.Visitor;
 import Exception.BoundaryViolationException;
 import Exception.EmptyListException;
 import Exception.InvalidPositionException;
@@ -14,7 +14,7 @@ import TDALista.ListaDoblementeEnlazada;
 import TDALista.Position;
 import TDALista.PositionList;
 
-public abstract  class Tanque extends GameObject implements Element {
+public abstract  class Tanque extends GameObject implements Element,Visitor {
 //ATRIBUTOS
     protected Icon image[];
     protected int ultima_direccion;
@@ -30,8 +30,9 @@ protected Tanque(int x, int y) {
     this.image = new Icon[8];  
     this.width = 50;
     this.height = 50;
-    balas_disparadas= new ListaDoblementeEnlazada<Bala>();	    
-    estado = new Estado1();
+    balas_disparadas= new ListaDoblementeEnlazada<Bala>();	 
+  
+
 }
 	
    //METODOS
@@ -88,9 +89,7 @@ public void update_bala(){
 	}
 }
 	
-public int getVelocidad() {
-	return estado.getVelocidadMovimiento();
-}	
+	
 	
 protected void setGrafico(int dir){
 	if(this.grafico != null){
@@ -99,14 +98,8 @@ protected void setGrafico(int dir){
 	}
 }
 	
-public JLabel getGrafico(){
-	if(this.grafico == null){
-		this.grafico = new JLabel(image[0]);
-		this.grafico.setBounds(this.pos.x, this.pos.y, width, height);		
-	}		
-	return this.grafico;
-}	
-	
+
+
 
 private boolean mover(int dir){
 
@@ -138,14 +131,14 @@ return colisiona;
 
 
 
-//Mover PRUEBA agregando mejora para el sistema de colision
-public boolean movimiento(int dir,Juego h/*Mapa mapa_que_recibe*/){
+
+public boolean movimiento(int dir,Juego h){
 	ultima_direccion=dir;
 	
 	Rectangle proximo_movimiento=null;
 	int indice=0;
 	boolean colisiono=false;
-	while (indice<getVelocidad() && !colisiono){
+	while (indice<estado.getVelocidadMovimiento()&& !colisiono){
 		switch (dir){
 		case 0 : //Arriba
 			proximo_movimiento=new Rectangle(getPos().x,getPos().y-1,getAncho(),getAlto());
@@ -163,8 +156,6 @@ public boolean movimiento(int dir,Juego h/*Mapa mapa_que_recibe*/){
 		colisiono=h.COLLIDER(proximo_movimiento,this);	
 		if (!colisiono){
 			colisiono = mover(dir);
-			//Producir Sonido
-			//this.sonido("SonidoMover");
 			
 		}
 		indice++;
@@ -179,9 +170,10 @@ public boolean movimiento(int dir,Juego h/*Mapa mapa_que_recibe*/){
 
 
 
-public JLabel getLabel(){
-	return grafico;
-}
+
+
+
+
 }
 
 

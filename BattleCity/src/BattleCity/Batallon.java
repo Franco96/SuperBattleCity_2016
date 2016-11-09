@@ -84,29 +84,7 @@ public class Batallon {
 	  return nuevo;
   }
   
-  public void quitarOponente(Gui gui,Juego j){
-		try{
-			if (!oponentes.isEmpty()){
-				Position<Enemigo> p=oponentes.last();
-				puntaje+=p.element().getPuntaje_por_Destruccion();
-				gui.remove(oponentes.last().element().getGrafico());
-				gui.revalidate();
-				gui.repaint();
-				oponentes.remove(p);
-				cantEnemigos--;
-			}
-			if (cantEnemigos==0){
-				j.win();
-			}
-		}
-		catch (InvalidPositionException e){
-			System.out.println(e.getMessage());
-		}
-		catch (EmptyListException e){
-			System.out.println(e.getMessage());
-		}
-	} 
-  
+
   //MUEVE A TODOS LOS ENEMIGOS
   public void mover(Juego h){
 		try {

@@ -1,7 +1,6 @@
 package Celdas;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import Tanques.Bala;
 import Tanques.Enemigo;
 import Tanques.Jugador;
@@ -13,22 +12,14 @@ public class Roca extends Celda {
 		super(x, y);
 		this.imagen = new ImageIcon(this.getClass().getResource("/Imagenes/Roca.png"));
 		sePuede_destruir=true;
-		sePuede_atravesar=false;
-		grafico = new JLabel(imagen);
-		grafico.setBounds(pos.x, this.pos.y, width, height);
+		this.getGrafico();
 		rectangulo_propio=new Rectangle(pos.x,pos.y,width,height);
 		vida = 4;
 	}	
 	
-	@Override
-	protected void setGrafico(int dir) {
-		// TODO Auto-generated method stub		
-	}
-	
-	public boolean eliminarL(){
-		return false;
-	}
-	
+
+
+		@Override
 	public boolean visitarConBala(Bala b) {	
 		if(b.estaEnNivel4())
 		{
@@ -40,14 +31,8 @@ public class Roca extends Celda {
 	}
 
 	@Override
-	public boolean visitarConTanqueEnemigo(Enemigo j) {
-		// TODO Auto-generated method stub
-		return true;
-	}
+	public boolean visitarConTanqueEnemigo(Enemigo j) {return true;}
 
 	@Override
-	public boolean visitarConTanqueJugador(Jugador j) {
-		// TODO Auto-generated method stub
-		return true;
-	}	
+	public boolean visitarConTanqueJugador(Jugador j) {	return true;}	
 }

@@ -39,9 +39,6 @@ public class Bala extends GameObject implements Runnable,Element{
 		
 	}
 	
-    public JLabel getGrafico(){
-    	return grafico;    	
-    }
 	
     protected void setGrafico(int dir){
 			grafico.setIcon(imagen);
@@ -103,7 +100,7 @@ public class Bala extends GameObject implements Runnable,Element{
 		mover(direccion);
 	}	
 	
-	public void volver_invisible(){
+	private void volver_invisible(){
 		grafico.setVisible(false);
 		esVisible=false;
 	}
