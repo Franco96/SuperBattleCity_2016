@@ -14,7 +14,8 @@ public class VidaExtra extends PowerUp{
 	@Override
 	public boolean visitarConTanqueJugador(Jugador j) {
 		this.sonido("SonidoPowerAp");
-	    j.agregarVida();
+		
+	   this.miJuego.ActualizarVida(j.agregarVida());
 		this.desactivarPower();
 		return false;
 	}

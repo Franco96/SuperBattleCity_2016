@@ -39,9 +39,10 @@ private void resetPosicion(){
 	pos.setLocation(400, 400);
 }
 
-//Metodo suma 1 vida al jugador
-public void agregarVida(){
-	vida++;
+//Metodo suma 1 vida al jugador y la retorna
+public int agregarVida(){
+	 vida++;
+	 return vida;
 }
 
 public void resetNivel(){
