@@ -40,10 +40,10 @@ public class Batallon {
   } 
   
   //Agrega un oponente en alguna posicion designada valida disponible
-  public void agregar_oponente(Gui gui,Mapa m){
+  public void agregar_oponente(Gui gui,Juego j){
 	  try{
 		  Enemigo nuevo =generarEnemigoRandom();
-		  if (oponentes.size()<cant_enemigos_simultaneos && !m.si_colisiona(rectangulos[lugar_de_colocacion], nuevo) && !ColisionaConOponente(rectangulos[lugar_de_colocacion], nuevo)){
+		  if (oponentes.size()<cant_enemigos_simultaneos && !j.COLLIDER(nuevo.getGrafico().getBounds(), nuevo)){
 			  oponentes.addLast(nuevo);
 			  gui.add(oponentes.last().element().getGrafico());
 			  gui.revalidate();

@@ -17,7 +17,7 @@ public class Juego  {
 	protected Jugador jugador;	
 	protected Mapa m;    
 	protected Actualizador actualizador;  
-	Gui copia;
+	protected Gui copia;
 	private LosPowerUps power;
 	private int enemigosDestruidos;
 	protected boolean si_termino;
@@ -109,7 +109,7 @@ private int convertir_keyCode_a_direccion(int direccion_a_convertir){
 
 // agregar oponente 
 public void agregarOponente(){
-	enemigos.agregar_oponente(copia, m);
+	enemigos.agregar_oponente(copia, this);
 }
 
 //GENERA EL DISPARO A TODOS LOS ENEMIGOS DEL BATALLON
