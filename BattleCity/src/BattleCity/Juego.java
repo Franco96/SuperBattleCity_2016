@@ -38,9 +38,8 @@ public Juego(Gui gui){
 	Thread j1=new Thread(actualizador);
 	j1.start();
 	si_termino=false;
+	
 	barra=new Barra_Inferior(copia);
-	
-	
 	//Actualizador para controlar el ingreso de los enemigos al juego
 	ActualizadorDeApariciones actualizador_oponentes= new ActualizadorDeApariciones(this);
 	Thread j2=new Thread(actualizador_oponentes);
@@ -79,10 +78,6 @@ public void win(){
 	copia.add(comp); 
 }
 
-
-
-
-
 private int convertir_keyCode_a_direccion(int direccion_a_convertir){
 	int direccion_resultante=0;
 	switch (direccion_a_convertir){
@@ -110,10 +105,6 @@ private int convertir_keyCode_a_direccion(int direccion_a_convertir){
 	return direccion_resultante;	
 }
 
-
-
-
-
 //-----METODOS PARA LOS ENEMIGOS------------------//
 
 // agregar oponente 
@@ -139,12 +130,7 @@ public int getPuntaje(){
 	return enemigos.getPuntaje();
 }
 
-
 //----------------------------------------------------------------//
-
-
-
-
 
 //---------METODOS PARA EL JUGADOR-------------------------//
 
@@ -163,8 +149,7 @@ public void reset_estado_jugador(){
 
 //Genera el disparo del jugador
 public void generar_disparo_jugador(){
-	jugador.disparar_bala(copia,this,false);
-	
+	jugador.disparar_bala(copia,this,false);	
 }
 
 public Jugador getJugador(){
@@ -181,12 +166,6 @@ public void ActualizarVida(int valor){
 }
 
 //--------------------------------------------------------------------//
-
-
-
-
-
-
 
 //--------------METODOS PARA EL POWERAP----------------------//
 
@@ -209,12 +188,7 @@ public LosPowerUps ObtenerPower(){
 	return power;
 }
 
-
 //-------------------------------------------------------------//
-
-
-
-
 
 //COLISIONADOR TODOS CON TODOS BALAS Y TAMQUES CON CELDAS Y TANQUES
 public boolean COLLIDER(Rectangle recElemento,Element elemento){ 
@@ -239,12 +213,9 @@ public boolean COLLIDER(Rectangle recElemento,Element elemento){
 	return colisiono;	
 }
 
-
-
 public void eliminar_pared(){
 	m.remover_pared();
 }
-
 
 public Barra_Inferior pedido_barra(){
 	return barra;
@@ -254,12 +225,9 @@ public boolean si_termino_el_juego(){
 	return si_termino;
 }
 
-
 public Gui OBTENERGUI(){
 	return copia;
 }
-
-
 
 //Aca se colocan los elementos a actualizar del juego
 public void update(){
@@ -267,6 +235,4 @@ public void update(){
 	mover();
 	jugador.update_bala();
 }
-
-
 }

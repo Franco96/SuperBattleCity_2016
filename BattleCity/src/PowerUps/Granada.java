@@ -16,6 +16,7 @@ public class Granada extends PowerUp{
 	public boolean visitarConTanqueJugador(Jugador j) {
 		this.sonido("SonidoPowerAp");
 		miJuego.OBTENERBATALLON().eliminarEnemigos(miJuego.OBTENERGUI());
+		miJuego.pedido_barra().actualizarPuntaje(miJuego.getPuntaje());
 		 this.desactivarPower();
 		return false;
 	}

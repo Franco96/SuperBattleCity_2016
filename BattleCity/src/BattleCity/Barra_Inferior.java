@@ -16,9 +16,11 @@ public class Barra_Inferior {
 	protected Icon numeros[];
 	protected JLabel digito1;
 	protected JLabel digito2;
+	protected JLabel puntaje[];
 	
 	public Barra_Inferior(Gui gui){
 		inicializar_numeros();
+		inicializar_puntaje(gui);
 		por_derrotar = new ListaDoblementeEnlazada<JLabel>();
 		imagen=new ImageIcon(this.getClass().getResource("/Imagenes/nave_menu.jpg"));
 		JLabel barra=new JLabel(new ImageIcon(this.getClass().getResource("/Imagenes/barra.jpg")));
@@ -45,6 +47,36 @@ public class Barra_Inferior {
 		gui.add(digito2,1);
 		digito2.setBounds(700, 650, 25, 25);
 		actualizarVidas(3);
+	}
+	
+	/**
+	   * Metodo privado para inicializar el puntaje del jugador
+	   * @param Nada
+	   * @return Nada
+	   */
+	private void inicializar_puntaje(Gui g){
+		int posY=650;
+		puntaje =new JLabel[10];
+		for (int i=0,posX=260;i<10;i++, posX=posX+25){
+			puntaje[i]=new JLabel(numeros[0]);
+			g.add(puntaje[i],1);
+			puntaje[i].setBounds(posX, posY, 25, 25);
+		}
+	}
+ 
+	/**
+	   * Metodo para actualizar el puntaje que se muestra
+	   * @param Nada
+	   * @return Nada
+	   */
+	public void actualizarPuntaje(int numero_a_mostrar){
+		int posArreglo=9,digito=0;
+		while (numero_a_mostrar!=0 && posArreglo>=0){
+			digito=numero_a_mostrar%10;
+			puntaje[posArreglo].setIcon(numeros[digito]);
+			numero_a_mostrar/=10;
+			posArreglo--;
+		}
 	}
 	
 	/**

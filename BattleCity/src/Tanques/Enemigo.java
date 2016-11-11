@@ -59,6 +59,7 @@ public  abstract class Enemigo extends Tanque {
 				b.OBTENERJUEGO().OBTENERBATALLON().quitarOponente(this, b.OBTENERJUEGO());
 				b.OBTENERJUEGO().incEnemigosDestruidos();
 				b.OBTENERJUEGO().pedido_barra().quitarEnemigo();
+				b.OBTENERJUEGO().pedido_barra().actualizarPuntaje(b.OBTENERJUEGO().getPuntaje());
 			}
 			return true;
 		 }

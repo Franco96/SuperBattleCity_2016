@@ -212,7 +212,6 @@ public class Batallon {
 		}
 	}
   
-  
   public void eliminarEnemigos(Gui g){  	
   	try {
   		Position<Enemigo>p=oponentes.first(),u=oponentes.last();
@@ -244,18 +243,13 @@ public class Batallon {
   	}  
 }
   
-  
  //SETEA EL ESTA DETENIDO PARA PARAR A LOS ENEMIGOS CUANDO SE AGARRA EL POWER TIME
   
-  public void setEstaDetenido(boolean esta)
-  {
+  public void setEstaDetenido(boolean esta){
 	  this.estaDetenido = esta;
   }
-  
-  
-  
-  public boolean getEstaDetenido()
-  {
+ 
+  public boolean getEstaDetenido(){
 	  return this.estaDetenido;
   }
   

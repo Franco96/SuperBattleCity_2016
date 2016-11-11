@@ -47,7 +47,7 @@ public class Gui extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	    j = new Juego(this);		   
-		game_over = new JLabel("GAMEOVER");
+//		game_over = new JLabel("GAMEOVER"); 
 		VentanaControles();
 	}
 	
