@@ -53,6 +53,7 @@ public Juego(Gui gui){
 
 
 private void parar(){
+	power.desactivarPower();
 	actualizador.terminar_juego();
 	m.eliminarMapa();	
 	enemigos.eliminarEnemigos(copia);	
