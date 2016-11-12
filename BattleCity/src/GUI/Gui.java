@@ -16,7 +16,6 @@ public class Gui extends JFrame{
 	protected static final long serialVersionUID = 1L;
 	protected JPanel contentPane;	
 	protected Juego j;
-	protected JLabel game_over;
 	
 	public static void main(String[] args) {		
 		Gui frame = new Gui();
@@ -47,7 +46,6 @@ public class Gui extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	    j = new Juego(this);		   
-//		game_over = new JLabel("GAMEOVER"); 
 		VentanaControles();
 	}
 	
@@ -59,7 +57,6 @@ public class Gui extends JFrame{
 		panel.setBounds(0,0,608,278);
 		ventana_ayuda.setBounds(100, 100, 450, 300);
 		ventana_ayuda.setSize(608,278);
-		ventana_ayuda.setLocationRelativeTo(null);
 		ventana_ayuda.setResizable(false);
 		ventana_ayuda.setTitle("Controles");
 		ventana_ayuda.setVisible(true);
